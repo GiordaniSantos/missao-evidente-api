@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth'])->prefix('/admin')->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/table', function () {
         return view('admin.table');

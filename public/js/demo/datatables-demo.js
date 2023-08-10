@@ -3,7 +3,7 @@
 $(document).ready(function() {
   $('#dataTable').DataTable({
     "language": {
-      "lengthMenu": "Mostrando _MENU_ registros por página",
+      "lengthMenu": "Mostrando _MENU_ por página",
       "zeroRecords": "Nenhum resultado encontrado",
       "info": "Mostrando página _PAGE_ de _PAGES_",
       "infoEmpty": "Nenhum registro encontrado",

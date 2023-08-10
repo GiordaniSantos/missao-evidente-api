@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('titulo', 'Gerenciador de Visitas')
+
 @section('content')
 <!-- Begin Page Content -->
 <div class="container-fluid">
