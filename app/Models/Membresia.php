@@ -11,7 +11,7 @@ class Membresia extends Model
 
     protected $fillable = ['nome', 'quantidade', 'id_usuario'];
 
-    protected $dates = ['created_at', 'updated_at', 'data_publicacao'];
+    protected $dates = ['created_at', 'updated_at'];
 
     public static function rules(){
         $regras = [
