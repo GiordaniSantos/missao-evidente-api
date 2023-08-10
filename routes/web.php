@@ -29,6 +29,9 @@ Route::middleware(['auth'])->prefix('/admin')->group(function () {
 
     //atos pastorais
     Route::resource('atos-pastorais', \App\Http\Controllers\AtoController::class);
+
+    //pregacoes
+    Route::resource('pregacao', \App\Http\Controllers\PregacaoController::class);
 });
 
 

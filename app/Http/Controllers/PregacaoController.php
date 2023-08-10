@@ -2,23 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Ato;
+use App\Models\Pregacao;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class AtoController extends Controller
+class PregacaoController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
     {
-        $atos = Ato::orderBy('id', 'desc')->where('id_usuario', \Auth::user()->id)->get();
+        $pregacoes = Pregacao::orderBy('id', 'desc')->where('id_usuario', \Auth::user()->id)->get();
 
-        $title = 'Deletar ato pastoral!';
+        $title = 'Deletar dado de pregação!';
         $text = "Você tem certeza que quer deletar este registro?";
         confirmDelete($title, $text);
-        return view('admin.atos-pastorais.index', ['atos' => $atos, 'request' => $request->all()]);
+        return view('admin.pregacao.index', ['pregacoes' => $pregacoes, 'request' => $request->all()]);
     }
 
     /**
@@ -26,7 +26,7 @@ class AtoController extends Controller
      */
     public function create()
     {
-        return view('admin.atos-pastorais.create');
+        return view('admin.pregacao.create');
     }
 
     /**
@@ -36,60 +36,60 @@ class AtoController extends Controller
     {
         if($request->input('_token') != '' && $request->input('id') == ''){
             //validacao
-            $request->validate(Ato::rules(), Ato::feedback());
-            $ato = new Ato();
-            $ato->nome = $request->input('nome');
-            $ato->quantidade = $request->input('quantidade');
-            $ato->id_usuario = \Auth::user()->id;
-            if($ato->save()){
+            $request->validate(Pregacao::rules(), Pregacao::feedback());
+            $pregacao = new Pregacao();
+            $pregacao->nome = $request->input('nome');
+            $pregacao->quantidade = $request->input('quantidade');
+            $pregacao->id_usuario = \Auth::user()->id;
+            if($pregacao->save()){
                 alert()->success('Concluído','Registro adicionado com sucesso.');
             }
         }
-        return redirect()->route('atos-pastorais.index');
+        return redirect()->route('pregacao.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Ato $ato)
+    public function show(Pregacao $pregacao)
     {
-        return view('admin.atos-pastorais.show', ['ato' => $ato]);
+        return view('admin.pregacao.show', ['pregacao' => $pregacao]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Ato $atos_pastorai)
+    public function edit(Pregacao $pregacao)
     {
-        return view('admin.atos-pastorais.edit', ['ato' => $atos_pastorai]);
+        return view('admin.pregacao.edit', ['pregacao' => $pregacao]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Ato $atos_pastorai)
+    public function update(Request $request, Pregacao $pregacao)
     {
         if($request->input('_token') != '' && $request->input('id') == ''){
 
             //validacao
-            $request->validate(Ato::rules(), Ato::feedback());
-            $atos_pastorai->id_usuario = \Auth::user()->id;
-            if($atos_pastorai->update($request->all())){
+            $request->validate(Pregacao::rules(), Pregacao::feedback());
+            $pregacao->id_usuario = \Auth::user()->id;
+            if($pregacao->update($request->all())){
                 alert()->success('Concluído','Registro atualizado com sucesso.');
             }else{
                 alert()->error('ErrorAlert','Erro na atualização do registro.');
             }
         }
         
-        return redirect()->route('atos-pastorais.index');
+        return redirect()->route('pregacao.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Ato $atos_pastorai)
+    public function destroy(Pregacao $pregacao)
     {
-        $atos_pastorai->delete();
+        $pregacao->delete();
 
         alert()->success('Concluído','Registro removido com sucesso.');
         return redirect()->route('atos-pastorais.index');
