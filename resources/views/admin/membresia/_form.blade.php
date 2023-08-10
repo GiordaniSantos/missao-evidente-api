@@ -1,3 +1,15 @@
+<?php 
+$list = [
+    'Primeiro Domingo',
+    'Segundo Domingo',
+    'Terceiro Domingo',
+    'Quarto Domingo',
+    'Quinto Domingo',
+    'Comungantes',
+    'Não Comungantes'
+]
+?>
+
 @if(isset($membresium->id))
 <form method="post" action="{{ route('membresia.update', ['membresium' => $membresium->id]) }}" enctype="multipart/form-data">
     @csrf
@@ -13,13 +25,13 @@
             <label class="small mb-1" for="nome">Nome</label>
             <select name="nome" class="form-control">
                 <option> Escolha uma Opção </option>
-                <option value="Primeiro Domingo" @if(isset($membresium)){{ ($membresium->nome ?? old('nome')) == $membresium->nome ? 'selected' : '' }}@endif> Primeiro Domingo </option>
-                <option value="Segundo Domingo" @if(isset($membresium)){{ ($membresium->nome ?? old('nome')) == $membresium->nome ? 'selected' : '' }}@endif> Segundo Domingo </option>
-                <option value="Terceiro Domingo" @if(isset($membresium)){{ ($membresium->nome ?? old('nome')) == $membresium->nome ? 'selected' : '' }}@endif> Terceiro Domingo </option>
-                <option value="Quarto Domingo" @if(isset($membresium)){{ ($membresium->nome ?? old('nome')) == $membresium->nome ? 'selected' : '' }}@endif> Quarto Domingo </option>
-                <option value="Quinto Domingo" @if(isset($membresium)){{ ($membresium->nome ?? old('nome')) == $membresium->nome ? 'selected' : '' }}@endif> Quinto Domingo </option>
-                <option value="Comungantes" @if(isset($membresium)){{ ($membresium->nome ?? old('nome')) == $membresium->nome ? 'selected' : '' }}@endif> Comungantes </option>
-                <option value="Não Comungantes" @if(isset($membresium)){{ ($membresium->nome ?? old('nome')) == $membresium->nome ? 'selected' : '' }}@endif> Não Comungantes </option>
+                <option value="{{$list[0]}}" @if(isset($membresium)){{ ($membresium->nome ?? old('nome')) == $list[0] ? 'selected' : '' }}@endif> Primeiro Domingo </option>
+                <option value="{{$list[1]}}" @if(isset($membresium)){{ ($membresium->nome ?? old('nome')) == $list[1] ? 'selected' : '' }}@endif> Segundo Domingo </option>
+                <option value="{{$list[2]}}" @if(isset($membresium)){{ ($membresium->nome ?? old('nome')) == $list[2] ? 'selected' : '' }}@endif> Terceiro Domingo </option>
+                <option value="{{$list[3]}}" @if(isset($membresium)){{ ($membresium->nome ?? old('nome')) == $list[3] ? 'selected' : '' }}@endif> Quarto Domingo </option>
+                <option value="{{$list[4]}}" @if(isset($membresium)){{ ($membresium->nome ?? old('nome')) == $list[4] ? 'selected' : '' }}@endif> Quinto Domingo </option>
+                <option value="{{$list[5]}}" @if(isset($membresium)){{ ($membresium->nome ?? old('nome')) == $list[5] ? 'selected' : '' }}@endif> Comungantes </option>
+                <option value="{{$list[6]}}" @if(isset($membresium)){{ ($membresium->nome ?? old('nome')) == $list[6] ? 'selected' : '' }}@endif> Não Comungantes </option>
             </select>
             {{ $errors->has('nome') ? $errors->first('nome') : '' }}
         </div>

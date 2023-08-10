@@ -26,6 +26,9 @@ Route::middleware(['auth'])->prefix('/admin')->group(function () {
     })->name('table');
     //membresia
     Route::resource('membresia', \App\Http\Controllers\MembresiaController::class);
+
+    //atos pastorais
+    Route::resource('atos-pastorais', \App\Http\Controllers\AtoController::class);
 });
 
 

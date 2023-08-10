@@ -147,7 +147,7 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="{{route('membresia.index')}}">
+                <a class="nav-link" href="{{route('atos-pastorais.index')}}">
                 <i class="fa-solid fa-user-tie"></i>
                 <span>Atos Pastorais</span></a>
             </li>
