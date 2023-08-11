@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Membresia;
 
 class HomeController extends Controller
 {
@@ -21,8 +22,28 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('home');
+        $mes = date('m');
+        $ano = date('Y');
+
+        $queryMembresias = Membresia::query();
+        $queryMembresias->where('id_usuario', \Auth::user()->id);
+        $queryMembresias->orderBy('created_at', 'asc');
+        if ($request->has('ano')) {
+            $queryMembresias->whereYear('created_at', '=', $request->ano);
+        }else{
+            $queryMembresias->whereYear('created_at', '=', $ano);
+        }
+
+        if ($request->has('mes')) {
+            $queryMembresias->whereMonth('created_at', '=', $request->mes);
+        }else{
+            $queryMembresias->whereMonth('created_at', '=', $mes);
+        }
+
+        $membresias = $queryMembresias->get();
+
+        return view('home', ['membresias' => $membresias]);
     }
 }

@@ -5,7 +5,7 @@
 @section('content')
 <?php 
 
-$data = date('D');
+    $data = date('D');
     $mes = date('M');
     $dia = date('d');
     $ano = date('Y');
@@ -34,7 +34,7 @@ $data = date('D');
         'Oct' => 'Outubro',
         'Dec' => 'Dezembro'
     );
-    
+    $anoInputValue = isset($_GET['ano']) ? $_GET['ano'] : $ano;
     
 ?>
 
@@ -58,23 +58,26 @@ $data = date('D');
             </div>
         </div>
         <div style="display:flex;">
-            <!-- Date range picker example-->
-            <select name="nome" class="form-control">
-                <option> Janeiro </option>
-                <option >Fevereiro</option>
-                <option > Março </option>
-                <option > Abril </option>
-                <option > Maio </option>
-                <option > Junho </option>
-                <option > Julho </option>
-                <option > Agosto </option>
-                <option > Setembro </option>
-                <option > Outubro </option>
-                <option > Novembro </option>
-                <option > Dezembro </option>
-            </select>
-            <input class="form-control" id="quantidade" name="quantidade" type="number" placeholder="" value="2023">
-            <button class="btn btn-primary" type="submit">Filtrar</button>
+            <form method="get" action="{{ route('home') }}" enctype="multipart/form-data" style="display:flex;">
+                @csrf
+                <select name="mes" class="form-control">
+                    <option value="1" @if(isset($_GET['mes']) && $_GET['mes'] == "1"){{'selected'}} @elseif(!isset($_GET['mes'])){{ ($mes_extenso["$mes"] ?? old('mes')) == "Janeiro" ? 'selected' : '' }}@endif> Janeiro </option>
+                    <option value="2" @if(isset($_GET['mes']) && $_GET['mes'] == "2"){{'selected'}} @elseif(!isset($_GET['mes'])){{ ($mes_extenso["$mes"] ?? old('mes')) == "Fevereiro" ? 'selected' : '' }}@endif>Fevereiro</option>
+                    <option value="3" @if(isset($_GET['mes']) && $_GET['mes'] == "3"){{'selected'}} @elseif(!isset($_GET['mes'])){{ ($mes_extenso["$mes"] ?? old('mes')) == "Março" ? 'selected' : '' }}@endif> Março </option>
+                    <option value="4" @if(isset($_GET['mes']) && $_GET['mes'] == "4"){{'selected'}} @elseif(!isset($_GET['mes'])){{ ($mes_extenso["$mes"] ?? old('mes')) == "Abril" ? 'selected' : '' }}@endif> Abril </option>
+                    <option value="5" @if(isset($_GET['mes']) && $_GET['mes'] == "5"){{'selected'}} @elseif(!isset($_GET['mes'])){{ ($mes_extenso["$mes"] ?? old('mes')) == "Maio" ? 'selected' : '' }}@endif> Maio </option>
+                    <option value="6" @if(isset($_GET['mes']) && $_GET['mes'] == "6"){{'selected'}} @elseif(!isset($_GET['mes'])){{ ($mes_extenso["$mes"] ?? old('mes')) == "Junho" ? 'selected' : '' }}@endif> Junho </option>
+                    <option value="7" @if(isset($_GET['mes']) && $_GET['mes'] == "7"){{'selected'}} @elseif(!isset($_GET['mes'])){{ ($mes_extenso["$mes"] ?? old('mes')) == "Julho" ? 'selected' : '' }}@endif> Julho </option>
+                    <option value="8" @if(isset($_GET['mes']) && $_GET['mes'] == "8"){{"selected"}} @elseif(!isset($_GET['mes'])){{ ($mes_extenso["$mes"] ?? old('mes')) == "Agosto" ? 'selected' : '' }}@endif> Agosto </option>
+                    <option value="9" @if(isset($_GET['mes']) && $_GET['mes'] == "9"){{'selected'}} @elseif(!isset($_GET['mes'])){{ ($mes_extenso["$mes"] ?? old('mes')) == "Setembro" ? 'selected' : '' }}@endif> Setembro </option>
+                    <option value="10" @if(isset($_GET['mes']) && $_GET['mes'] == "10"){{'selected'}} @elseif(!isset($_GET['mes'])){{ ($mes_extenso["$mes"] ?? old('mes')) == "Outubro" ? 'selected' : '' }}@endif> Outubro </option>
+                    <option value="11" @if(isset($_GET['mes']) && $_GET['mes'] == "11"){{'selected'}} @elseif(!isset($_GET['mes'])){{ ($mes_extenso["$mes"] ?? old('mes')) == "Novembro" ? 'selected' : '' }}@endif> Novembro </option>
+                    <option value="12" @if(isset($_GET['mes']) && $_GET['mes'] == "12"){{'selected'}} @elseif(!isset($_GET['mes'])){{ ($mes_extenso["$mes"] ?? old('mes')) == "Dezembro" ? 'selected' : '' }}@endif> Dezembro </option>
+                </select>
+                {{ $errors->has('mes') ? $errors->first('mes') : '' }}
+                <input class="form-control" id="ano" name="ano" type="number" placeholder="" value="{{$anoInputValue}}">
+                <button class="btn btn-primary" type="submit">Filtrar</button>
+            </form>
         </div>
         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
             class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
@@ -227,31 +230,13 @@ $data = date('D');
                 </div>
                 <!-- Card Body -->
                 <div class="card-body card-dashboard">
-                    <div class="card-item-dashboard" style="padding: 15px 10px;">
-                      
-                            <a href="/app/orders/5" class="text-indigo-700 font-semibold"><strong>Primeiro Domingo:</strong></a> 45 pessoas. <br>(Registro criado em 10/08/2023) 
-                        
-                    </div>
-                    <div class="card-item-dashboard" style="padding: 15px 10px;">
-                      
-                        <a href="/app/orders/5" class="text-indigo-700 font-semibold"><strong>Primeiro Domingo:</strong></a> 45 pessoas. <br>(Registro criado em 10/08/2023) 
-                    
-                    </div>
-                    <div class="card-item-dashboard" style="padding: 15px 10px;">
-                      
-                        <a href="/app/orders/5" class="text-indigo-700 font-semibold"><strong>Primeiro Domingo:</strong></a> 45 pessoas. <br>(Registro criado em 10/08/2023) 
-                        
-                    </div>
-                    <div class="card-item-dashboard" style="padding: 15px 10px;">
-                      
-                        <a href="/app/orders/5" class="text-indigo-700 font-semibold"><strong>Primeiro Domingo:</strong></a> 45 pessoas. <br>(Registro criado em 10/08/2023) 
-                        
-                    </div>
-                    <div class="card-item-dashboard" style="padding: 15px 10px;">
-                      
-                        <a href="/app/orders/5" class="text-indigo-700 font-semibold"><strong>Primeiro Domingo:</strong></a> 45 pessoas. <br>(Registro criado em 10/08/2023) 
-                    
-                    </div>
+                    @if($membresias)
+                        @foreach ($membresias as $membresia)
+                            <div class="card-item-dashboard" style="padding: 15px 10px;">
+                                <a href="{{route('membresia.edit', ['membresium' => $membresia->id])}}" class="text-indigo-700 font-semibold"><strong>{{$membresia->nome}}:</strong></a> {{$membresia->quantidade}} pessoas. <br>(Registro criado em {{$membresia->created_at->format('d/m/Y')}}) 
+                            </div>
+                        @endforeach
+                    @endif
                 </div>
             </div>
         </div>
