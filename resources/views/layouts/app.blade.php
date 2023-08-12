@@ -162,7 +162,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Login Screens:</h6>
                         <a class="collapse-item" href="{{route('crente.index')}}">Crentes</a>
-                        <a class="collapse-item" href="register.html">Não Crentes</a>
+                        <a class="collapse-item" href="{{route('nao-crente.index')}}">Não Crentes</a>
                         <a class="collapse-item" href="forgot-password.html">Presídios</a>
                         <a class="collapse-item" href="forgot-password.html">Enfermos</a>
                         <a class="collapse-item" href="forgot-password.html">Hospitais</a>

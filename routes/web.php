@@ -44,9 +44,11 @@ Route::middleware(['auth'])->prefix('/admin')->group(function () {
 
     //visita crente
     Route::resource('crente', \App\Http\Controllers\CrenteController::class)->except(['edit', 'update']);
-    Route::get('/crente/{id}/edit', [\App\Http\Controllers\CrenteController::class, 'edit'])->name('crente.edit');
-    Route::put('/crente/{id}', [\App\Http\Controllers\CrenteController::class, 'update'])->name('crente.update');
     Route::delete('/crente/{id}', [\App\Http\Controllers\CrenteController::class, 'destroy'])->name('crente.destroy');
+
+    //visita não crente
+    Route::resource('nao-crente', \App\Http\Controllers\IncreduloController::class)->except(['edit', 'update']);
+    Route::delete('/nao-crente/{id}', [\App\Http\Controllers\IncreduloController::class, 'destroy'])->name('nao-crente.destroy');
 });
 
 
