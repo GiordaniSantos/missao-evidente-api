@@ -11,7 +11,7 @@ $list = [
 ?>
 
 @if(isset($membresium->id))
-<form method="post" action="{{ route('membresia.update', ['membresium' => $membresium->id]) }}" enctype="multipart/form-data">
+<form method="post" action="{{ route('membresia.update', ['id' => $membresium->id]) }}" enctype="multipart/form-data">
     @csrf
     @method('PUT')
 @else

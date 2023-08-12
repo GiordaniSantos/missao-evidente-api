@@ -4,7 +4,6 @@
 
 @section('content')
 <?php 
-    date_default_timezone_set('America/Sao_Paulo');
     $data = date('D');
     $mes = date('M');
     $dia = date('d');
@@ -234,7 +233,7 @@
                     @if(count($membresias))
                         @foreach ($membresias as $membresia)
                             <div class="card-item-dashboard" style="padding: 15px 10px;">
-                                <a href="{{route('membresia.edit', ['membresium' => $membresia->id])}}" class="text-indigo-700 font-semibold"><strong>{{$membresia->nome}}:</strong></a> {{$membresia->quantidade}} pessoas. <br>(Registro criado em {{$membresia->created_at->format('d/m/Y')}}) 
+                                <a href="{{route('membresia.edit', ['id' => $membresia->id])}}" class="text-indigo-700 font-semibold"><strong>{{$membresia->nome}}:</strong></a> {{$membresia->quantidade}} pessoas. <br>(Registro criado em {{$membresia->created_at->format('d/m/Y')}}) 
                             </div>
                         @endforeach
                     @else
@@ -271,7 +270,7 @@
                     @if(count($atos))
                         @foreach($atos as $ato)
                             <div class="card-item-dashboard" style="padding: 15px 10px;">
-                                <a href="/app/orders/5" class="text-indigo-700 font-semibold"><strong style="color: #4e73df;">{{$ato->nome}}:</strong></a> {{$ato->quantidade}} pessoas. <br>(Registro criado em {{$ato->created_at->format('d/m/Y')}}) 
+                                <a href="{{route('atos-pastorais.edit', ['id' => $ato->id])}}" class="text-indigo-700 font-semibold"><strong style="color: #4e73df;">{{$ato->nome}}:</strong></a> {{$ato->quantidade}} pessoas. <br>(Registro criado em {{$ato->created_at->format('d/m/Y')}}) 
                             </div>
                         @endforeach
                     @else
@@ -308,7 +307,7 @@
                     @if(count($pregacoes))
                         @foreach($pregacoes as $pregacao)
                             <div class="card-item-dashboard" style="padding: 15px 10px;">
-                                <a href="/app/orders/5" class="text-indigo-700 font-semibold"><strong style="color: #85102f;">{{$pregacao->nome}}:</strong></a> {{$pregacao->quantidade}} pessoas. <br>(Registro criado em {{$pregacao->created_at->format('d/m/Y')}})
+                                <a href="{{route('pregacao.edit', ['id' => $ato->id])}}" class="text-indigo-700 font-semibold"><strong style="color: #85102f;">{{$pregacao->nome}}:</strong></a> {{$pregacao->quantidade}} pessoas. <br>(Registro criado em {{$pregacao->created_at->format('d/m/Y')}})
                             </div>
                         @endforeach
                     @else

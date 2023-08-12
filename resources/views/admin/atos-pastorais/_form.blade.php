@@ -8,7 +8,7 @@ $list = [
 ?>
 
 @if(isset($ato->id))
-<form method="post" action="{{ route('atos-pastorais.update', ['atos_pastorai' => $ato->id]) }}" enctype="multipart/form-data">
+<form method="post" action="{{ route('atos-pastorais.update', ['id' => $ato->id]) }}" enctype="multipart/form-data">
     @csrf
     @method('PUT')
 @else

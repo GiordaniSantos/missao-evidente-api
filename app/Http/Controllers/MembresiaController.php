@@ -59,22 +59,30 @@ class MembresiaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Membresia $membresium)
+    public function edit($id)
     {
-        return view('admin.membresia.edit', ['membresia' => $membresium]);
+        $membresia = Membresia::where('id', $id)->where('id_usuario', \Auth::user()->id)->first();
+        if(!$membresia){
+            abort(404, 'Registro não encotrado!');
+        }
+        return view('admin.membresia.edit', ['membresia' => $membresia]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Membresia $membresium)
+    public function update(Request $request, $id)
     {
+        $membresia = Membresia::where('id', $id)->where('id_usuario', \Auth::user()->id)->first();
+        if(!$membresia){
+            abort(404, 'Registro não encotrado!');
+        }
         if($request->input('_token') != '' && $request->input('id') == ''){
 
             //validacao
             $request->validate(Membresia::rules(), Membresia::feedback());
-            $membresium->id_usuario = \Auth::user()->id;
-            if($membresium->update($request->all())){
+            $membresia->id_usuario = \Auth::user()->id;
+            if($membresia->update($request->all())){
                 alert()->success('Concluído','Registro atualizado com sucesso.');
             }else{
                 alert()->error('ErrorAlert','Erro na atualização do registro.');
@@ -87,9 +95,13 @@ class MembresiaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Membresia $membresium)
+    public function destroy($id)
     {
-        $membresium->delete();
+        $membresia = Membresia::where('id', $id)->where('id_usuario', \Auth::user()->id)->first();
+        if(!$membresia){
+            abort(404, 'Registro não encotrado!');
+        }
+        $membresia->delete();
 
         alert()->success('Concluído','Registro removido com sucesso.');
         return redirect()->route('membresia.index');

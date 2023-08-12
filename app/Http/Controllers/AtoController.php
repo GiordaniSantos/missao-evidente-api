@@ -59,22 +59,30 @@ class AtoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Ato $atos_pastorai)
+    public function edit($id)
     {
-        return view('admin.atos-pastorais.edit', ['ato' => $atos_pastorai]);
+        $ato = Ato::where('id', $id)->where('id_usuario', \Auth::user()->id)->first();
+        if(!$ato){
+            abort(404, 'Registro não encotrado!');
+        }
+        return view('admin.atos-pastorais.edit', ['ato' => $ato]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Ato $atos_pastorai)
+    public function update(Request $request, $id)
     {
+        $ato = Ato::where('id', $id)->where('id_usuario', \Auth::user()->id)->first();
+        if(!$ato){
+            abort(404, 'Registro não encotrado!');
+        }
         if($request->input('_token') != '' && $request->input('id') == ''){
 
             //validacao
             $request->validate(Ato::rules(), Ato::feedback());
-            $atos_pastorai->id_usuario = \Auth::user()->id;
-            if($atos_pastorai->update($request->all())){
+            $ato->id_usuario = \Auth::user()->id;
+            if($ato->update($request->all())){
                 alert()->success('Concluído','Registro atualizado com sucesso.');
             }else{
                 alert()->error('ErrorAlert','Erro na atualização do registro.');
@@ -87,9 +95,13 @@ class AtoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Ato $atos_pastorai)
+    public function destroy($id)
     {
-        $atos_pastorai->delete();
+        $ato = Ato::where('id', $id)->where('id_usuario', \Auth::user()->id)->first();
+        if(!$ato){
+            abort(404, 'Registro não encotrado!');
+        }
+        $ato->delete();
 
         alert()->success('Concluído','Registro removido com sucesso.');
         return redirect()->route('atos-pastorais.index');

@@ -59,16 +59,24 @@ class PregacaoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Pregacao $pregacao)
+    public function edit($id)
     {
+        $pregacao = Pregacao::where('id', $id)->where('id_usuario', \Auth::user()->id)->first();
+        if(!$pregacao){
+            abort(404, 'Registro não encotrado!');
+        }
         return view('admin.pregacao.edit', ['pregacao' => $pregacao]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Pregacao $pregacao)
+    public function update(Request $request, $id)
     {
+        $pregacao = Pregacao::where('id', $id)->where('id_usuario', \Auth::user()->id)->first();
+        if(!$pregacao){
+            abort(404, 'Registro não encotrado!');
+        }
         if($request->input('_token') != '' && $request->input('id') == ''){
 
             //validacao
@@ -87,8 +95,12 @@ class PregacaoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Pregacao $pregacao)
+    public function destroy($id)
     {
+        $pregacao = Pregacao::where('id', $id)->where('id_usuario', \Auth::user()->id)->first();
+        if(!$pregacao){
+            abort(404, 'Registro não encotrado!');
+        }
         $pregacao->delete();
 
         alert()->success('Concluído','Registro removido com sucesso.');

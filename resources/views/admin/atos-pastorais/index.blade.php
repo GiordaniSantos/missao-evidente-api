@@ -42,7 +42,7 @@
                                                 <i class="fa-solid fa-bars"></i>
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                <a class="dropdown-item" href="{{route('atos-pastorais.edit', ['atos_pastorai' => $ato->id])}}">Atualizar</a>
+                                                <a class="dropdown-item" href="{{route('atos-pastorais.edit', ['id' => $ato->id])}}">Atualizar</a>
                                                 <a href="{{ route('atos-pastorais.destroy', $ato->id) }}" class="dropdown-item" data-confirm-delete="true">Deletar</a>
                                             </div>
                                         </div>
