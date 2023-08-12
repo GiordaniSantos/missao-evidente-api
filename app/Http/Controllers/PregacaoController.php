@@ -53,7 +53,7 @@ class PregacaoController extends Controller
      */
     public function show(Pregacao $pregacao)
     {
-        return view('admin.pregacao.show', ['pregacao' => $pregacao]);
+
     }
 
     /**

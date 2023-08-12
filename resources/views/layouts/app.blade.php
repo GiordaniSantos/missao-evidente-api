@@ -161,7 +161,7 @@
                 <div id="collapseVisitacoes" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item" href="login.html">Crentes</a>
+                        <a class="collapse-item" href="{{route('crente.index')}}">Crentes</a>
                         <a class="collapse-item" href="register.html">Não Crentes</a>
                         <a class="collapse-item" href="forgot-password.html">Presídios</a>
                         <a class="collapse-item" href="forgot-password.html">Enfermos</a>

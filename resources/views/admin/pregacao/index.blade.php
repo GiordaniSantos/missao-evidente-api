@@ -3,6 +3,22 @@
 @section('titulo', 'Pregações')
 
 @section('content')
+    <?php 
+    $mes_extenso = array(
+        'Jan' => 'Janeiro',
+        'Feb' => 'Fevereiro',
+        'Mar' => 'Marco',
+        'Apr' => 'Abril',
+        'May' => 'Maio',
+        'Jun' => 'Junho',
+        'Jul' => 'Julho',
+        'Aug' => 'Agosto',
+        'Nov' => 'Novembro',
+        'Sep' => 'Setembro',
+        'Oct' => 'Outubro',
+        'Dec' => 'Dezembro'
+    );
+    ?>
     <div class="container-fluid">
         <h1 class="h3 mb-2 text-gray-800">Pregações</h1>
         <p class="mb-4">Aqui estão listados todos os seus registros de Pregações, você pode adicionar, editar e excluir e também realizar filtros de acordo com seu interesse.</p>
@@ -24,6 +40,7 @@
                             <tr>
                                 <th>Nome</th>
                                 <th>Quantidade</th>
+                                <th>Dia</th>
                                 <th>Mês</th>
                                 <th>Ano</th>
                                 <th></th>
@@ -34,7 +51,8 @@
                                 <tr>
                                     <td>{{$pregacao->nome}}</td>
                                     <td>{{$pregacao->quantidade}}</td>
-                                    <td>{{$pregacao->created_at->format('m')}}</td>
+                                    <td>{{$pregacao->created_at->format('d')}}</td>
+                                    <td>{{$mes_extenso[$pregacao->created_at->format('M')]}}</td>
                                     <td>{{$pregacao->created_at->format('Y')}}</td>
                                     <td>
                                         <div class="dropdown">

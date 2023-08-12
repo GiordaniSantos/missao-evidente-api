@@ -37,10 +37,16 @@ Route::middleware(['auth'])->prefix('/admin')->group(function () {
     Route::delete('/atos-pastorais/{id}', [\App\Http\Controllers\AtoController::class, 'destroy'])->name('atos-pastorais.destroy');
 
     //pregacoes
-    Route::resource('pregacao', \App\Http\Controllers\PregacaoController::class)->except(['edit']);
+    Route::resource('pregacao', \App\Http\Controllers\PregacaoController::class)->except(['edit', 'update']);
     Route::get('/pregacao/{id}/edit', [\App\Http\Controllers\AtoController::class, 'edit'])->name('pregacao.edit');
     Route::put('/pregacao/{id}', [\App\Http\Controllers\PregacaoController::class, 'update'])->name('pregacao.update');
     Route::delete('/pregacao/{id}', [\App\Http\Controllers\PregacaoController::class, 'destroy'])->name('pregacao.destroy');
+
+    //visita crente
+    Route::resource('crente', \App\Http\Controllers\CrenteController::class)->except(['edit', 'update']);
+    Route::get('/crente/{id}/edit', [\App\Http\Controllers\CrenteController::class, 'edit'])->name('crente.edit');
+    Route::put('/crente/{id}', [\App\Http\Controllers\CrenteController::class, 'update'])->name('crente.update');
+    Route::delete('/crente/{id}', [\App\Http\Controllers\CrenteController::class, 'destroy'])->name('crente.destroy');
 });
 
 

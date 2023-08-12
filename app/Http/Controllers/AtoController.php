@@ -53,7 +53,7 @@ class AtoController extends Controller
      */
     public function show(Ato $ato)
     {
-        return view('admin.atos-pastorais.show', ['ato' => $ato]);
+        
     }
 
     /**

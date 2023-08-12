@@ -53,7 +53,7 @@ class MembresiaController extends Controller
      */
     public function show(Membresia $membresia)
     {
-        return view('admin.membresia.show', ['membresia' => $membresia]);
+
     }
 
     /**
