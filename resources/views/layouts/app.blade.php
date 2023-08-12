@@ -163,7 +163,7 @@
                         <h6 class="collapse-header">Login Screens:</h6>
                         <a class="collapse-item" href="{{route('crente.index')}}">Crentes</a>
                         <a class="collapse-item" href="{{route('nao-crente.index')}}">Não Crentes</a>
-                        <a class="collapse-item" href="forgot-password.html">Presídios</a>
+                        <a class="collapse-item" href="{{route('presidio.index')}}">Presídios</a>
                         <a class="collapse-item" href="forgot-password.html">Enfermos</a>
                         <a class="collapse-item" href="forgot-password.html">Hospitais</a>
                         <a class="collapse-item" href="forgot-password.html">Escolas</a>

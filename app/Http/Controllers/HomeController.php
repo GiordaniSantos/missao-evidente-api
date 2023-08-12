@@ -8,6 +8,7 @@ use App\Models\Ato;
 use App\Models\Pregacao;
 use App\Models\Crente;
 use App\Models\Incredulo;
+use App\Models\Presidio;
 
 class HomeController extends Controller
 {
@@ -49,18 +50,23 @@ class HomeController extends Controller
         $queryVisitasNaoCrentes = Incredulo::query();
         $queryVisitasNaoCrentes->where('id_usuario', \Auth::user()->id);
 
+        $queryVisitasPresidios = Presidio::query();
+        $queryVisitasPresidios->where('id_usuario', \Auth::user()->id);
+
         if ($request->has('ano')) {
             $queryMembresias->whereYear('created_at', '=', $request->ano);
             $queryAtosPastorais->whereYear('created_at', '=', $request->ano);
             $queryPregacao->whereYear('created_at', '=', $request->ano);
             $queryVisitasCrentes->whereYear('created_at', '=', $request->ano);
             $queryVisitasNaoCrentes->whereYear('created_at', '=', $request->ano);
+            $queryVisitasPresidios->whereYear('created_at', '=', $request->ano);
         }else{
             $queryMembresias->whereYear('created_at', '=', $ano);
             $queryAtosPastorais->whereYear('created_at', '=', $ano);
             $queryPregacao->whereYear('created_at', '=', $ano);
             $queryVisitasCrentes->whereYear('created_at', '=', $ano);
             $queryVisitasNaoCrentes->whereYear('created_at', '=', $ano);
+            $queryVisitasPresidios->whereYear('created_at', '=', $ano);
         }
 
         if ($request->has('mes')) {
@@ -69,12 +75,14 @@ class HomeController extends Controller
             $queryPregacao->whereMonth('created_at', '=', $request->mes);
             $queryVisitasCrentes->whereMonth('created_at', '=', $request->mes);
             $queryVisitasNaoCrentes->whereMonth('created_at', '=', $request->mes);
+            $queryVisitasPresidios->whereMonth('created_at', '=', $request->mes);
         }else{
             $queryMembresias->whereMonth('created_at', '=', $mes);
             $queryAtosPastorais->whereMonth('created_at', '=', $mes);
             $queryPregacao->whereMonth('created_at', '=', $mes);
             $queryVisitasCrentes->whereMonth('created_at', '=', $mes);
             $queryVisitasNaoCrentes->whereMonth('created_at', '=', $mes);
+            $queryVisitasPresidios->whereMonth('created_at', '=', $mes);
         }
 
         $atos = $queryAtosPastorais->get();
@@ -82,7 +90,15 @@ class HomeController extends Controller
         $pregacoes = $queryPregacao->get();
         $crentes = $queryVisitasCrentes->count();
         $incredulos = $queryVisitasNaoCrentes->count();
+        $presidios = $queryVisitasPresidios->count();
 
-        return view('home', ['membresias' => $membresias, 'atos' => $atos, 'pregacoes' => $pregacoes, 'crentes' => $crentes, 'incredulos' => $incredulos]);
+        return view('home', [
+                'membresias' => $membresias,
+                'atos' => $atos,
+                'pregacoes' => $pregacoes,
+                'crentes' => $crentes,
+                'incredulos' => $incredulos,
+                'presidios' => $presidios
+            ]);
     }
 }

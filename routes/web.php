@@ -49,6 +49,10 @@ Route::middleware(['auth'])->prefix('/admin')->group(function () {
     //visita não crente
     Route::resource('nao-crente', \App\Http\Controllers\IncreduloController::class)->except(['edit', 'update']);
     Route::delete('/nao-crente/{id}', [\App\Http\Controllers\IncreduloController::class, 'destroy'])->name('nao-crente.destroy');
+
+    //visita presidios
+    Route::resource('presidio', \App\Http\Controllers\PresidioController::class)->except(['edit', 'update']);
+    Route::delete('/presidio/{id}', [\App\Http\Controllers\PresidioController::class, 'destroy'])->name('presidio.destroy');
 });
 
 

@@ -130,7 +130,7 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1" style="color: #d55b2a !important">
                                 Presídios</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">20 visitas</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{isset($presidios) ? $presidios : '0'}} {{$presidios == 0 || $presidios > 1 ? 'visitas' : 'visita'}}</div>
                         </div>
                         <div class="col-auto">
                             <i class="fa-solid fa-person-shelter fa-2x text-gray-300"></i>
