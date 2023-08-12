@@ -165,7 +165,7 @@
                         <a class="collapse-item" href="{{route('nao-crente.index')}}">Não Crentes</a>
                         <a class="collapse-item" href="{{route('presidio.index')}}">Presídios</a>
                         <a class="collapse-item" href="{{route('enfermo.index')}}">Enfermos</a>
-                        <a class="collapse-item" href="forgot-password.html">Hospitais</a>
+                        <a class="collapse-item" href="{{route('hospital.index')}}">Hospitais</a>
                         <a class="collapse-item" href="forgot-password.html">Escolas</a>
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Other Pages:</h6>

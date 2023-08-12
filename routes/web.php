@@ -57,6 +57,10 @@ Route::middleware(['auth'])->prefix('/admin')->group(function () {
     //visita enfermos
     Route::resource('enfermo', \App\Http\Controllers\EnfermoController::class)->except(['edit', 'update']);
     Route::delete('/enfermo/{id}', [\App\Http\Controllers\EnfermoController::class, 'destroy'])->name('enfermo.destroy');
+
+    //visita hospitais
+    Route::resource('hospital', \App\Http\Controllers\HospitalController::class)->except(['edit', 'update']);
+    Route::delete('/hospital/{id}', [\App\Http\Controllers\HospitalController::class, 'destroy'])->name('hospital.destroy');
 });
 
 

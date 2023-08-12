@@ -172,7 +172,7 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                 Hospitais</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">20 visitas</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{isset($hospitais) ? $hospitais : '0'}} {{$hospitais == 0 || $hospitais > 1 ? 'visitas' : 'visita'}}</div>
                         </div>
                         <div class="col-auto">
                             <i class="fa-solid fa-hospital fa-2x text-gray-300"></i>
