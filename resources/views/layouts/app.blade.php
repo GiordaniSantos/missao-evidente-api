@@ -166,7 +166,7 @@
                         <a class="collapse-item" href="{{route('presidio.index')}}">Presídios</a>
                         <a class="collapse-item" href="{{route('enfermo.index')}}">Enfermos</a>
                         <a class="collapse-item" href="{{route('hospital.index')}}">Hospitais</a>
-                        <a class="collapse-item" href="forgot-password.html">Escolas</a>
+                        <a class="collapse-item" href="{{route('escola.index')}}">Escolas</a>
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Other Pages:</h6>
                         <a class="collapse-item" href="404.html">404 Page</a>

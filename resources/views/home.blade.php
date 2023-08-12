@@ -190,7 +190,7 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1" style="color: #85102f !important">
                                 Escolas</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">20 visitas</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{isset($escolas) ? $escolas : '0'}} {{$escolas == 0 || $escolas > 1 ? 'visitas' : 'visita'}}</div>
                         </div>
                         <div class="col-auto">
                             <i class="fa-solid fa-school fa-2x text-gray-300"></i>

@@ -11,6 +11,7 @@ use App\Models\Incredulo;
 use App\Models\Presidio;
 use App\Models\Enfermo;
 use App\Models\Hospital;
+use App\Models\Escola;
 
 class HomeController extends Controller
 {
@@ -61,6 +62,9 @@ class HomeController extends Controller
         $queryVisitasHospitais = Hospital::query();
         $queryVisitasHospitais->where('id_usuario', \Auth::user()->id);
 
+        $queryVisitasEscolas = Escola::query();
+        $queryVisitasEscolas->where('id_usuario', \Auth::user()->id);
+
         if ($request->has('ano')) {
             $queryMembresias->whereYear('created_at', '=', $request->ano);
             $queryAtosPastorais->whereYear('created_at', '=', $request->ano);
@@ -70,6 +74,7 @@ class HomeController extends Controller
             $queryVisitasPresidios->whereYear('created_at', '=', $request->ano);
             $queryVisitasEnfermos->whereYear('created_at', '=', $request->ano);
             $queryVisitasHospitais->whereYear('created_at', '=', $request->ano);
+            $queryVisitasEscolas->whereYear('created_at', '=', $request->ano);
         }else{
             $queryMembresias->whereYear('created_at', '=', $ano);
             $queryAtosPastorais->whereYear('created_at', '=', $ano);
@@ -79,6 +84,7 @@ class HomeController extends Controller
             $queryVisitasPresidios->whereYear('created_at', '=', $ano);
             $queryVisitasEnfermos->whereYear('created_at', '=', $ano);
             $queryVisitasHospitais->whereYear('created_at', '=', $ano);
+            $queryVisitasEscolas->whereYear('created_at', '=', $ano);
         }
 
         if ($request->has('mes')) {
@@ -90,6 +96,7 @@ class HomeController extends Controller
             $queryVisitasPresidios->whereMonth('created_at', '=', $request->mes);
             $queryVisitasEnfermos->whereMonth('created_at', '=', $request->mes);
             $queryVisitasHospitais->whereMonth('created_at', '=', $request->mes);
+            $queryVisitasEscolas->whereMonth('created_at', '=', $request->mes);
         }else{
             $queryMembresias->whereMonth('created_at', '=', $mes);
             $queryAtosPastorais->whereMonth('created_at', '=', $mes);
@@ -99,6 +106,7 @@ class HomeController extends Controller
             $queryVisitasPresidios->whereMonth('created_at', '=', $mes);
             $queryVisitasEnfermos->whereMonth('created_at', '=', $mes);
             $queryVisitasHospitais->whereMonth('created_at', '=', $mes);
+            $queryVisitasEscolas->whereMonth('created_at', '=', $mes);
         }
 
         $atos = $queryAtosPastorais->get();
@@ -109,6 +117,7 @@ class HomeController extends Controller
         $presidios = $queryVisitasPresidios->count();
         $enfermos = $queryVisitasEnfermos->count();
         $hospitais = $queryVisitasHospitais->count();
+        $escolas = $queryVisitasEscolas->count();
 
         return view('home', [
                 'membresias' => $membresias,
@@ -118,7 +127,8 @@ class HomeController extends Controller
                 'incredulos' => $incredulos,
                 'presidios' => $presidios,
                 'enfermos' => $enfermos,
-                'hospitais' => $hospitais
+                'hospitais' => $hospitais,
+                'escolas' => $escolas 
             ]);
     }
 }
