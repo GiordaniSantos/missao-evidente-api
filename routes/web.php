@@ -65,6 +65,11 @@ Route::middleware(['auth'])->prefix('/admin')->group(function () {
     //visita escolas
     Route::resource('escola', \App\Http\Controllers\EscolaController::class)->except(['edit', 'update']);
     Route::delete('/escola/{id}', [\App\Http\Controllers\EscolaController::class, 'destroy'])->name('escola.destroy');
+
+    //relatórios gerais
+    Route::get('/relatorio-geral', [App\Http\Controllers\RelatorioGeralController::class, 'index'])->name('relatorio.index');
+    Route::get('/relatorio-geral-dados-visitacao', [App\Http\Controllers\RelatorioGeralController::class, 'dadosVisitacao']);
+    Route::get('/relatorio-geral-dados-membresia', [App\Http\Controllers\RelatorioGeralController::class, 'dadosMembresia']);
 });
 
 
