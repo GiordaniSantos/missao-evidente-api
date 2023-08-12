@@ -26,7 +26,9 @@ Route::middleware(['auth'])->prefix('/admin')->group(function () {
     })->name('table');
     //membresia
     Route::resource('membresia', \App\Http\Controllers\MembresiaController::class);
-
+    Route::get('/fornecedor/editar/{id}/{msg?}', [\App\Http\Controllers\FornecedorController::class, 'editar'])->name('admin.fornecedor.editar');
+    Route::get('/fornecedor/excluir/{id}', [\App\Http\Controllers\FornecedorController::class, 'excluir'])->name('admin.fornecedor.excluir');
+    
     //atos pastorais
     Route::resource('atos-pastorais', \App\Http\Controllers\AtoController::class);
 

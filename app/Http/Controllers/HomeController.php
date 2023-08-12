@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Membresia;
+use App\Models\Ato;
+use App\Models\Pregacao;
 
 class HomeController extends Controller
 {
@@ -30,20 +32,39 @@ class HomeController extends Controller
         $queryMembresias = Membresia::query();
         $queryMembresias->where('id_usuario', \Auth::user()->id);
         $queryMembresias->orderBy('created_at', 'asc');
+
+        $queryAtosPastorais = Ato::query();
+        $queryAtosPastorais->where('id_usuario', \Auth::user()->id);
+        $queryAtosPastorais->orderBy('created_at', 'asc');
+
+        $queryPregacao = Pregacao::query();
+        $queryPregacao->where('id_usuario', \Auth::user()->id);
+        $queryPregacao->orderBy('created_at', 'asc');
+
         if ($request->has('ano')) {
             $queryMembresias->whereYear('created_at', '=', $request->ano);
+            $queryAtosPastorais->whereYear('created_at', '=', $request->ano);
+            $queryPregacao->whereYear('created_at', '=', $request->ano);
         }else{
             $queryMembresias->whereYear('created_at', '=', $ano);
+            $queryAtosPastorais->whereYear('created_at', '=', $ano);
+            $queryPregacao->whereYear('created_at', '=', $ano);
         }
 
         if ($request->has('mes')) {
             $queryMembresias->whereMonth('created_at', '=', $request->mes);
+            $queryAtosPastorais->whereMonth('created_at', '=', $request->mes);
+            $queryPregacao->whereMonth('created_at', '=', $request->mes);
         }else{
             $queryMembresias->whereMonth('created_at', '=', $mes);
+            $queryAtosPastorais->whereMonth('created_at', '=', $mes);
+            $queryPregacao->whereMonth('created_at', '=', $mes);
         }
 
+        $atos = $queryAtosPastorais->get();
         $membresias = $queryMembresias->get();
+        $pregacoes = $queryPregacao->get();
 
-        return view('home', ['membresias' => $membresias]);
+        return view('home', ['membresias' => $membresias, 'atos' => $atos, 'pregacoes' => $pregacoes]);
     }
 }

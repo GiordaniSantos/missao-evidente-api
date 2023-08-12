@@ -4,7 +4,7 @@
 
 @section('content')
 <?php 
-
+    date_default_timezone_set('America/Sao_Paulo');
     $data = date('D');
     $mes = date('M');
     $dia = date('d');
@@ -76,7 +76,8 @@
                 </select>
                 {{ $errors->has('mes') ? $errors->first('mes') : '' }}
                 <input class="form-control" id="ano" name="ano" type="number" placeholder="" value="{{$anoInputValue}}">
-                <button class="btn btn-primary" type="submit">Filtrar</button>
+                <button class="btn btn-primary" type="submit" style="margin-left: 5px;margin-right: 5px;">Filtrar</button>
+                <a href="{{route('home')}}" class="btn btn-primary" type="submit">limpar</a>
             </form>
         </div>
         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
@@ -230,12 +231,14 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body card-dashboard">
-                    @if($membresias)
+                    @if(count($membresias))
                         @foreach ($membresias as $membresia)
                             <div class="card-item-dashboard" style="padding: 15px 10px;">
                                 <a href="{{route('membresia.edit', ['membresium' => $membresia->id])}}" class="text-indigo-700 font-semibold"><strong>{{$membresia->nome}}:</strong></a> {{$membresia->quantidade}} pessoas. <br>(Registro criado em {{$membresia->created_at->format('d/m/Y')}}) 
                             </div>
                         @endforeach
+                    @else
+                        <h5 style="text-align:center;margin-top:130px;">Nenhum resultado encontrado!</h5>    
                     @endif
                 </div>
             </div>
@@ -247,7 +250,7 @@
                 <!-- Card Header - Dropdown -->
                 <div
                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Atos Pastorais</h6>
+                    <h6 class="m-0 font-weight-bold text-primary" style="color: #4e73df !important;">Atos Pastorais</h6>
                     <div class="dropdown no-arrow">
                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -265,31 +268,15 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body card-dashboard">
-                    <div class="card-item-dashboard" style="padding: 15px 10px;">
-                      
-                        <a href="/app/orders/5" class="text-indigo-700 font-semibold"><strong>Batismo:</strong></a> 45 pessoas. <br>(Registro criado em 10/08/2023) 
-                    
-                    </div>
-                    <div class="card-item-dashboard" style="padding: 15px 10px;">
-                    
-                        <a href="/app/orders/5" class="text-indigo-700 font-semibold"><strong>Batismo:</strong></a> 45 pessoas. <br>(Registro criado em 10/08/2023) 
-                    
-                    </div>
-                    <div class="card-item-dashboard" style="padding: 15px 10px;">
-                    
-                        <a href="/app/orders/5" class="text-indigo-700 font-semibold"><strong>Batismo:</strong></a> 45 pessoas. <br>(Registro criado em 10/08/2023) 
-                        
-                    </div>
-                    <div class="card-item-dashboard" style="padding: 15px 10px;">
-                    
-                        <a href="/app/orders/5" class="text-indigo-700 font-semibold"><strong>Batismo:</strong></a> 45 pessoas. <br>(Registro criado em 10/08/2023) 
-                        
-                    </div>
-                    <div class="card-item-dashboard" style="padding: 15px 10px;">
-                    
-                        <a href="/app/orders/5" class="text-indigo-700 font-semibold"><strong>Batismo:</strong></a> 45 pessoas. <br>(Registro criado em 10/08/2023) 
-                    
-                    </div>
+                    @if(count($atos))
+                        @foreach($atos as $ato)
+                            <div class="card-item-dashboard" style="padding: 15px 10px;">
+                                <a href="/app/orders/5" class="text-indigo-700 font-semibold"><strong style="color: #4e73df;">{{$ato->nome}}:</strong></a> {{$ato->quantidade}} pessoas. <br>(Registro criado em {{$ato->created_at->format('d/m/Y')}}) 
+                            </div>
+                        @endforeach
+                    @else
+                        <h5 style="text-align:center;margin-top:130px;">Nenhum resultado encontrado!</h5>    
+                    @endif
                 </div>
             </div>
         </div>
@@ -300,7 +287,7 @@
                 <!-- Card Header - Dropdown -->
                 <div
                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Pregações</h6>
+                    <h6 class="m-0 font-weight-bold text-primary" style="color: #85102f !important;">Pregações</h6>
                     <div class="dropdown no-arrow">
                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -318,31 +305,15 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body card-dashboard">
-                    <div class="card-item-dashboard" style="padding: 15px 10px;">
-                      
-                        <a href="/app/orders/5" class="text-indigo-700 font-semibold"><strong>Estudo:</strong></a> 45 pessoas. <br>(Registro criado em 10/08/2023) 
-                    
-                    </div>
-                    <div class="card-item-dashboard" style="padding: 15px 10px;">
-                    
-                        <a href="/app/orders/5" class="text-indigo-700 font-semibold"><strong>Estudo:</strong></a> 45 pessoas. <br>(Registro criado em 10/08/2023) 
-                    
-                    </div>
-                    <div class="card-item-dashboard" style="padding: 15px 10px;">
-                    
-                        <a href="/app/orders/5" class="text-indigo-700 font-semibold"><strong>Estudo:</strong></a> 45 pessoas. <br>(Registro criado em 10/08/2023) 
-                        
-                    </div>
-                    <div class="card-item-dashboard" style="padding: 15px 10px;">
-                    
-                        <a href="/app/orders/5" class="text-indigo-700 font-semibold"><strong>Estudo:</strong></a> 45 pessoas. <br>(Registro criado em 10/08/2023) 
-                        
-                    </div>
-                    <div class="card-item-dashboard" style="padding: 15px 10px;">
-                    
-                        <a href="/app/orders/5" class="text-indigo-700 font-semibold"><strong>Estudo:</strong></a> 45 pessoas. <br>(Registro criado em 10/08/2023) 
-                    
-                    </div>
+                    @if(count($pregacoes))
+                        @foreach($pregacoes as $pregacao)
+                            <div class="card-item-dashboard" style="padding: 15px 10px;">
+                                <a href="/app/orders/5" class="text-indigo-700 font-semibold"><strong style="color: #85102f;">{{$pregacao->nome}}:</strong></a> {{$pregacao->quantidade}} pessoas. <br>(Registro criado em {{$pregacao->created_at->format('d/m/Y')}})
+                            </div>
+                        @endforeach
+                    @else
+                        <h5 style="text-align:center;margin-top:130px;">Nenhum resultado encontrado!</h5>    
+                    @endif
                 </div>
             </div>
         </div>
