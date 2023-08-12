@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('titulo', 'Gerenciador de Visitas')
+@section('titulo', 'Missão Evidente - Dashboard')
 
 @section('content')
 <?php 

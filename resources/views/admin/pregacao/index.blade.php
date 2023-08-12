@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('titulo', 'Pregações')
+@section('titulo', 'Missão Evidente - Pregações')
 
 @section('content')
     <?php 
