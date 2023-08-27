@@ -18,7 +18,7 @@ class EscolaListResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'created_at' => (new \DateTime($this->created_at))->format('d/m/Y H:m'),
+            'created_at' => (new \DateTime($this->created_at))->format('d/m/Y H:i'),
         ];
     }
 }
