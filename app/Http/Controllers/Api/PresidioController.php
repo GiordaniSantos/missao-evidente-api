@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\PresidioListResource;
+use App\Http\Resources\CommonListResource;
 use App\Models\Presidio;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
@@ -27,7 +27,7 @@ class PresidioController extends Controller
             ->take(15)
             ->get();
 
-        return PresidioListResource::collection($query);
+        return CommonListResource::collection($query);
     }
 
     /**

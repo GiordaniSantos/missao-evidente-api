@@ -12,6 +12,10 @@ use App\Models\Presidio;
 use App\Models\Enfermo;
 use App\Models\Hospital;
 use App\Models\Escola;
+use App\Models\BatismoInfantil;
+use App\Models\BatismoProfissao;
+use App\Models\BencaoNupcial;
+use App\Models\SantaCeia;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
@@ -66,6 +70,18 @@ class DashboardController extends Controller
         $queryVisitasEscolas = Escola::query();
         $queryVisitasEscolas->where('id_usuario', $id_usuario);
 
+        $queryBatismoInfantil = BatismoInfantil::query();
+        $queryBatismoInfantil->where('id_usuario', $id_usuario);
+
+        $queryBatismoProfissao = BatismoProfissao::query();
+        $queryBatismoProfissao->where('id_usuario', $id_usuario);
+
+        $queryBencaoNupcial = BencaoNupcial::query();
+        $queryBencaoNupcial->where('id_usuario', $id_usuario);
+
+        $querySantaCeia = SantaCeia::query();
+        $querySantaCeia->where('id_usuario', $id_usuario);
+
         /*if ($requestAno) {
             $queryMembresias->whereYear('created_at', '=', $requestAno);
             $queryAtosPastorais->whereYear('created_at', '=', $requestAno);
@@ -86,6 +102,10 @@ class DashboardController extends Controller
             $queryVisitasEnfermos->whereYear('created_at', '=', $ano);
             $queryVisitasHospitais->whereYear('created_at', '=', $ano);
             $queryVisitasEscolas->whereYear('created_at', '=', $ano);
+            $queryBatismoInfantil->whereYear('created_at', '=', $ano);
+            $queryBatismoProfissao->whereYear('created_at', '=', $ano);
+            $queryBencaoNupcial->whereYear('created_at', '=', $ano);
+            $querySantaCeia->whereYear('created_at', '=', $ano);
         //}
 
         if ($requestMes) {
@@ -98,6 +118,10 @@ class DashboardController extends Controller
             $queryVisitasEnfermos->whereMonth('created_at', '=', $requestMes);
             $queryVisitasHospitais->whereMonth('created_at', '=', $requestMes);
             $queryVisitasEscolas->whereMonth('created_at', '=', $requestMes);
+            $queryBatismoInfantil->whereMonth('created_at', '=', $requestMes);
+            $queryBatismoProfissao->whereMonth('created_at', '=', $requestMes);
+            $queryBencaoNupcial->whereMonth('created_at', '=', $requestMes);
+            $querySantaCeia->whereMonth('created_at', '=', $requestMes);
         }else{
             $queryMembresias->whereMonth('created_at', '=', $mes);
             $queryAtosPastorais->whereMonth('created_at', '=', $mes);
@@ -108,6 +132,10 @@ class DashboardController extends Controller
             $queryVisitasEnfermos->whereMonth('created_at', '=', $mes);
             $queryVisitasHospitais->whereMonth('created_at', '=', $mes);
             $queryVisitasEscolas->whereMonth('created_at', '=', $mes);
+            $queryBatismoInfantil->whereMonth('created_at', '=', $mes);
+            $queryBatismoProfissao->whereMonth('created_at', '=', $mes);
+            $queryBencaoNupcial->whereMonth('created_at', '=', $mes);
+            $querySantaCeia->whereMonth('created_at', '=', $mes);
         }
         
         $atos = $queryAtosPastorais->get();
@@ -128,8 +156,16 @@ class DashboardController extends Controller
         $hospitaisG['hospitais'] = $hospitais;
         $escolas = $queryVisitasEscolas->count();
         $escolasG['escolas'] = $escolas;
+        $batismosInfantis = $queryBatismoInfantil->count();
+        $batismoG['batismoInfantil'] = $batismosInfantis;
+        $batismosProfissoes = $queryBatismoProfissao->count();
+        $batismoProfissaoG['batismoProfissao'] = $batismosProfissoes;
+        $bencoesNupciais = $queryBencaoNupcial->count();
+        $bencaoNupcialG['bencaoNupcial'] = $bencoesNupciais;
+        $santasCeias = $querySantaCeia->count();
+        $santaCeiaG['santaCeia'] = $santasCeias;
 
-        return response()->json([$atosG, $membresiasG, $pregacoesG, $crentesG, $incredulosG, $presidiosG, $enfermosG, $hospitaisG, $escolasG], 200);
+        return response()->json([$atosG, $membresiasG, $pregacoesG, $crentesG, $incredulosG, $presidiosG, $enfermosG, $hospitaisG, $escolasG, $batismoG, $batismoProfissaoG, $bencaoNupcialG, $santaCeiaG], 200);
     }
 
 }

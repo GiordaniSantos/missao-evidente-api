@@ -4,14 +4,14 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CommonListResource;
-use App\Models\Incredulo;
+use App\Models\SantaCeia;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
 
-class IncreduloController extends Controller
+class SantaCeiaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,7 +21,7 @@ class IncreduloController extends Controller
     public function index()
     {
         $id_usuario = request('id_usuario');
-        $query = Incredulo::query()
+        $query = SantaCeia::query()
             ->where('id_usuario', $id_usuario)
             ->orderBy('created_at', 'desc')
             ->take(15)
@@ -38,28 +38,28 @@ class IncreduloController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate(Incredulo::rules(), Incredulo::feedback());
-        $incredulo = new Incredulo();
-        $incredulo->id_usuario = $request->input('id_usuario');
-        $incredulo->save();
+        $request->validate(SantaCeia::rules(), SantaCeia::feedback());
+        $santaceia = new SantaCeia();
+        $santaceia->id_usuario = $request->input('id_usuario');
+        $santaceia->save();
 
-        return response()->json($incredulo, 201);
+        return response()->json($santaceia, 201);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Models\Incredulo $incredulo
+     * @param \App\Models\SantaCeia $santaceia
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         $id_usuario = request('id_usuario');
-        $incredulo = Incredulo::where('id', $id)->where('id_usuario', $id_usuario)->first();
-        if($incredulo === null){
+        $santaceia = SantaCeia::where('id', $id)->where('id_usuario', $id_usuario)->first();
+        if($santaceia === null){
             return response()->json(['erro' => 'Recurso pesquisado não existe.'], 404);
         }
-        $incredulo->delete();
+        $santaceia->delete();
 
         return response()->json(['msg' => 'Registro deletado com sucesso!'], 200);
     }

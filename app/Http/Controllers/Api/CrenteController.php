@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\CrenteListResource;
+use App\Http\Resources\CommonListResource;
 use App\Models\Crente;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
@@ -27,7 +27,7 @@ class CrenteController extends Controller
             ->take(15)
             ->get();
 
-        return CrenteListResource::collection($query);
+        return CommonListResource::collection($query);
     }
 
     /**

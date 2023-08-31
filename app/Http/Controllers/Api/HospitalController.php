@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\HospitalListResource;
+use App\Http\Resources\CommonListResource;
 use App\Models\Hospital;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
@@ -27,7 +27,7 @@ class HospitalController extends Controller
             ->take(15)
             ->get();
 
-        return HospitalListResource::collection($query);
+        return CommonListResource::collection($query);
     }
 
     /**

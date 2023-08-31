@@ -6,7 +6,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
 
-class PresidioListResource extends JsonResource
+class CommonListResource extends JsonResource
 {
     /**
      * Transform the resource collection into an array.
