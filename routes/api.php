@@ -45,6 +45,14 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::apiResource('santa-ceia', \App\Http\Controllers\Api\SantaCeiaController::class); 
 
+    Route::apiResource('estudo', \App\Http\Controllers\Api\EstudoController::class); 
+    
+    Route::apiResource('sermao', \App\Http\Controllers\Api\SermaoController::class); 
+
+    Route::apiResource('estudo-biblico', \App\Http\Controllers\Api\EstudoBiblicoController::class); 
+
+    Route::apiResource('discipulado', \App\Http\Controllers\Api\DiscipuladoController::class); 
+
     Route::get('dashboard', [\App\Http\Controllers\Api\DashboardController::class, 'index']);
 });
 

@@ -16,6 +16,10 @@ use App\Models\BatismoInfantil;
 use App\Models\BatismoProfissao;
 use App\Models\BencaoNupcial;
 use App\Models\SantaCeia;
+use App\Models\Estudo;
+use App\Models\Sermao;
+use App\Models\EstudoBiblico;
+use App\Models\Discipulado;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
@@ -43,14 +47,6 @@ class DashboardController extends Controller
         $queryMembresias = Membresia::query();
         $queryMembresias->where('id_usuario', $id_usuario);
         $queryMembresias->orderBy('created_at', 'asc');
-
-        $queryAtosPastorais = Ato::query();
-        $queryAtosPastorais->where('id_usuario', $id_usuario);
-        $queryAtosPastorais->orderBy('created_at', 'desc');
-
-        $queryPregacao = Pregacao::query();
-        $queryPregacao->where('id_usuario', $id_usuario);
-        $queryPregacao->orderBy('created_at', 'desc');
 
         $queryVisitasCrentes = Crente::query();
         $queryVisitasCrentes->where('id_usuario', $id_usuario);
@@ -82,6 +78,18 @@ class DashboardController extends Controller
         $querySantaCeia = SantaCeia::query();
         $querySantaCeia->where('id_usuario', $id_usuario);
 
+        $queryEstudo = Estudo::query();
+        $queryEstudo->where('id_usuario', $id_usuario);
+
+        $querySermao = Sermao::query();
+        $querySermao->where('id_usuario', $id_usuario);
+
+        $queryEstudoBiblico = EstudoBiblico::query();
+        $queryEstudoBiblico->where('id_usuario', $id_usuario);
+
+        $queryDiscipulado = Discipulado::query();
+        $queryDiscipulado->where('id_usuario', $id_usuario);
+
         /*if ($requestAno) {
             $queryMembresias->whereYear('created_at', '=', $requestAno);
             $queryAtosPastorais->whereYear('created_at', '=', $requestAno);
@@ -94,8 +102,6 @@ class DashboardController extends Controller
             $queryVisitasEscolas->whereYear('created_at', '=', $requestAno);
         }else{*/
             $queryMembresias->whereYear('created_at', '=', $ano);
-            $queryAtosPastorais->whereYear('created_at', '=', $ano);
-            $queryPregacao->whereYear('created_at', '=', $ano);
             $queryVisitasCrentes->whereYear('created_at', '=', $ano);
             $queryVisitasNaoCrentes->whereYear('created_at', '=', $ano);
             $queryVisitasPresidios->whereYear('created_at', '=', $ano);
@@ -106,12 +112,14 @@ class DashboardController extends Controller
             $queryBatismoProfissao->whereYear('created_at', '=', $ano);
             $queryBencaoNupcial->whereYear('created_at', '=', $ano);
             $querySantaCeia->whereYear('created_at', '=', $ano);
+            $queryEstudo->whereYear('created_at', '=', $ano);
+            $querySermao->whereYear('created_at', '=', $ano);
+            $queryEstudoBiblico->whereYear('created_at', '=', $ano);
+            $queryDiscipulado->whereYear('created_at', '=', $ano);
         //}
 
         if ($requestMes) {
             $queryMembresias->whereMonth('created_at', '=', $requestMes);
-            $queryAtosPastorais->whereMonth('created_at', '=', $requestMes);
-            $queryPregacao->whereMonth('created_at', '=', $requestMes);
             $queryVisitasCrentes->whereMonth('created_at', '=', $requestMes);
             $queryVisitasNaoCrentes->whereMonth('created_at', '=', $requestMes);
             $queryVisitasPresidios->whereMonth('created_at', '=', $requestMes);
@@ -122,10 +130,12 @@ class DashboardController extends Controller
             $queryBatismoProfissao->whereMonth('created_at', '=', $requestMes);
             $queryBencaoNupcial->whereMonth('created_at', '=', $requestMes);
             $querySantaCeia->whereMonth('created_at', '=', $requestMes);
+            $queryEstudo->whereMonth('created_at', '=', $requestMes);
+            $querySermao->whereMonth('created_at', '=', $requestMes);
+            $queryEstudoBiblico->whereMonth('created_at', '=', $requestMes);
+            $queryDiscipulado->whereMonth('created_at', '=', $requestMes);
         }else{
             $queryMembresias->whereMonth('created_at', '=', $mes);
-            $queryAtosPastorais->whereMonth('created_at', '=', $mes);
-            $queryPregacao->whereMonth('created_at', '=', $mes);
             $queryVisitasCrentes->whereMonth('created_at', '=', $mes);
             $queryVisitasNaoCrentes->whereMonth('created_at', '=', $mes);
             $queryVisitasPresidios->whereMonth('created_at', '=', $mes);
@@ -136,14 +146,14 @@ class DashboardController extends Controller
             $queryBatismoProfissao->whereMonth('created_at', '=', $mes);
             $queryBencaoNupcial->whereMonth('created_at', '=', $mes);
             $querySantaCeia->whereMonth('created_at', '=', $mes);
+            $queryEstudo->whereMonth('created_at', '=', $mes);
+            $querySermao->whereMonth('created_at', '=', $mes);
+            $queryEstudoBiblico->whereMonth('created_at', '=', $mes);
+            $queryDiscipulado->whereMonth('created_at', '=', $mes);
         }
         
-        $atos = $queryAtosPastorais->get();
-        $atosG['atos'] = $atos;
         $membresias = $queryMembresias->get();
         $membresiasG['membresias'] = $membresias;
-        $pregacoes = $queryPregacao->get();
-        $pregacoesG['pregacoes'] = $pregacoes;
         $crentes = $queryVisitasCrentes->count();
         $crentesG['crentes'] = $crentes;
         $incredulos = $queryVisitasNaoCrentes->count();
@@ -164,8 +174,16 @@ class DashboardController extends Controller
         $bencaoNupcialG['bencaoNupcial'] = $bencoesNupciais;
         $santasCeias = $querySantaCeia->count();
         $santaCeiaG['santaCeia'] = $santasCeias;
+        $estudos = $queryEstudo->count();
+        $estudosG['estudo'] = $estudos;
+        $sermoes = $querySermao->count();
+        $sermoesG['sermao'] = $sermoes;
+        $estudosBiblicos = $queryEstudoBiblico->count();
+        $estudosBiblicosG['estudoBiblico'] = $estudosBiblicos;
+        $discipulados = $queryDiscipulado->count();
+        $discipuladosG['discipulado'] = $discipulados;
 
-        return response()->json([$atosG, $membresiasG, $pregacoesG, $crentesG, $incredulosG, $presidiosG, $enfermosG, $hospitaisG, $escolasG, $batismoG, $batismoProfissaoG, $bencaoNupcialG, $santaCeiaG], 200);
+        return response()->json([$membresiasG, $crentesG, $incredulosG, $presidiosG, $enfermosG, $hospitaisG, $escolasG, $batismoG, $batismoProfissaoG, $bencaoNupcialG, $santaCeiaG, $estudosG, $sermoesG, $estudosBiblicosG, $discipuladosG], 200);
     }
 
 }
