@@ -203,11 +203,170 @@
     </div>
 
     <!-- Content Row -->
+    <div class="row">
+
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2" style="border-left: 0.25rem solid #d15268!important;">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1" style="color: #d15268 !important">
+                                Estudos</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{isset($estudos) ? $estudos : '0'}}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fa-solid fa-book fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2" style="border-left: 0.25rem solid #1f1956 !important;">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1" style="color: #1f1956 !important">
+                                Sermões</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{isset($sermoes) ? $sermoes : '0'}}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fa-solid fa-user-tie fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card border-left-info shadow h-100 py-2" style="border-left: 0.25rem solid #d27322!important;">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1" style="color: #d27322 !important">
+                                Estudos Biblicos</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{isset($estudosBiblicos) ? $estudosBiblicos : '0'}}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fa-solid fa-bible fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Content Row -->
+    <div class="row">
+
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2" style="border-left: 0.25rem solid #2ddfae!important;">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1" style="color: #2ddfae !important">
+                                Discipulados</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{isset($discipulados) ? $discipulados : '0'}}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fa-solid fa-people-arrows fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2" style="border-left: 0.25rem solid #359d93 !important;">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1" style="color: #359d93 !important">
+                                Batismos Infantis</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{isset($batismosInfantis) ? $batismosInfantis : '0'}}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fa-solid fa-child fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card border-left-info shadow h-100 py-2" style="border-left: 0.25rem solid #d27322!important;">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1" style="color: #d27322 !important">
+                                Batismos/Profissões de Fé</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{isset($batismosProfissoes) ? $batismosProfissoes : '0'}}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fa-solid fa-praying-hands fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+     <!-- Content Row -->
+     <div class="row">
+
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-6 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2" style="border-left: 0.25rem solid #211f11!important;">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1" style="color: #211f11 !important">
+                                Benções Nupciais</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{isset($bencoesNupciais) ? $bencoesNupciais : '0'}}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fa-solid fa-hand-holding-heart fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-6 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2" style="border-left: 0.25rem solid #338767 !important;">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1" style="color: #338767 !important">
+                                Santas Ceias</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{isset($santasCeias) ? $santasCeias : '0'}}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fa-solid fa-wine-glass-alt fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Content Row -->
 
     <div class="row">
 
         <!-- Area Chart -->
-        <div class="col-xl-4 col-lg-4 col-12">
+        <div class="col-lg-6 col-12">
             <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div
@@ -242,97 +401,22 @@
                 </div>
             </div>
         </div>
-
-        <!-- Pie Chart -->
-        <div class="col-xl-4 col-lg-4 col-12">
-            <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div
-                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary" style="color: #4e73df !important;">Atos Pastorais</h6>
-                    <div class="dropdown no-arrow">
-                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                            aria-labelledby="dropdownMenuLink">
-                            <div class="dropdown-header">Dropdown Header:</div>
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Card Body -->
-                <div class="card-body card-dashboard">
-                    @if(count($atos))
-                        @foreach($atos as $ato)
-                            <div class="card-item-dashboard" style="padding: 15px 10px;">
-                                <a href="{{route('atos-pastorais.edit', ['id' => $ato->id])}}" class="text-indigo-700 font-semibold"><strong style="color: #4e73df;">{{$ato->nome}}:</strong></a> {{$ato->quantidade}} pessoas. <br>(Registro criado em {{$ato->created_at->format('d/m/Y')}}) 
-                            </div>
-                        @endforeach
-                    @else
-                        <h5 style="text-align:center;margin-top:130px;">Nenhum resultado encontrado!</h5>    
-                    @endif
-                </div>
-            </div>
-        </div>
-
-        <!-- Pie Chart -->
-        <div class="col-xl-4 col-lg-4 col-12">
-            <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div
-                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary" style="color: #85102f !important;">Pregações</h6>
-                    <div class="dropdown no-arrow">
-                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                            aria-labelledby="dropdownMenuLink">
-                            <div class="dropdown-header">Dropdown Header:</div>
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Card Body -->
-                <div class="card-body card-dashboard">
-                    @if(count($pregacoes))
-                        @foreach($pregacoes as $pregacao)
-                            <div class="card-item-dashboard" style="padding: 15px 10px;">
-                                <a href="{{route('pregacao.edit', ['id' => $ato->id])}}" class="text-indigo-700 font-semibold"><strong style="color: #85102f;">{{$pregacao->nome}}:</strong></a> {{$pregacao->quantidade}} pessoas. <br>(Registro criado em {{$pregacao->created_at->format('d/m/Y')}})
-                            </div>
-                        @endforeach
-                    @else
-                        <h5 style="text-align:center;margin-top:130px;">Nenhum resultado encontrado!</h5>    
-                    @endif
-                </div>
-            </div>
-        </div>
-            <!-- Content Row -->
-    </div>
-    <div class="row">
-
-        <div class="col-lg-12 mb-4">
+        <div class="col-12 col-lg-6 mb-4">
             <!-- Approach -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">Informações</h6>
                 </div>
-                <div class="card-body">
+                <div class="card-body card-dashboard">
                     <p>Nesta área estão expostos todos os dados relacionados aos seu registros mês à mês. Sendo todas as Visitações, Membros, Atos Pastorais e Pregações. </p>
                     <p class="mb-0">Você pode realizar filtros de acordo com seu interesse.  </p>
                 </div>
             </div>
 
         </div>
+    </div>
+    <div class="row">
+
     </div>
     
 
