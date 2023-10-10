@@ -12,6 +12,14 @@ use App\Models\Presidio;
 use App\Models\Enfermo;
 use App\Models\Hospital;
 use App\Models\Escola;
+use App\Models\BatismoInfantil;
+use App\Models\BatismoProfissao;
+use App\Models\BencaoNupcial;
+use App\Models\SantaCeia;
+use App\Models\Estudo;
+use App\Models\Sermao;
+use App\Models\EstudoBiblico;
+use App\Models\Discipulado;
 
 class RelatorioGeralController extends Controller
 {
@@ -32,27 +40,6 @@ class RelatorioGeralController extends Controller
             $mediaMembresias = 0;
         }
 
-        $atos = DB::table('atos')
-        ->where('id_usuario', \Auth::user()->id)
-        ->select( \DB::raw("SUM(quantidade) as total"))
-        ->get();
-        $atosTotal = Ato::where('id_usuario', \Auth::user()->id)->count();
-        if($atos[0]->total){
-            $mediaAtos = $atos[0]->total / $atosTotal;
-        }else{
-            $mediaAtos = 0;
-        }
-
-        $pregacoes = DB::table('pregacaos')
-        ->where('id_usuario', \Auth::user()->id)
-        ->select( \DB::raw("SUM(quantidade) as total"))
-        ->get();
-        $pregacoesTotal = Pregacao::where('id_usuario', \Auth::user()->id)->count();
-        if($pregacoes[0]->total){
-            $mediaPregacoes = $pregacoes[0]->total / $pregacoesTotal;
-        }else{
-            $mediaPregacoes = 0;
-        }
 
         $crentes = Crente::where('id_usuario', \Auth::user()->id)->count();
         $incredulos = Incredulo::where('id_usuario', \Auth::user()->id)->count();
@@ -60,17 +47,31 @@ class RelatorioGeralController extends Controller
         $enfermos = Enfermo::where('id_usuario', \Auth::user()->id)->count();
         $hospitais = Hospital::where('id_usuario', \Auth::user()->id)->count();
         $escolas = Escola::where('id_usuario', \Auth::user()->id)->count();
+        $batismosInfantis = BatismoInfantil::where('id_usuario', \Auth::user()->id)->count();
+        $batismosProfissoes = BatismoProfissao::where('id_usuario', \Auth::user()->id)->count();
+        $bencoesNupciais = BencaoNupcial::where('id_usuario', \Auth::user()->id)->count();
+        $santasCeias = SantaCeia::where('id_usuario', \Auth::user()->id)->count();
+        $estudos = Estudo::where('id_usuario', \Auth::user()->id)->count();
+        $sermoes = Sermao::where('id_usuario', \Auth::user()->id)->count();
+        $estudosBiblicos = EstudoBiblico::where('id_usuario', \Auth::user()->id)->count();
+        $discipulados = Discipulado::where('id_usuario', \Auth::user()->id)->count();
 
         return view('admin.relatorios-gerais.index', [
             'mediaMembresias' => $mediaMembresias,
-            'mediaAtos' => $mediaAtos,
-            'mediaPregacoes' => $mediaPregacoes,
             'crentes' => $crentes,
             'incredulos' => $incredulos,
             'presidios' => $presidios,
             'enfermos' => $enfermos,
             'hospitais' => $hospitais,
-            'escolas' => $escolas 
+            'escolas' => $escolas,
+            'batismosInfantis' => $batismosInfantis,
+            'batismosProfissoes' => $batismosProfissoes,
+            'bencoesNupciais' => $bencoesNupciais,
+            'santasCeias' => $santasCeias,
+            'estudos' => $estudos,
+            'sermoes' => $sermoes,
+            'estudosBiblicos' => $estudosBiblicos,
+            'discipulaods' => $discipulados
         ]);
     }
 
@@ -90,6 +91,40 @@ class RelatorioGeralController extends Controller
             $enfermos,
             $hospitais,
             $escolas
+        ];
+
+        return response()->json($dados, 200);
+    }
+
+    public function dadosAtosPastorais()
+    {
+        $batismosInfantis = BatismoInfantil::where('id_usuario', \Auth::user()->id)->count();
+        $batismosProfissoes = BatismoProfissao::where('id_usuario', \Auth::user()->id)->count();
+        $bencoesNupciais = BencaoNupcial::where('id_usuario', \Auth::user()->id)->count();
+        $santasCeias = SantaCeia::where('id_usuario', \Auth::user()->id)->count();
+
+        $dados = [
+            $batismosInfantis,
+            $batismosProfissoes,
+            $bencoesNupciais,
+            $santasCeias
+        ];
+
+        return response()->json($dados, 200);
+    }
+
+    public function dadosPregacao()
+    {
+        $estudos = Estudo::where('id_usuario', \Auth::user()->id)->count();
+        $sermoes = Sermao::where('id_usuario', \Auth::user()->id)->count();
+        $estudosBiblicos = EstudoBiblico::where('id_usuario', \Auth::user()->id)->count();
+        $discipulados = Discipulado::where('id_usuario', \Auth::user()->id)->count();
+
+        $dados = [
+            $estudos,
+            $sermoes,
+            $estudosBiblicos,
+            $discipulados
         ];
 
         return response()->json($dados, 200);

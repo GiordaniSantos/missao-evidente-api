@@ -69,6 +69,8 @@ Route::middleware(['auth'])->prefix('/admin')->group(function () {
     //relatórios gerais
     Route::get('/relatorio-geral', [App\Http\Controllers\RelatorioGeralController::class, 'index'])->name('relatorio.index');
     Route::get('/relatorio-geral-dados-visitacao', [App\Http\Controllers\RelatorioGeralController::class, 'dadosVisitacao']);
+    Route::get('/relatorio-geral-dados-atos-pastorais', [App\Http\Controllers\RelatorioGeralController::class, 'dadosAtosPastorais']);
+    Route::get('/relatorio-geral-dados-pregacoes', [App\Http\Controllers\RelatorioGeralController::class, 'dadosPregacao']);
     Route::get('/relatorio-geral-dados-membresia', [App\Http\Controllers\RelatorioGeralController::class, 'dadosMembresia']);
 });
 
