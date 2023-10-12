@@ -388,8 +388,6 @@
 
     <!-- Page level custom scripts -->
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
-    <script src="{{ asset('js/demo/chart-area-demo.js') }}"></script>
-    <script src="{{ asset('js/demo/chart-pie-demo.js') }}"></script>
     <script src="{{ asset('js/demo/datatables-demo.js') }}"></script>
     
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>

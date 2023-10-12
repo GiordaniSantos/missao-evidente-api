@@ -22,7 +22,7 @@ var graficoVisitacao = new Chart(ctx, {
     datasets: [{
       data: dataVisitacao,
       backgroundColor: ['#1cc88a', '#4e73df', '#d55b2a', '#99443b', '#f6c23e', '#85102f'],
-      hoverBackgroundColor: ['#015b41'],
+      //hoverBackgroundColor: ['#015b41'],
       hoverBorderColor: "rgba(234, 236, 244, 1)",
     }],
   },
@@ -68,7 +68,7 @@ var graficoAtosPastorais = new Chart(ctx, {
     datasets: [{
       data: dataAtosPastorais,
       backgroundColor: ['#359d93', '#d27322', '#211f11', '#338767'],
-      hoverBackgroundColor: ['#015b41'],
+      //hoverBackgroundColor: ['#015b41'],
       hoverBorderColor: "rgba(234, 236, 244, 1)",
     }],
   },
@@ -115,7 +115,7 @@ var graficoPregacoes = new Chart(ctx, {
     datasets: [{
       data: dataAtosPregacoes,
       backgroundColor: ['#d15268', '#1f1956', '#d27322', '#2ddfae'],
-      hoverBackgroundColor: ['#015b41'],
+      //hoverBackgroundColor: ['#015b41'],
       hoverBorderColor: "rgba(234, 236, 244, 1)",
     }],
   },
