@@ -91,7 +91,6 @@ class DashboardController extends Controller
 
         /*if ($requestAno) {
             $queryMembresias->whereYear('created_at', '=', $requestAno);
-            $queryAtosPastorais->whereYear('created_at', '=', $requestAno);
             $queryPregacao->whereYear('created_at', '=', $requestAno);
             $queryVisitasCrentes->whereYear('created_at', '=', $requestAno);
             $queryVisitasNaoCrentes->whereYear('created_at', '=', $requestAno);
