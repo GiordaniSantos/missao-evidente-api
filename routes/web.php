@@ -120,6 +120,12 @@ Route::middleware(['auth'])->prefix('/admin')->group(function () {
     Route::put('/estudo-biblico/{id}', [\App\Http\Controllers\EstudoBiblicoController::class, 'update'])->name('estudo-biblico.update');
     Route::delete('/estudo-biblico/{id}', [\App\Http\Controllers\EstudoBiblicoController::class, 'destroy'])->name('estudo-biblico.destroy');
 
+    //discipulados
+    Route::resource('discipulado', \App\Http\Controllers\DiscipuladoController::class)->except(['edit', 'update']);
+    Route::get('/discipulado/{id}/edit', [\App\Http\Controllers\DiscipuladoController::class, 'edit'])->name('discipulado.edit');
+    Route::put('/discipulado/{id}', [\App\Http\Controllers\DiscipuladoController::class, 'update'])->name('discipulado.update');
+    Route::delete('/discipulado/{id}', [\App\Http\Controllers\DiscipuladoController::class, 'destroy'])->name('discipulado.destroy');
+
     //relatórios gerais
     Route::get('/relatorio-geral', [App\Http\Controllers\RelatorioGeralController::class, 'index'])->name('relatorio.index');
     Route::get('/relatorio-geral-dados-visitacao', [App\Http\Controllers\RelatorioGeralController::class, 'dadosVisitacao']);
