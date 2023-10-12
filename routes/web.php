@@ -102,6 +102,12 @@ Route::middleware(['auth'])->prefix('/admin')->group(function () {
     Route::put('/santa-ceia/{id}', [\App\Http\Controllers\SantaCeiaController::class, 'update'])->name('santa-ceia.update');
     Route::delete('/santa-ceia/{id}', [\App\Http\Controllers\SantaCeiaController::class, 'destroy'])->name('santa-ceia.destroy');
 
+    //estudos
+    Route::resource('estudo', \App\Http\Controllers\EstudoController::class)->except(['edit', 'update']);
+    Route::get('/estudo/{id}/edit', [\App\Http\Controllers\EstudoController::class, 'edit'])->name('estudo.edit');
+    Route::put('/estudo/{id}', [\App\Http\Controllers\EstudoController::class, 'update'])->name('estudo.update');
+    Route::delete('/estudo/{id}', [\App\Http\Controllers\EstudoController::class, 'destroy'])->name('estudo.destroy');
+
     //relatórios gerais
     Route::get('/relatorio-geral', [App\Http\Controllers\RelatorioGeralController::class, 'index'])->name('relatorio.index');
     Route::get('/relatorio-geral-dados-visitacao', [App\Http\Controllers\RelatorioGeralController::class, 'dadosVisitacao']);

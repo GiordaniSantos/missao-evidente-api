@@ -137,7 +137,7 @@
                 <div id="collapsePregacoes" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Pregação:</h6>
-                        <a class="collapse-item" href="{{route('crente.index')}}">Estudos</a>
+                        <a class="collapse-item" href="{{route('estudo.index')}}">Estudos</a>
                         <a class="collapse-item" href="{{route('nao-crente.index')}}">Sermões</a>
                         <a class="collapse-item" href="{{route('presidio.index')}}">Estudos Bíblicos</a>
                         <a class="collapse-item" href="{{route('enfermo.index')}}">Discipulados</a>
