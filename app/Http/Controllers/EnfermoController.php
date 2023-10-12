@@ -13,7 +13,7 @@ class EnfermoController extends Controller
      */
     public function index()
     {
-        $enfermos = Enfermo::orderBy('id', 'desc')->where('id_usuario', \Auth::user()->id)->get();
+        $enfermos = Enfermo::orderBy('created_at', 'desc')->where('id_usuario', \Auth::user()->id)->get();
 
         $title = 'Deletar visita ao enfermo!';
         $text = "Você tem certeza que quer deletar este registro?";
@@ -57,17 +57,37 @@ class EnfermoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Enfermo $enfermo)
+    public function edit($id)
     {
-        //
+        $enfermo = Enfermo::where('id', $id)->where('id_usuario', \Auth::user()->id)->first();
+        if(!$enfermo){
+            abort(404, 'Registro não encotrado!');
+        }
+        return view('admin.enfermo.edit', ['enfermo' => $enfermo]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Enfermo $enfermo)
+    public function update(Request $request, $id)
     {
-        //
+        $enfermo = Enfermo::where('id', $id)->where('id_usuario', \Auth::user()->id)->first();
+        if(!$enfermo){
+            abort(404, 'Registro não encotrado!');
+        }
+        if($request->input('_token') != '' && $request->input('id') == ''){
+
+            //validacao
+            $request->validate(Enfermo::rules(), Enfermo::feedback());
+            $enfermo->id_usuario = \Auth::user()->id;
+            if($enfermo->update($request->all())){
+                alert()->success('Concluído','Registro atualizado com sucesso.');
+            }else{
+                alert()->error('ErrorAlert','Erro na atualização do registro.');
+            }
+        }
+        
+        return redirect()->route('enfermo.index');
     }
 
     /**

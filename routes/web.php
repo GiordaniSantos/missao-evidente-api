@@ -62,6 +62,8 @@ Route::middleware(['auth'])->prefix('/admin')->group(function () {
 
     //visita enfermos
     Route::resource('enfermo', \App\Http\Controllers\EnfermoController::class)->except(['edit', 'update']);
+    Route::get('/enfermo/{id}/edit', [\App\Http\Controllers\EnfermoController::class, 'edit'])->name('enfermo.edit');
+    Route::put('/enfermo/{id}', [\App\Http\Controllers\EnfermoController::class, 'update'])->name('enfermo.update');
     Route::delete('/enfermo/{id}', [\App\Http\Controllers\EnfermoController::class, 'destroy'])->name('enfermo.destroy');
 
     //visita hospitais
