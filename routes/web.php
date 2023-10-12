@@ -108,6 +108,12 @@ Route::middleware(['auth'])->prefix('/admin')->group(function () {
     Route::put('/estudo/{id}', [\App\Http\Controllers\EstudoController::class, 'update'])->name('estudo.update');
     Route::delete('/estudo/{id}', [\App\Http\Controllers\EstudoController::class, 'destroy'])->name('estudo.destroy');
 
+    //sermões
+    Route::resource('sermao', \App\Http\Controllers\SermaoController::class)->except(['edit', 'update']);
+    Route::get('/sermao/{id}/edit', [\App\Http\Controllers\SermaoController::class, 'edit'])->name('sermao.edit');
+    Route::put('/sermao/{id}', [\App\Http\Controllers\SermaoController::class, 'update'])->name('sermao.update');
+    Route::delete('/sermao/{id}', [\App\Http\Controllers\SermaoController::class, 'destroy'])->name('sermao.destroy');
+
     //relatórios gerais
     Route::get('/relatorio-geral', [App\Http\Controllers\RelatorioGeralController::class, 'index'])->name('relatorio.index');
     Route::get('/relatorio-geral-dados-visitacao', [App\Http\Controllers\RelatorioGeralController::class, 'dadosVisitacao']);
