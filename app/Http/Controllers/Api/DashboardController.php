@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Membresia;
-use App\Models\Pregacao;
 use App\Models\Crente;
 use App\Models\Incredulo;
 use App\Models\Presidio;
@@ -91,7 +90,6 @@ class DashboardController extends Controller
 
         /*if ($requestAno) {
             $queryMembresias->whereYear('created_at', '=', $requestAno);
-            $queryPregacao->whereYear('created_at', '=', $requestAno);
             $queryVisitasCrentes->whereYear('created_at', '=', $requestAno);
             $queryVisitasNaoCrentes->whereYear('created_at', '=', $requestAno);
             $queryVisitasPresidios->whereYear('created_at', '=', $requestAno);

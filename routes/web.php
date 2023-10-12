@@ -24,18 +24,12 @@ Route::middleware(['auth'])->prefix('/admin')->group(function () {
     Route::get('/table', function () {
         return view('admin.table');
     })->name('table');
-    
+
     //membresia
     Route::resource('membresia', \App\Http\Controllers\MembresiaController::class)->except(['edit', 'update']);
     Route::get('/membresia/{id}/edit', [\App\Http\Controllers\MembresiaController::class, 'edit'])->name('membresia.edit');
     Route::put('/membresia/{id}', [\App\Http\Controllers\MembresiaController::class, 'update'])->name('membresia.update');
     Route::delete('/membresia/{id}', [\App\Http\Controllers\MembresiaController::class, 'destroy'])->name('membresia.destroy');
-
-    //pregacoes
-    Route::resource('pregacao', \App\Http\Controllers\PregacaoController::class)->except(['edit', 'update']);
-    Route::get('/pregacao/{id}/edit', [\App\Http\Controllers\PregacaoController::class, 'edit'])->name('pregacao.edit');
-    Route::put('/pregacao/{id}', [\App\Http\Controllers\PregacaoController::class, 'update'])->name('pregacao.update');
-    Route::delete('/pregacao/{id}', [\App\Http\Controllers\PregacaoController::class, 'destroy'])->name('pregacao.destroy');
 
     //visita crente
     Route::resource('crente', \App\Http\Controllers\CrenteController::class)->except(['edit', 'update']);

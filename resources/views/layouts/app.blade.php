@@ -78,13 +78,6 @@
                 <span>Membresia</span></a>
             </li>
 
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('atos-pastorais.index')}}">
-                <i class="fa-solid fa-user-tie"></i>
-                <span>Atos Pastorais</span></a>
-            </li>
-
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAtosPastorais"
                     aria-expanded="true" aria-controls="collapseAtosPastorais">
@@ -105,7 +98,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseVisitacoes"
                     aria-expanded="true" aria-controls="collapseVisitacoes">
-                    <i class="fa-solid fa-bus"></i>
+                    <i class="fa-solid fa-users"></i>
                     <span>Visitação</span>
                 </a>
                 <div id="collapseVisitacoes" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
@@ -119,13 +112,6 @@
                         <a class="collapse-item" href="{{route('escola.index')}}">Escolas</a>
                     </div>
                 </div>
-            </li>
-
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('pregacao.index')}}">
-                <i class="fa-solid fa-book-bible"></i>
-                <span>Pregação</span></a>
             </li>
 
             <li class="nav-item">

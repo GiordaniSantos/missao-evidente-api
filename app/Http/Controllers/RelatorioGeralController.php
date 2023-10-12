@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Membresia;
-use App\Models\Pregacao;
 use App\Models\Crente;
 use App\Models\Incredulo;
 use App\Models\Presidio;
