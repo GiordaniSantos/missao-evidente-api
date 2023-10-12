@@ -13,7 +13,7 @@ class PresidioController extends Controller
      */
     public function index()
     {
-        $presidios = Presidio::orderBy('id', 'desc')->where('id_usuario', \Auth::user()->id)->get();
+        $presidios = Presidio::orderBy('created_at', 'desc')->where('id_usuario', \Auth::user()->id)->get();
 
         $title = 'Deletar visita ao presidio!';
         $text = "Você tem certeza que quer deletar este registro?";
@@ -57,17 +57,37 @@ class PresidioController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Presidio $presidio)
+    public function edit($id)
     {
-        //
+        $presidio = Presidio::where('id', $id)->where('id_usuario', \Auth::user()->id)->first();
+        if(!$presidio){
+            abort(404, 'Registro não encotrado!');
+        }
+        return view('admin.presidio.edit', ['presidio' => $presidio]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Presidio $presidio)
+    public function update(Request $request, $id)
     {
-        //
+        $presidio = Presidio::where('id', $id)->where('id_usuario', \Auth::user()->id)->first();
+        if(!$presidio){
+            abort(404, 'Registro não encotrado!');
+        }
+        if($request->input('_token') != '' && $request->input('id') == ''){
+
+            //validacao
+            $request->validate(Presidio::rules(), Presidio::feedback());
+            $presidio->id_usuario = \Auth::user()->id;
+            if($presidio->update($request->all())){
+                alert()->success('Concluído','Registro atualizado com sucesso.');
+            }else{
+                alert()->error('ErrorAlert','Erro na atualização do registro.');
+            }
+        }
+        
+        return redirect()->route('presidio.index');
     }
 
     /**

@@ -56,6 +56,8 @@ Route::middleware(['auth'])->prefix('/admin')->group(function () {
 
     //visita presidios
     Route::resource('presidio', \App\Http\Controllers\PresidioController::class)->except(['edit', 'update']);
+    Route::get('/presidio/{id}/edit', [\App\Http\Controllers\PresidioController::class, 'edit'])->name('presidio.edit');
+    Route::put('/presidio/{id}', [\App\Http\Controllers\PresidioController::class, 'update'])->name('presidio.update');
     Route::delete('/presidio/{id}', [\App\Http\Controllers\PresidioController::class, 'destroy'])->name('presidio.destroy');
 
     //visita enfermos
