@@ -90,6 +90,12 @@ Route::middleware(['auth'])->prefix('/admin')->group(function () {
     Route::put('/batismo-profissao/{id}', [\App\Http\Controllers\BatismoProfissaoController::class, 'update'])->name('batismo-profissao.update');
     Route::delete('/batismo-profissao/{id}', [\App\Http\Controllers\BatismoProfissaoController::class, 'destroy'])->name('batismo-profissao.destroy');
 
+    //benções nupciais
+    Route::resource('bencao-nupcial', \App\Http\Controllers\BencaoNupcialController::class)->except(['edit', 'update']);
+    Route::get('/bencao-nupcial/{id}/edit', [\App\Http\Controllers\BencaoNupcialController::class, 'edit'])->name('bencao-nupcial.edit');
+    Route::put('/bencao-nupcial/{id}', [\App\Http\Controllers\BencaoNupcialController::class, 'update'])->name('bencao-nupcial.update');
+    Route::delete('/bencao-nupcial/{id}', [\App\Http\Controllers\BencaoNupcialController::class, 'destroy'])->name('bencao-nupcial.destroy');
+
     //relatórios gerais
     Route::get('/relatorio-geral', [App\Http\Controllers\RelatorioGeralController::class, 'index'])->name('relatorio.index');
     Route::get('/relatorio-geral-dados-visitacao', [App\Http\Controllers\RelatorioGeralController::class, 'dadosVisitacao']);

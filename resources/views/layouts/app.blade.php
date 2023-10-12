@@ -96,7 +96,7 @@
                         <h6 class="collapse-header">Atos Pastorais:</h6>
                         <a class="collapse-item" href="{{route('batismo-infantil.index')}}">Batismos Infantis</a>
                         <a class="collapse-item" href="{{route('batismo-profissao.index')}}">Batismos/Prof. de Fé</a>
-                        <a class="collapse-item" href="{{route('presidio.index')}}">Benções Nupciais</a>
+                        <a class="collapse-item" href="{{route('bencao-nupcial.index')}}">Benções Nupciais</a>
                         <a class="collapse-item" href="{{route('enfermo.index')}}">Santas Ceias</a>
                     </div>
                 </div>
