@@ -86,6 +86,23 @@
             </li>
 
             <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAtosPastorais"
+                    aria-expanded="true" aria-controls="collapseAtosPastorais">
+                    <i class="fa-solid fa-user-tie"></i>
+                    <span>Atos Pastorais</span>
+                </a>
+                <div id="collapseAtosPastorais" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Atos Pastorais:</h6>
+                        <a class="collapse-item" href="{{route('batismo-infantil.index')}}">Batismos Infantis</a>
+                        <a class="collapse-item" href="{{route('nao-crente.index')}}">Batismos/Prof. de Fé</a>
+                        <a class="collapse-item" href="{{route('presidio.index')}}">Benções Nupciais</a>
+                        <a class="collapse-item" href="{{route('enfermo.index')}}">Santas Ceias</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseVisitacoes"
                     aria-expanded="true" aria-controls="collapseVisitacoes">
                     <i class="fa-solid fa-bus"></i>
@@ -109,6 +126,23 @@
                 <a class="nav-link" href="{{route('pregacao.index')}}">
                 <i class="fa-solid fa-book-bible"></i>
                 <span>Pregação</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePregacoes"
+                    aria-expanded="true" aria-controls="collapsePregacoes">
+                    <i class="fa-solid fa-book-bible"></i>
+                    <span>Pregação</span>
+                </a>
+                <div id="collapsePregacoes" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Pregação:</h6>
+                        <a class="collapse-item" href="{{route('crente.index')}}">Estudos</a>
+                        <a class="collapse-item" href="{{route('nao-crente.index')}}">Sermões</a>
+                        <a class="collapse-item" href="{{route('presidio.index')}}">Estudos Bíblicos</a>
+                        <a class="collapse-item" href="{{route('enfermo.index')}}">Discipulados</a>
+                    </div>
+                </div>
             </li>
 
             <!-- Divider -->

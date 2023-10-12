@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Membresia;
-use App\Models\Ato;
 use App\Models\Pregacao;
 use App\Models\Crente;
 use App\Models\Incredulo;

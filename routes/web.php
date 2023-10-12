@@ -78,6 +78,12 @@ Route::middleware(['auth'])->prefix('/admin')->group(function () {
     Route::put('/escola/{id}', [\App\Http\Controllers\EscolaController::class, 'update'])->name('escola.update');
     Route::delete('/escola/{id}', [\App\Http\Controllers\EscolaController::class, 'destroy'])->name('escola.destroy');
 
+    //batismos infantis
+    Route::resource('batismo-infantil', \App\Http\Controllers\BatismoInfantilController::class)->except(['edit', 'update']);
+    Route::get('/batismo-infantil/{id}/edit', [\App\Http\Controllers\BatismoInfantilController::class, 'edit'])->name('batismo-infantil.edit');
+    Route::put('/batismo-infantil/{id}', [\App\Http\Controllers\BatismoInfantilController::class, 'update'])->name('batismo-infantil.update');
+    Route::delete('/batismo-infantil/{id}', [\App\Http\Controllers\BatismoInfantilController::class, 'destroy'])->name('batismo-infantil.destroy');
+
     //relatórios gerais
     Route::get('/relatorio-geral', [App\Http\Controllers\RelatorioGeralController::class, 'index'])->name('relatorio.index');
     Route::get('/relatorio-geral-dados-visitacao', [App\Http\Controllers\RelatorioGeralController::class, 'dadosVisitacao']);
