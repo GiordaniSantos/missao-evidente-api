@@ -9,7 +9,7 @@ class Hospital extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id_usuario'];
+    protected $fillable = ['id_usuario', 'created_at'];
 
     public static function rules(){
         $regras = [

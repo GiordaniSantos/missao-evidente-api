@@ -13,7 +13,7 @@ class HospitalController extends Controller
      */
     public function index()
     {
-        $hospitais = Hospital::orderBy('id', 'desc')->where('id_usuario', \Auth::user()->id)->get();
+        $hospitais = Hospital::orderBy('created_at', 'desc')->where('id_usuario', \Auth::user()->id)->get();
 
         $title = 'Deletar visita ao hospital!';
         $text = "Você tem certeza que quer deletar este registro?";
@@ -57,17 +57,37 @@ class HospitalController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Hospital $hospital)
+    public function edit($id)
     {
-        //
+        $hospital = Hospital::where('id', $id)->where('id_usuario', \Auth::user()->id)->first();
+        if(!$hospital){
+            abort(404, 'Registro não encotrado!');
+        }
+        return view('admin.hospital.edit', ['hospital' => $hospital]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Hospital $hospital)
+    public function update(Request $request, $id)
     {
-        //
+        $hospital = Hospital::where('id', $id)->where('id_usuario', \Auth::user()->id)->first();
+        if(!$hospital){
+            abort(404, 'Registro não encotrado!');
+        }
+        if($request->input('_token') != '' && $request->input('id') == ''){
+
+            //validacao
+            $request->validate(Hospital::rules(), Hospital::feedback());
+            $hospital->id_usuario = \Auth::user()->id;
+            if($hospital->update($request->all())){
+                alert()->success('Concluído','Registro atualizado com sucesso.');
+            }else{
+                alert()->error('ErrorAlert','Erro na atualização do registro.');
+            }
+        }
+        
+        return redirect()->route('hospital.index');
     }
 
     /**
