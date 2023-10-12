@@ -84,6 +84,12 @@ Route::middleware(['auth'])->prefix('/admin')->group(function () {
     Route::put('/batismo-infantil/{id}', [\App\Http\Controllers\BatismoInfantilController::class, 'update'])->name('batismo-infantil.update');
     Route::delete('/batismo-infantil/{id}', [\App\Http\Controllers\BatismoInfantilController::class, 'destroy'])->name('batismo-infantil.destroy');
 
+    //batismos e profissões de fé
+    Route::resource('batismo-profissao', \App\Http\Controllers\BatismoProfissaoController::class)->except(['edit', 'update']);
+    Route::get('/batismo-profissao/{id}/edit', [\App\Http\Controllers\BatismoProfissaoController::class, 'edit'])->name('batismo-profissao.edit');
+    Route::put('/batismo-profissao/{id}', [\App\Http\Controllers\BatismoProfissaoController::class, 'update'])->name('batismo-profissao.update');
+    Route::delete('/batismo-profissao/{id}', [\App\Http\Controllers\BatismoProfissaoController::class, 'destroy'])->name('batismo-profissao.destroy');
+
     //relatórios gerais
     Route::get('/relatorio-geral', [App\Http\Controllers\RelatorioGeralController::class, 'index'])->name('relatorio.index');
     Route::get('/relatorio-geral-dados-visitacao', [App\Http\Controllers\RelatorioGeralController::class, 'dadosVisitacao']);
