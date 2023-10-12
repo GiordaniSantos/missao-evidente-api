@@ -113,6 +113,12 @@ Route::middleware(['auth'])->prefix('/admin')->group(function () {
     Route::get('/sermao/{id}/edit', [\App\Http\Controllers\SermaoController::class, 'edit'])->name('sermao.edit');
     Route::put('/sermao/{id}', [\App\Http\Controllers\SermaoController::class, 'update'])->name('sermao.update');
     Route::delete('/sermao/{id}', [\App\Http\Controllers\SermaoController::class, 'destroy'])->name('sermao.destroy');
+    
+    //estudos biblicos
+    Route::resource('estudo-biblico', \App\Http\Controllers\EstudoBiblicoController::class)->except(['edit', 'update']);
+    Route::get('/estudo-biblico/{id}/edit', [\App\Http\Controllers\EstudoBiblicoController::class, 'edit'])->name('estudo-biblico.edit');
+    Route::put('/estudo-biblico/{id}', [\App\Http\Controllers\EstudoBiblicoController::class, 'update'])->name('estudo-biblico.update');
+    Route::delete('/estudo-biblico/{id}', [\App\Http\Controllers\EstudoBiblicoController::class, 'destroy'])->name('estudo-biblico.destroy');
 
     //relatórios gerais
     Route::get('/relatorio-geral', [App\Http\Controllers\RelatorioGeralController::class, 'index'])->name('relatorio.index');
