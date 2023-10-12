@@ -26,9 +26,7 @@
                         <thead>
                             <tr>
                                 <th>Nome</th>
-                                <th>Dia</th>
-                                <th>Mês</th>
-                                <th>Ano</th>
+                                <th>Data</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -36,15 +34,14 @@
                             @foreach($crentes as $crente)
                                 <tr>
                                     <td>Visita realizada no dia</td>
-                                    <td>{{$crente->created_at->format('d')}}</td>
-                                    <td>{{$crente->created_at->format('m')}}</td>
-                                    <td>{{$crente->created_at->format('Y')}}</td>
+                                    <td>{{$crente->created_at->format('d/m/Y')}}</td>
                                     <td>
                                         <div class="dropdown">
                                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <i class="fa-solid fa-bars"></i>
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <a class="dropdown-item" href="{{route('crente.edit', ['id' => $crente->id])}}">Atualizar</a>
                                                 <a href="{{ route('crente.destroy', $crente->id) }}" class="dropdown-item" data-confirm-delete="true">Deletar</a>
                                             </div>
                                         </div>

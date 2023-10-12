@@ -31,6 +31,8 @@
     <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script> 
 
+    <script src = "https://cdn.jsdelivr.net/npm/ flatpickr" > </script> 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
 </head>
 <body id="page-top">
@@ -370,5 +372,9 @@
     <script src="{{ asset('js/demo/chart-pie-demo.js') }}"></script>
     <script src="{{ asset('js/demo/datatables-demo.js') }}"></script>
     
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        flatpickr("input[type=datetime-local]");
+    </script>
 </body>
 </html>

@@ -26,9 +26,7 @@
                         <thead>
                             <tr>
                                 <th>Nome</th>
-                                <th>Dia</th>
-                                <th>Mês</th>
-                                <th>Ano</th>
+                                <th>Data</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -36,9 +34,7 @@
                             @foreach($incredulos as $incredulo)
                                 <tr>
                                     <td>Visita realizada no dia</td>
-                                    <td>{{$incredulo->created_at->format('d')}}</td>
-                                    <td>{{$incredulo->created_at->format('m')}}</td>
-                                    <td>{{$incredulo->created_at->format('Y')}}</td>
+                                    <td>{{$incredulo->created_at->format('d/m/Y')}}</td>
                                     <td>
                                         <div class="dropdown">
                                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

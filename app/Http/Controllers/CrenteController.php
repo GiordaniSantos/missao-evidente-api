@@ -13,7 +13,7 @@ class CrenteController extends Controller
      */
     public function index()
     {
-        $crentes = Crente::orderBy('id', 'desc')->where('id_usuario', \Auth::user()->id)->get();
+        $crentes = Crente::orderBy('created_at', 'desc')->where('id_usuario', \Auth::user()->id)->get();
 
         $title = 'Deletar visita ao crente!';
         $text = "Você tem certeza que quer deletar este registro?";
@@ -57,17 +57,37 @@ class CrenteController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Crente $crente)
+    public function edit(Crente $crente, $id)
     {
-        //
+        $crente = Crente::where('id', $id)->where('id_usuario', \Auth::user()->id)->first();
+        if(!$crente){
+            abort(404, 'Registro não encotrado!');
+        }
+        return view('admin.crente.edit', ['crente' => $crente]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Crente $crente)
+    public function update(Request $request, $id)
     {
-        //
+        $crente = Crente::where('id', $id)->where('id_usuario', \Auth::user()->id)->first();
+        if(!$crente){
+            abort(404, 'Registro não encotrado!');
+        }
+        if($request->input('_token') != '' && $request->input('id') == ''){
+
+            //validacao
+            $request->validate(Crente::rules(), Crente::feedback());
+            $crente->id_usuario = \Auth::user()->id;
+            if($crente->update($request->all())){
+                alert()->success('Concluído','Registro atualizado com sucesso.');
+            }else{
+                alert()->error('ErrorAlert','Erro na atualização do registro.');
+            }
+        }
+        
+        return redirect()->route('crente.index');
     }
 
     /**
