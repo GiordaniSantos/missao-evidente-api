@@ -13,7 +13,7 @@ class EscolaController extends Controller
      */
     public function index()
     {
-        $escolas = Escola::orderBy('id', 'desc')->where('id_usuario', \Auth::user()->id)->get();
+        $escolas = Escola::orderBy('created_at', 'desc')->where('id_usuario', \Auth::user()->id)->get();
 
         $title = 'Deletar visita à escola!';
         $text = "Você tem certeza que quer deletar este registro?";
@@ -57,17 +57,37 @@ class EscolaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Escola $escola)
+    public function edit($id)
     {
-        //
+        $escola = Escola::where('id', $id)->where('id_usuario', \Auth::user()->id)->first();
+        if(!$escola){
+            abort(404, 'Registro não encotrado!');
+        }
+        return view('admin.escola.edit', ['escola' => $escola]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Escola $escola)
+    public function update(Request $request, $id)
     {
-        //
+        $escola = Escola::where('id', $id)->where('id_usuario', \Auth::user()->id)->first();
+        if(!$escola){
+            abort(404, 'Registro não encotrado!');
+        }
+        if($request->input('_token') != '' && $request->input('id') == ''){
+
+            //validacao
+            $request->validate(Escola::rules(), Escola::feedback());
+            $escola->id_usuario = \Auth::user()->id;
+            if($escola->update($request->all())){
+                alert()->success('Concluído','Registro atualizado com sucesso.');
+            }else{
+                alert()->error('ErrorAlert','Erro na atualização do registro.');
+            }
+        }
+        
+        return redirect()->route('escola.index');
     }
 
     /**

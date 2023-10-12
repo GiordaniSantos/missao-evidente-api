@@ -41,6 +41,7 @@
                                                 <i class="fa-solid fa-bars"></i>
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <a class="dropdown-item" href="{{route('escola.edit', ['id' => $escola->id])}}">Atualizar</a>
                                                 <a href="{{ route('escola.destroy', $escola->id) }}" class="dropdown-item" data-confirm-delete="true">Deletar</a>
                                             </div>
                                         </div>

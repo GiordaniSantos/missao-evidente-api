@@ -74,6 +74,8 @@ Route::middleware(['auth'])->prefix('/admin')->group(function () {
 
     //visita escolas
     Route::resource('escola', \App\Http\Controllers\EscolaController::class)->except(['edit', 'update']);
+    Route::get('/escola/{id}/edit', [\App\Http\Controllers\EscolaController::class, 'edit'])->name('escola.edit');
+    Route::put('/escola/{id}', [\App\Http\Controllers\EscolaController::class, 'update'])->name('escola.update');
     Route::delete('/escola/{id}', [\App\Http\Controllers\EscolaController::class, 'destroy'])->name('escola.destroy');
 
     //relatórios gerais
