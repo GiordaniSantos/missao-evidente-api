@@ -50,6 +50,8 @@ Route::middleware(['auth'])->prefix('/admin')->group(function () {
 
     //visita não crente
     Route::resource('nao-crente', \App\Http\Controllers\IncreduloController::class)->except(['edit', 'update']);
+    Route::get('/nao-crente/{id}/edit', [\App\Http\Controllers\IncreduloController::class, 'edit'])->name('nao-crente.edit');
+    Route::put('/nao-crente/{id}', [\App\Http\Controllers\IncreduloController::class, 'update'])->name('nao-crente.update');
     Route::delete('/nao-crente/{id}', [\App\Http\Controllers\IncreduloController::class, 'destroy'])->name('nao-crente.destroy');
 
     //visita presidios

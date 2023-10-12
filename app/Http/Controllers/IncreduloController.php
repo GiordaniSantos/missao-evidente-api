@@ -13,7 +13,7 @@ class IncreduloController extends Controller
      */
     public function index()
     {
-        $incredulos = Incredulo::orderBy('id', 'desc')->where('id_usuario', \Auth::user()->id)->get();
+        $incredulos = Incredulo::orderBy('created_at', 'desc')->where('id_usuario', \Auth::user()->id)->get();
 
         $title = 'Deletar visita ao não crente!';
         $text = "Você tem certeza que quer deletar este registro?";
@@ -57,17 +57,37 @@ class IncreduloController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Incredulo $incredulo)
+    public function edit($id)
     {
-        //
+        $incredulo = Incredulo::where('id', $id)->where('id_usuario', \Auth::user()->id)->first();
+        if(!$incredulo){
+            abort(404, 'Registro não encotrado!');
+        }
+        return view('admin.incredulo.edit', ['incredulo' => $incredulo]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Incredulo $incredulo)
+    public function update(Request $request, $id)
     {
-        //
+        $incredulo = Incredulo::where('id', $id)->where('id_usuario', \Auth::user()->id)->first();
+        if(!$incredulo){
+            abort(404, 'Registro não encotrado!');
+        }
+        if($request->input('_token') != '' && $request->input('id') == ''){
+
+            //validacao
+            $request->validate(Incredulo::rules(), Incredulo::feedback());
+            $incredulo->id_usuario = \Auth::user()->id;
+            if($incredulo->update($request->all())){
+                alert()->success('Concluído','Registro atualizado com sucesso.');
+            }else{
+                alert()->error('ErrorAlert','Erro na atualização do registro.');
+            }
+        }
+        
+        return redirect()->route('nao-crente.index');
     }
 
     /**

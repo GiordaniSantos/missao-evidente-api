@@ -57,7 +57,7 @@ class CrenteController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Crente $crente, $id)
+    public function edit($id)
     {
         $crente = Crente::where('id', $id)->where('id_usuario', \Auth::user()->id)->first();
         if(!$crente){
