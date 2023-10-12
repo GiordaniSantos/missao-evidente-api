@@ -97,7 +97,7 @@
                         <a class="collapse-item" href="{{route('batismo-infantil.index')}}">Batismos Infantis</a>
                         <a class="collapse-item" href="{{route('batismo-profissao.index')}}">Batismos/Prof. de Fé</a>
                         <a class="collapse-item" href="{{route('bencao-nupcial.index')}}">Benções Nupciais</a>
-                        <a class="collapse-item" href="{{route('enfermo.index')}}">Santas Ceias</a>
+                        <a class="collapse-item" href="{{route('santa-ceia.index')}}">Santas Ceias</a>
                     </div>
                 </div>
             </li>
