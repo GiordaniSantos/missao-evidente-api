@@ -54,3 +54,23 @@
   });
 
 })(jQuery); // End of use strict
+
+$(document).ready(function() {
+  var url = window.location.href;
+  $(".navbar-nav .nav-link").each(function () {
+    if (url == (this.href)) {
+      $(this).closest("li").addClass("active");
+      $(this).closest("li").parent().parent().addClass("active");
+    }
+  });
+
+  $(".collapse-item").each(function () {
+    if (url == (this.href)) {
+      $(this).closest("li").addClass("active");
+      if(window.innerWidth > 767){
+        $(this).closest(".collapse").addClass("show");
+      }
+      $(this).addClass("active");
+    }
+  });
+});
