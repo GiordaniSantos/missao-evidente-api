@@ -124,6 +124,9 @@ Route::middleware(['auth'])->prefix('/admin')->group(function () {
 
     //export csv home
     Route::get('/export-csv', [App\Http\Controllers\HomeController::class, 'exportExcel'])->name('export-excel');
+
+    //export csv relatorio geral
+    Route::get('/export-csv-geral', [App\Http\Controllers\RelatorioGeralController::class, 'exportExcel'])->name('export-excel-geral');
 });
 
 

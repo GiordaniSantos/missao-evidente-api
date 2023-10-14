@@ -27,6 +27,10 @@ class RelatorioGeralController extends Controller
     public function index()
     {
 
+        return view('admin.relatorios-gerais.index', $this->getDados());
+    }
+
+    public function getDados(){
         $membresias = DB::table('membresias')
         ->where('id_usuario', \Auth::user()->id)
         ->select( \DB::raw("SUM(quantidade) as total"))
@@ -54,7 +58,7 @@ class RelatorioGeralController extends Controller
         $estudosBiblicos = EstudoBiblico::where('id_usuario', \Auth::user()->id)->count();
         $discipulados = Discipulado::where('id_usuario', \Auth::user()->id)->count();
 
-        return view('admin.relatorios-gerais.index', [
+        return  [
             'mediaMembresias' => $mediaMembresias,
             'crentes' => $crentes,
             'incredulos' => $incredulos,
@@ -69,8 +73,64 @@ class RelatorioGeralController extends Controller
             'estudos' => $estudos,
             'sermoes' => $sermoes,
             'estudosBiblicos' => $estudosBiblicos,
-            'discipulaods' => $discipulados
-        ]);
+            'discipulados' => $discipulados
+        ];
+    }
+
+    public function exportExcel(){
+
+        $dadosRecuperados = $this->getDados();
+
+        $dados = [
+            [
+                'coluna1' => 'Visita Crentes',
+                'coluna2' => 'Visita Não Crentes',
+                'coluna3' => 'Visita Presidios',
+                'coluna4' => 'Visita Enfermos',
+                'coluna5' => 'Visita Hospitais',
+                'coluna6' => 'Visita Escolas',
+                'coluna7' => 'Estudos',
+                'coluna8' => 'Sermões',
+                'coluna9' => 'Estudos Biblicos',
+                'coluna10' => 'Discipulado',
+                'coluna11' => 'Batismos Infantis',
+                'coluna12' => 'Batismo/Profissões de Fé',
+                'coluna13' => 'Benções Nupciais',
+                'coluna14' => 'Santas Ceias',
+                'coluna15' => 'Média de Membros/Domingo'
+            ],
+            [
+                'linha1' => $dadosRecuperados['crentes'],
+                'linha2' => $dadosRecuperados['incredulos'],
+                'linha3' => $dadosRecuperados['presidios'],
+                'linha4' => $dadosRecuperados['enfermos'],
+                'linha5' => $dadosRecuperados['hospitais'],
+                'linha6' => $dadosRecuperados['escolas'],
+                'linha7' => $dadosRecuperados['batismosInfantis'],
+                'linha8' => $dadosRecuperados['batismosProfissoes'],
+                'linha9' => $dadosRecuperados['bencoesNupciais'],
+                'linha10' => $dadosRecuperados['santasCeias'],
+                'linha11' => $dadosRecuperados['estudos'],
+                'linha12' => $dadosRecuperados['sermoes'],
+                'linha13' => $dadosRecuperados['estudosBiblicos'],
+                'linha14' => $dadosRecuperados['discipulados'],
+                'linha15' => intval($dadosRecuperados['mediaMembresias'])
+            ],
+        ];
+
+        header( 'Content-type: application/csv' );   
+        header( 'Content-Disposition: attachment; filename=Relatorio Geral.csv' ); 
+        
+        // Criar arquivo
+        $arquivo = fopen('php://output', 'w');
+        
+        // Popular os dados
+        foreach ($dados as $linha) {
+            fputcsv($arquivo, $linha);
+        }
+        
+        fclose($arquivo);
+        exit;
     }
 
     public function dadosVisitacao()
