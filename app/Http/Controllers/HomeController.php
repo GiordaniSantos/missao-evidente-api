@@ -38,6 +38,12 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
+        
+
+        return view('home', $this->getDados($request));
+    }
+
+    public function getDados($request){
         $mes = date('m');
         $ano = date('Y');
 
@@ -171,22 +177,87 @@ class HomeController extends Controller
         $estudosBiblicos = $queryEstudoBiblico->count();
         $discipulados = $queryDiscipulado->count();
 
-        return view('home', [
-                'membresias' => $membresias,
-                'crentes' => $crentes,
-                'incredulos' => $incredulos,
-                'presidios' => $presidios,
-                'enfermos' => $enfermos,
-                'hospitais' => $hospitais,
-                'escolas' => $escolas,
-                'batismosInfantis' => $batismosInfantis,
-                'batismosProfissoes' => $batismosProfissoes,
-                'bencoesNupciais' => $bencoesNupciais,
-                'santasCeias' => $santasCeias,
-                'estudos' => $estudos,
-                'sermoes' => $sermoes,
-                'estudosBiblicos' => $estudosBiblicos,
-                'discipulaods' => $discipulados
-            ]);
+        return [
+            'membresias' => $membresias,
+            'crentes' => $crentes,
+            'incredulos' => $incredulos,
+            'presidios' => $presidios,
+            'enfermos' => $enfermos,
+            'hospitais' => $hospitais,
+            'escolas' => $escolas,
+            'batismosInfantis' => $batismosInfantis,
+            'batismosProfissoes' => $batismosProfissoes,
+            'bencoesNupciais' => $bencoesNupciais,
+            'santasCeias' => $santasCeias,
+            'estudos' => $estudos,
+            'sermoes' => $sermoes,
+            'estudosBiblicos' => $estudosBiblicos,
+            'discipulados' => $discipulados,
+            'mes' => $request->mes ? $request->mes : $mes,
+            'ano' => $request->ano ? $request->ano : $ano
+        ];
+    }
+
+    public function exportExcel(Request $request){
+
+        $dadosRecuperados = $this->getDados($request);
+
+        $content = '';
+        if($dadosRecuperados['membresias']){
+            foreach($dadosRecuperados['membresias'] as $membro){
+                $content .= $membro->nome.": ".$membro->quantidade." pessoas."."\n";
+            }
+        }
+
+        $dados = [
+            [
+                'coluna1' => 'Visita Crentes',
+                'coluna2' => 'Visita Não Crentes',
+                'coluna3' => 'Visita Presidios',
+                'coluna4' => 'Visita Enfermos',
+                'coluna5' => 'Visita Hospitais',
+                'coluna6' => 'Visita Escolas',
+                'coluna7' => 'Estudos',
+                'coluna8' => 'Sermões',
+                'coluna9' => 'Estudos Biblicos',
+                'coluna10' => 'Discipulado',
+                'coluna11' => 'Batismos Infantis',
+                'coluna12' => 'Batismo/Profissões de Fé',
+                'coluna13' => 'Benções Nupciais',
+                'coluna14' => 'Santas Ceias',
+                'coluna15' => 'Membresia'
+            ],
+            [
+                'linha1' => $dadosRecuperados['crentes'],
+                'linha2' => $dadosRecuperados['incredulos'],
+                'linha3' => $dadosRecuperados['presidios'],
+                'linha4' => $dadosRecuperados['enfermos'],
+                'linha5' => $dadosRecuperados['hospitais'],
+                'linha6' => $dadosRecuperados['escolas'],
+                'linha7' => $dadosRecuperados['batismosInfantis'],
+                'linha8' => $dadosRecuperados['batismosProfissoes'],
+                'linha9' => $dadosRecuperados['bencoesNupciais'],
+                'linha10' => $dadosRecuperados['santasCeias'],
+                'linha11' => $dadosRecuperados['estudos'],
+                'linha12' => $dadosRecuperados['sermoes'],
+                'linha13' => $dadosRecuperados['estudosBiblicos'],
+                'linha14' => $dadosRecuperados['discipulados'],
+                'linha15' => $content
+            ],
+        ];
+
+        header( 'Content-type: application/csv' );   
+        header( 'Content-Disposition: attachment; filename=Relatorio '.$dadosRecuperados['mes'].'-'.$dadosRecuperados['ano'].'.csv' ); 
+        
+        // Criar arquivo
+        $arquivo = fopen('php://output', 'w');
+        
+        // Popular os dados
+        foreach ($dados as $linha) {
+            fputcsv($arquivo, $linha);
+        }
+        
+        fclose($arquivo);
+        exit;
     }
 }

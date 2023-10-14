@@ -33,7 +33,7 @@
                         <tbody>
                             @foreach($batismosProfissoes as $batismoProfissao)
                                 <tr>
-                                    <td>Visita realizada no dia</td>
+                                    <td>Ocorrido no dia</td>
                                     <td>{{$batismoProfissao->created_at->format('d/m/Y')}}</td>
                                     <td>
                                         <div class="dropdown">

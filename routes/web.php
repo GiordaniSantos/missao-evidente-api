@@ -121,6 +121,9 @@ Route::middleware(['auth'])->prefix('/admin')->group(function () {
     Route::get('/relatorio-geral-dados-atos-pastorais', [App\Http\Controllers\RelatorioGeralController::class, 'dadosAtosPastorais']);
     Route::get('/relatorio-geral-dados-pregacoes', [App\Http\Controllers\RelatorioGeralController::class, 'dadosPregacao']);
     Route::get('/relatorio-geral-dados-membresia', [App\Http\Controllers\RelatorioGeralController::class, 'dadosMembresia']);
+
+    //export csv home
+    Route::get('/export-csv', [App\Http\Controllers\HomeController::class, 'exportExcel'])->name('export-excel');
 });
 
 

@@ -40,9 +40,7 @@
                             <tr>
                                 <th>Nome</th>
                                 <th>Quantidade</th>
-                                <th>dia</th>
-                                <th>Mês</th>
-                                <th>Ano</th>
+                                <th>data</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -51,9 +49,7 @@
                                 <tr>
                                     <td>{{$membresia->nome}}</td>
                                     <td>{{$membresia->quantidade}}</td>
-                                    <td>{{$membresia->created_at->format('d')}}</td>
-                                    <td>{{$mes_extenso[$membresia->created_at->format('M')]}}</td>
-                                    <td>{{$membresia->created_at->format('Y')}}</td>
+                                    <td>{{$membresia->created_at->format('d/m/Y')}}</td>
                                     <td>
                                         <div class="dropdown">
                                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

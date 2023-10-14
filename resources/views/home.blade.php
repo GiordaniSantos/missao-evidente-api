@@ -34,7 +34,7 @@
         'Dec' => 'Dezembro'
     );
     $anoInputValue = isset($_GET['ano']) ? $_GET['ano'] : $ano;
-    
+    //dd(substr($_SERVER["REQUEST_URI"], 11));
 ?>
 
 <!-- Begin Page Content -->
@@ -79,7 +79,7 @@
                 <a href="{{route('home')}}" class="btn btn-primary" type="submit">limpar</a>
             </form>
         </div>
-        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+        <a href="{{route('export-excel').substr($_SERVER["REQUEST_URI"], 11)}}" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm gerar-relatorio-button"><i
             class="fas fa-download fa-sm text-white-50"></i> Gerar Relatório</a>
     </div>
 

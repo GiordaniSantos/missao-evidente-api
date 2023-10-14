@@ -7443,6 +7443,9 @@ button.bg-dark:focus {
   .float-md-none {
     float: none !important;
   }
+  .gerar-relatorio-button{
+    margin-top:15px;
+  }
 }
 
 @media (min-width: 992px) {

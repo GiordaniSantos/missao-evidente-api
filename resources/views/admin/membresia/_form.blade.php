@@ -21,7 +21,7 @@ $list = [
     <!-- Form Row-->
     <div class="row gx-3 mb-3">
         <!-- Form Group (first name)-->
-        <div class="col-md-6">
+        <div class="col-md-4">
             <label class="small mb-1" for="nome">Nome</label>
             <select name="nome" class="form-control">
                 <option> Escolha uma Opção </option>
@@ -36,11 +36,30 @@ $list = [
             {{ $errors->has('nome') ? $errors->first('nome') : '' }}
         </div>
         <!-- Form Group (last name)-->
-        <div class="col-md-6">
+        <div class="col-md-4">
             <label class="small mb-1" for="quantidade">Quantidade</label>
             <input class="form-control" id="quantidade" name="quantidade" type="number" placeholder="" value="{{ $membresium->quantidade ?? old('quantidade') }}">
+        </div>
+        <div class="col-md-4">
+            <label class="small mb-1" for="created_at">Data</label>
+            <input class="form-control" id="created_at" name="created_at" type="datetime-local" placeholder="Data" value="{{ $membresium->created_at ?? old('data') }}">
         </div>
     </div>
     <!-- Save changes button-->
     <button class="btn btn-primary" type="submit">@if(isset($membresium))Atualizar @else Salvar @endif</button>
 </form>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
+<script src="https://npmcdn.com/flatpickr/dist/l10n/pt.js"></script>
+<script>
+    
+    config = {
+        enableTime: true,
+        dateFormat: 'Y/m/d H:i',
+        locale: 'pt',
+        format: "d/m/Y H:i",
+        altFormat: "d/m/Y H:i",
+        altInput: true
+    }
+    flatpickr("input[type=datetime-local]", config);
+</script>

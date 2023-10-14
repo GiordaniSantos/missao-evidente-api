@@ -13,7 +13,7 @@ class MembresiaController extends Controller
      */
     public function index(Request $request)
     {
-        $membresias = Membresia::orderBy('id', 'desc')->where('id_usuario', \Auth::user()->id)->get();
+        $membresias = Membresia::orderBy('created_at', 'desc')->where('id_usuario', \Auth::user()->id)->get();
 
         $title = 'Deletar dado de membresia!';
         $text = "Você tem certeza que quer deletar este registro?";

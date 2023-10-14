@@ -33,7 +33,7 @@
                         <tbody>
                             @foreach($sermoes as $sermao)
                                 <tr>
-                                    <td>Visita realizada no dia</td>
+                                    <td>Ocorrido no dia</td>
                                     <td>{{$sermao->created_at->format('d/m/Y')}}</td>
                                     <td>
                                         <div class="dropdown">

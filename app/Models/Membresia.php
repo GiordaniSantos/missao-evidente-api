@@ -9,7 +9,7 @@ class Membresia extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nome', 'quantidade', 'id_usuario'];
+    protected $fillable = ['nome', 'quantidade', 'id_usuario', 'created_at'];
 
     protected $dates = ['created_at', 'updated_at'];
 
