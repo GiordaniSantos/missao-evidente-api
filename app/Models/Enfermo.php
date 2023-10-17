@@ -4,12 +4,23 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\LogOptions;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Enfermo extends Model
+class Enfermo extends BaseModel
 {
     use HasFactory;
 
     protected $fillable = ['id_usuario', 'created_at'];
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+        ->logFillable()
+        ->logOnly(['user.name'])
+        ->useLogName('Visita Enfermo');
+    }
+
 
     public static function rules(){
         $regras = [
@@ -25,5 +36,10 @@ class Enfermo extends Model
         ];
 
         return $feedback;
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo('App\Models\User', 'id_usuario', 'id');
     }
 }

@@ -4,12 +4,22 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\LogOptions;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Presidio extends Model
+class Presidio extends BaseModel
 {
     use HasFactory;
 
     protected $fillable = ['id_usuario', 'created_at'];
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+        ->logFillable()
+        ->logOnly(['user.name'])
+        ->useLogName('Visita Presidio');
+    }
 
     public static function rules(){
         $regras = [
@@ -25,5 +35,10 @@ class Presidio extends Model
         ];
 
         return $feedback;
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo('App\Models\User', 'id_usuario', 'id');
     }
 }

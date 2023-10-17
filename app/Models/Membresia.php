@@ -4,14 +4,24 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\LogOptions;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Membresia extends Model
+class Membresia extends BaseModel
 {
     use HasFactory;
 
     protected $fillable = ['nome', 'quantidade', 'id_usuario', 'created_at'];
 
     protected $dates = ['created_at', 'updated_at'];
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+        ->logFillable()
+        ->logOnly(['user.name'])
+        ->useLogName('Membresia');
+    }
 
     public static function rules(){
         $regras = [
@@ -31,5 +41,10 @@ class Membresia extends Model
         ];
 
         return $feedback;
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo('App\Models\User', 'id_usuario', 'id');
     }
 }
