@@ -127,6 +127,10 @@ Route::middleware(['auth'])->prefix('/admin')->group(function () {
 
     //export csv relatorio geral
     Route::get('/export-csv-geral', [App\Http\Controllers\RelatorioGeralController::class, 'exportExcel'])->name('export-excel-geral');
+
+    //meu perfil
+    Route::get('/meu-perfil', [App\Http\Controllers\UserController::class, 'view'])->name('user.view');
+    Route::put('/meu-perfil/{id}', [App\Http\Controllers\UserController::class, 'update'])->name('user.update');
 });
 
 
