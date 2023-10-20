@@ -40,10 +40,12 @@ $list = [
             <label class="small mb-1" for="quantidade">Quantidade</label>
             <input class="form-control" id="quantidade" name="quantidade" type="number" placeholder="" value="{{ $membresium->quantidade ?? old('quantidade') }}">
         </div>
-        <div class="col-md-4">
-            <label class="small mb-1" for="created_at">Data</label>
-            <input class="form-control" id="created_at" name="created_at" type="datetime-local" placeholder="Data" value="{{ $membresium->created_at ?? old('data') }}">
-        </div>
+        @if(isset($membresium->id))
+            <div class="col-md-4">
+                <label class="small mb-1" for="created_at">Data</label>
+                <input class="form-control" id="created_at" name="created_at" type="datetime-local" placeholder="Data" value="{{ $membresium->created_at ?? old('data') }}">
+            </div>
+        @endif
     </div>
     <!-- Save changes button-->
     <button class="btn btn-primary" type="submit">@if(isset($membresium))Atualizar @else Salvar @endif</button>

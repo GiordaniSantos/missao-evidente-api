@@ -46,6 +46,42 @@ class EstudoController extends Controller
         return response()->json($estudo, 201);
     }
 
+      /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Estudo  $estudo
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $id_usuario = request('id_usuario');
+        $estudo = Estudo::where('id', $id)->where('id_usuario', $id_usuario)->first();
+        if($estudo === null){
+            return response()->json(['erro' => 'Recurso pesquisado não existe.'], 404);
+        }
+        return response()->json($estudo, 200);
+    }
+
+     /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Estudo  $estudo
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $id_usuario = request('id_usuario');
+        $estudo = Estudo::where('id', $id)->where('id_usuario', $id_usuario)->first();
+
+        $request->validate(Estudo::rules(), Estudo::feedback());
+        $estudo->id_usuario = $id_usuario;
+        $estudo->fill($request->all());
+        $estudo->save();
+
+         return response()->json($estudo, 200);
+    }
+
     /**
      * Remove the specified resource from storage.
      *
