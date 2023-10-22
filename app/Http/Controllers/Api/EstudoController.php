@@ -10,6 +10,7 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 class EstudoController extends Controller
 {
@@ -73,13 +74,15 @@ class EstudoController extends Controller
     {
         $id_usuario = request('id_usuario');
         $estudo = Estudo::where('id', $id)->where('id_usuario', $id_usuario)->first();
-
+        //dd($request->all());
+        //dd(Carbon::parse($request->created_at)->setTimezone('America/Sao_Paulo'));
         $request->validate(Estudo::rules(), Estudo::feedback());
         $estudo->id_usuario = $id_usuario;
-        $estudo->fill($request->all());
+        $estudo->created_at = Carbon::parse($request->created_at)->setTimezone('America/Sao_Paulo');
         $estudo->save();
+        //dd($estudo->created_at);
 
-         return response()->json($estudo, 200);
+        return response()->json($estudo, 200);
     }
 
     /**
