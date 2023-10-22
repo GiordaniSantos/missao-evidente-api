@@ -46,6 +46,41 @@ class CrenteController extends Controller
         return response()->json($crente, 201);
     }
 
+       /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Crente  $crente
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $id_usuario = request('id_usuario');
+        $crente = Crente::where('id', $id)->where('id_usuario', $id_usuario)->first();
+        if($crente === null){
+            return response()->json(['erro' => 'Recurso pesquisado não existe.'], 404);
+        }
+        return response()->json($crente, 200);
+    }
+
+     /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Crente  $crente
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $id_usuario = request('id_usuario');
+        $crente = Crente::where('id', $id)->where('id_usuario', $id_usuario)->first();
+        $request->validate(Crente::rules(), Crente::feedback());
+        $crente->id_usuario = $id_usuario;
+        $crente->created_at = Carbon::parse($request->created_at)->setTimezone('America/Sao_Paulo');
+        $crente->save();
+
+        return response()->json($crente, 200);
+    }
+
     /**
      * Remove the specified resource from storage.
      *

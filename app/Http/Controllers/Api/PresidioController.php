@@ -46,6 +46,41 @@ class PresidioController extends Controller
         return response()->json($presidio, 201);
     }
 
+       /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Presidio  $presidio
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $id_usuario = request('id_usuario');
+        $presidio = Presidio::where('id', $id)->where('id_usuario', $id_usuario)->first();
+        if($presidio === null){
+            return response()->json(['erro' => 'Recurso pesquisado não existe.'], 404);
+        }
+        return response()->json($presidio, 200);
+    }
+
+     /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Presidio  $presidio
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $id_usuario = request('id_usuario');
+        $presidio = Presidio::where('id', $id)->where('id_usuario', $id_usuario)->first();
+        $request->validate(Presidio::rules(), Presidio::feedback());
+        $presidio->id_usuario = $id_usuario;
+        $presidio->created_at = Carbon::parse($request->created_at)->setTimezone('America/Sao_Paulo');
+        $presidio->save();
+
+        return response()->json($presidio, 200);
+    }
+
     /**
      * Remove the specified resource from storage.
      *

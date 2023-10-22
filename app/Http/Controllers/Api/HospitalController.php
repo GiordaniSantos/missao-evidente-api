@@ -46,6 +46,44 @@ class HospitalController extends Controller
         return response()->json($hospital, 201);
     }
 
+       /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Hospital  $hospital
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $id_usuario = request('id_usuario');
+        $hospital = Hospital::where('id', $id)->where('id_usuario', $id_usuario)->first();
+        if($hospital === null){
+            return response()->json(['erro' => 'Recurso pesquisado não existe.'], 404);
+        }
+        return response()->json($hospital, 200);
+    }
+
+     /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Hospital  $hospital
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $id_usuario = request('id_usuario');
+        $hospital = Hospital::where('id', $id)->where('id_usuario', $id_usuario)->first();
+        //dd($request->all());
+        //dd(Carbon::parse($request->created_at)->setTimezone('America/Sao_Paulo'));
+        $request->validate(Hospital::rules(), Hospital::feedback());
+        $hospital->id_usuario = $id_usuario;
+        $hospital->created_at = Carbon::parse($request->created_at)->setTimezone('America/Sao_Paulo');
+        $hospital->save();
+        //dd($hospital->created_at);
+
+        return response()->json($hospital, 200);
+    }
+
     /**
      * Remove the specified resource from storage.
      *

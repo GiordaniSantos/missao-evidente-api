@@ -46,6 +46,41 @@ class EnfermoController extends Controller
         return response()->json($enfermo, 201);
     }
 
+       /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Enfermo  $enfermo
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $id_usuario = request('id_usuario');
+        $enfermo = Enfermo::where('id', $id)->where('id_usuario', $id_usuario)->first();
+        if($enfermo === null){
+            return response()->json(['erro' => 'Recurso pesquisado não existe.'], 404);
+        }
+        return response()->json($enfermo, 200);
+    }
+
+     /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Enfermo  $enfermo
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $id_usuario = request('id_usuario');
+        $enfermo = Enfermo::where('id', $id)->where('id_usuario', $id_usuario)->first();
+        $request->validate(Enfermo::rules(), Enfermo::feedback());
+        $enfermo->id_usuario = $id_usuario;
+        $enfermo->created_at = Carbon::parse($request->created_at)->setTimezone('America/Sao_Paulo');
+        $enfermo->save();
+
+        return response()->json($enfermo, 200);
+    }
+
     /**
      * Remove the specified resource from storage.
      *

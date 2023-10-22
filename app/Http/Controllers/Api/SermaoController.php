@@ -46,6 +46,41 @@ class SermaoController extends Controller
         return response()->json($sermao, 201);
     }
 
+       /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Sermao  $sermao
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $id_usuario = request('id_usuario');
+        $sermao = Sermao::where('id', $id)->where('id_usuario', $id_usuario)->first();
+        if($sermao === null){
+            return response()->json(['erro' => 'Recurso pesquisado não existe.'], 404);
+        }
+        return response()->json($sermao, 200);
+    }
+
+     /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Sermao  $sermao
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $id_usuario = request('id_usuario');
+        $sermao = Sermao::where('id', $id)->where('id_usuario', $id_usuario)->first();
+        $request->validate(Sermao::rules(), Sermao::feedback());
+        $sermao->id_usuario = $id_usuario;
+        $sermao->created_at = Carbon::parse($request->created_at)->setTimezone('America/Sao_Paulo');
+        $sermao->save();
+
+        return response()->json($sermao, 200);
+    }
+
     /**
      * Remove the specified resource from storage.
      *

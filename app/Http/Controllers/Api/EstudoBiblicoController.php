@@ -46,6 +46,41 @@ class EstudoBiblicoController extends Controller
         return response()->json($estudobiblico, 201);
     }
 
+      /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\EstudoBiblico  $estudoBiblico
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $id_usuario = request('id_usuario');
+        $estudoBiblico = EstudoBiblico::where('id', $id)->where('id_usuario', $id_usuario)->first();
+        if($estudoBiblico === null){
+            return response()->json(['erro' => 'Recurso pesquisado não existe.'], 404);
+        }
+        return response()->json($estudoBiblico, 200);
+    }
+
+     /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\EstudoBiblico  $estudoBiblico
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $id_usuario = request('id_usuario');
+        $estudoBiblico = EstudoBiblico::where('id', $id)->where('id_usuario', $id_usuario)->first();
+        $request->validate(EstudoBiblico::rules(), EstudoBiblico::feedback());
+        $estudoBiblico->id_usuario = $id_usuario;
+        $estudoBiblico->created_at = Carbon::parse($request->created_at)->setTimezone('America/Sao_Paulo');
+        $estudoBiblico->save();
+
+        return response()->json($estudoBiblico, 200);
+    }
+
     /**
      * Remove the specified resource from storage.
      *
