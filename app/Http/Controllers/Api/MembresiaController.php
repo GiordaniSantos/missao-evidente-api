@@ -49,6 +49,42 @@ class MembresiaController extends Controller
         return response()->json($membresia, 201);
     }
 
+      /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Membresia  $membresia
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $id_usuario = request('id_usuario');
+        $membresia = Membresia::where('id', $id)->where('id_usuario', $id_usuario)->first();
+        if($membresia === null){
+            return response()->json(['erro' => 'Recurso pesquisado não existe.'], 404);
+        }
+        return response()->json($membresia, 200);
+    }
+
+     /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Membresia  $membresia
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $id_usuario = request('id_usuario');
+        $membresia = Membresia::where('id', $id)->where('id_usuario', $id_usuario)->first();
+        $request->validate(Membresia::rules(), Membresia::feedback());
+        $membresia->id_usuario = $id_usuario;
+        $membresia->created_at = Carbon::parse($request->created_at)->setTimezone('America/Sao_Paulo');
+        $membresia->fill($request->all());
+        $membresia->save();
+
+        return response()->json($membresia, 200);
+    }
+
     /**
      * Remove the specified resource from storage.
      *
