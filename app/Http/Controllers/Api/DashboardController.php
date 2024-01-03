@@ -88,66 +88,41 @@ class DashboardController extends Controller
         $queryDiscipulado = Discipulado::query();
         $queryDiscipulado->where('id_usuario', $id_usuario);
 
-        /*if ($requestAno) {
-            $queryMembresias->whereYear('created_at', '=', $requestAno);
-            $queryVisitasCrentes->whereYear('created_at', '=', $requestAno);
-            $queryVisitasNaoCrentes->whereYear('created_at', '=', $requestAno);
-            $queryVisitasPresidios->whereYear('created_at', '=', $requestAno);
-            $queryVisitasEnfermos->whereYear('created_at', '=', $requestAno);
-            $queryVisitasHospitais->whereYear('created_at', '=', $requestAno);
-            $queryVisitasEscolas->whereYear('created_at', '=', $requestAno);
-        }else{*/
-            $queryMembresias->whereYear('created_at', '=', $ano);
-            $queryVisitasCrentes->whereYear('created_at', '=', $ano);
-            $queryVisitasNaoCrentes->whereYear('created_at', '=', $ano);
-            $queryVisitasPresidios->whereYear('created_at', '=', $ano);
-            $queryVisitasEnfermos->whereYear('created_at', '=', $ano);
-            $queryVisitasHospitais->whereYear('created_at', '=', $ano);
-            $queryVisitasEscolas->whereYear('created_at', '=', $ano);
-            $queryBatismoInfantil->whereYear('created_at', '=', $ano);
-            $queryBatismoProfissao->whereYear('created_at', '=', $ano);
-            $queryBencaoNupcial->whereYear('created_at', '=', $ano);
-            $querySantaCeia->whereYear('created_at', '=', $ano);
-            $queryEstudo->whereYear('created_at', '=', $ano);
-            $querySermao->whereYear('created_at', '=', $ano);
-            $queryEstudoBiblico->whereYear('created_at', '=', $ano);
-            $queryDiscipulado->whereYear('created_at', '=', $ano);
-        //}
+        //filtrando por ano
+        $queryMembresias->whereYear('created_at', '=', $requestAno ? $requestAno : $ano);
+        $queryVisitasCrentes->whereYear('created_at', '=', $requestAno ? $requestAno : $ano);
+        $queryVisitasNaoCrentes->whereYear('created_at', '=', $requestAno ? $requestAno : $ano);
+        $queryVisitasPresidios->whereYear('created_at', '=', $requestAno ? $requestAno : $ano);
+        $queryVisitasEnfermos->whereYear('created_at', '=', $requestAno ? $requestAno : $ano);
+        $queryVisitasHospitais->whereYear('created_at', '=', $requestAno ? $requestAno : $ano);
+        $queryVisitasEscolas->whereYear('created_at', '=', $requestAno ? $requestAno : $ano);
+        $queryBatismoInfantil->whereYear('created_at', '=', $requestAno ? $requestAno : $ano);
+        $queryBatismoProfissao->whereYear('created_at', '=', $requestAno ? $requestAno : $ano);
+        $queryBencaoNupcial->whereYear('created_at', '=', $requestAno ? $requestAno : $ano);
+        $querySantaCeia->whereYear('created_at', '=', $requestAno ? $requestAno : $ano);
+        $queryEstudo->whereYear('created_at', '=', $requestAno ? $requestAno : $ano);
+        $querySermao->whereYear('created_at', '=', $requestAno ? $requestAno : $ano);
+        $queryEstudoBiblico->whereYear('created_at', '=', $requestAno ? $requestAno : $ano);
+        $queryDiscipulado->whereYear('created_at', '=', $requestAno ? $requestAno : $ano);
 
-        if ($requestMes) {
-            $queryMembresias->whereMonth('created_at', '=', $requestMes);
-            $queryVisitasCrentes->whereMonth('created_at', '=', $requestMes);
-            $queryVisitasNaoCrentes->whereMonth('created_at', '=', $requestMes);
-            $queryVisitasPresidios->whereMonth('created_at', '=', $requestMes);
-            $queryVisitasEnfermos->whereMonth('created_at', '=', $requestMes);
-            $queryVisitasHospitais->whereMonth('created_at', '=', $requestMes);
-            $queryVisitasEscolas->whereMonth('created_at', '=', $requestMes);
-            $queryBatismoInfantil->whereMonth('created_at', '=', $requestMes);
-            $queryBatismoProfissao->whereMonth('created_at', '=', $requestMes);
-            $queryBencaoNupcial->whereMonth('created_at', '=', $requestMes);
-            $querySantaCeia->whereMonth('created_at', '=', $requestMes);
-            $queryEstudo->whereMonth('created_at', '=', $requestMes);
-            $querySermao->whereMonth('created_at', '=', $requestMes);
-            $queryEstudoBiblico->whereMonth('created_at', '=', $requestMes);
-            $queryDiscipulado->whereMonth('created_at', '=', $requestMes);
-        }else{
-            $queryMembresias->whereMonth('created_at', '=', $mes);
-            $queryVisitasCrentes->whereMonth('created_at', '=', $mes);
-            $queryVisitasNaoCrentes->whereMonth('created_at', '=', $mes);
-            $queryVisitasPresidios->whereMonth('created_at', '=', $mes);
-            $queryVisitasEnfermos->whereMonth('created_at', '=', $mes);
-            $queryVisitasHospitais->whereMonth('created_at', '=', $mes);
-            $queryVisitasEscolas->whereMonth('created_at', '=', $mes);
-            $queryBatismoInfantil->whereMonth('created_at', '=', $mes);
-            $queryBatismoProfissao->whereMonth('created_at', '=', $mes);
-            $queryBencaoNupcial->whereMonth('created_at', '=', $mes);
-            $querySantaCeia->whereMonth('created_at', '=', $mes);
-            $queryEstudo->whereMonth('created_at', '=', $mes);
-            $querySermao->whereMonth('created_at', '=', $mes);
-            $queryEstudoBiblico->whereMonth('created_at', '=', $mes);
-            $queryDiscipulado->whereMonth('created_at', '=', $mes);
-        }
+        //filtrando por mês
+        $queryMembresias->whereMonth('created_at', '=', $requestMes ? $requestMes : $mes);
+        $queryVisitasCrentes->whereMonth('created_at', '=', $requestMes ? $requestMes : $mes);
+        $queryVisitasNaoCrentes->whereMonth('created_at', '=', $requestMes ? $requestMes : $mes);
+        $queryVisitasPresidios->whereMonth('created_at', '=', $requestMes ? $requestMes : $mes);
+        $queryVisitasEnfermos->whereMonth('created_at', '=', $requestMes ? $requestMes : $mes);
+        $queryVisitasHospitais->whereMonth('created_at', '=', $requestMes ? $requestMes : $mes);
+        $queryVisitasEscolas->whereMonth('created_at', '=', $requestMes ? $requestMes : $mes);
+        $queryBatismoInfantil->whereMonth('created_at', '=', $requestMes ? $requestMes : $mes);
+        $queryBatismoProfissao->whereMonth('created_at', '=', $requestMes ? $requestMes : $mes);
+        $queryBencaoNupcial->whereMonth('created_at', '=', $requestMes ? $requestMes : $mes);
+        $querySantaCeia->whereMonth('created_at', '=', $requestMes ? $requestMes : $mes);
+        $queryEstudo->whereMonth('created_at', '=', $requestMes ? $requestMes : $mes);
+        $querySermao->whereMonth('created_at', '=', $requestMes ? $requestMes : $mes);
+        $queryEstudoBiblico->whereMonth('created_at', '=', $requestMes ? $requestMes : $mes);
+        $queryDiscipulado->whereMonth('created_at', '=', $requestMes ? $requestMes : $mes);
         
+        //encerrando as querys
         $membresias = $queryMembresias->get();
         $membresiasG['membresias'] = $membresias;
         $crentes = $queryVisitasCrentes->count();
