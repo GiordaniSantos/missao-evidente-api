@@ -50,6 +50,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::apiResource('discipulado', \App\Http\Controllers\Api\DiscipuladoController::class); 
 
     Route::get('dashboard', [\App\Http\Controllers\Api\DashboardController::class, 'index']);
+
+    Route::get('relatorio-anual', [\App\Http\Controllers\Api\DashboardController::class, 'relatorioAnual']);
 });
 
 Route::post('logout', [\App\Http\Controllers\Api\AuthController::class, 'logout']);
