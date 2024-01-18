@@ -22,7 +22,7 @@
 
 </head> 
     <body class="bg-gradient-primary">
-        <div class="container" style="margin-top:300px;">
+        <div class="container" style="margin-top:180px;">
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="card">
