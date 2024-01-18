@@ -24,7 +24,7 @@ class AuthController extends Controller
 
         if (!Auth::attempt($credentials, $remember)) {
             return response([
-                'message' => 'Email ou Senha incorreto'
+                'message' => 'Email ou Senha incorretos'
             ], 422);
         }
 
