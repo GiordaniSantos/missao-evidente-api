@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\CreateUserRequest;
 
 class AuthController extends Controller
 {
@@ -41,11 +40,21 @@ class AuthController extends Controller
 
     }
 
-    public function signUp(CreateUserRequest $request)
+    public function signUp(Request $request)
     {
-        $data = $request->validated();
+        $data = $request->validate([
+            'name' => ['required'],
+            'email'=> ['required', 'email', 'unique:users'],
+            'password' => ['required', 'min:8']
+        ], [
+            'required' => 'O campo :attribute deve ser preenchido',
+            'email.email' => 'O campo email deve ser do tipo email.',
+            'email.unique' => 'O email fornecido já está sendo utilizado, informe outro email.',
+            'password.min' => 'O campo senha deve ter no minimo 8 caracteres.'
+        ]);
+        
         $data['password'] = Hash::make($data['password']);
-
+        
         $user = User::create($data);
 
         return response($user, 204);

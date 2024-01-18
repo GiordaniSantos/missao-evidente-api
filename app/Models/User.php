@@ -25,7 +25,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-        //'password',
+        'password',
     ];
 
     /**
@@ -77,7 +77,7 @@ class User extends Authenticatable
         $feedback = [
             //'required' => 'O campo :attribute deve ser preenchido',
             'name.max' => 'O campo nome não pode ultrapassar 255 caracteres.',
-            'email.max' => 'O campo nome não pode ultrapassar 255 caracteres.',
+            'email.max' => 'O campo email não pode ultrapassar 255 caracteres.',
             'email.email' => 'O campo email deve ser do tipo Email.',
             'password.min' => 'O campo senha deve ter no minimo 8 caracteres.',
             'password.confirmed' => 'O campo senha não corresponde ao campo de confirmação de senha.',
