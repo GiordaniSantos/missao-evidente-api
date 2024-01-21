@@ -36,93 +36,92 @@ class DashboardController extends Controller
     {
         $id_usuario = request('id_usuario');
 
-
         $mes = date('m');
-        $ano = date('Y');
+        if($request->has('mes')){
+            $mes = request('mes');
+        }
 
-        $requestMes = request('mes');
-        $requestAno = request('ano');
+        $ano = date('Y');
+        if($request->has('ano')){
+            $ano = request('ano');
+        }
 
         $queryMembresias = Membresia::query();
         $queryMembresias->where('id_usuario', $id_usuario);
+        $queryMembresias->whereYear('created_at', '=', $ano);
+        $queryMembresias->whereMonth('created_at', '=', $mes);
         $queryMembresias->orderBy('created_at', 'asc');
 
         $queryVisitasCrentes = Crente::query();
+        $queryVisitasCrentes->whereYear('created_at', '=', $ano);
+        $queryVisitasCrentes->whereMonth('created_at', '=', $mes);
         $queryVisitasCrentes->where('id_usuario', $id_usuario);
 
         $queryVisitasNaoCrentes = Incredulo::query();
+        $queryVisitasNaoCrentes->whereYear('created_at', '=', $ano);
+        $queryVisitasNaoCrentes->whereMonth('created_at', '=', $mes);
         $queryVisitasNaoCrentes->where('id_usuario', $id_usuario);
 
         $queryVisitasPresidios = Presidio::query();
+        $queryVisitasPresidios->whereYear('created_at', '=', $ano);
+        $queryVisitasPresidios->whereMonth('created_at', '=', $mes);
         $queryVisitasPresidios->where('id_usuario', $id_usuario);
 
         $queryVisitasEnfermos = Enfermo::query();
+        $queryVisitasEnfermos->whereYear('created_at', '=', $ano);
+        $queryVisitasEnfermos->whereMonth('created_at', '=', $mes);
         $queryVisitasEnfermos->where('id_usuario', $id_usuario);
 
         $queryVisitasHospitais = Hospital::query();
+        $queryVisitasHospitais->whereYear('created_at', '=', $ano);
+        $queryVisitasHospitais->whereMonth('created_at', '=', $mes);
         $queryVisitasHospitais->where('id_usuario', $id_usuario);
 
         $queryVisitasEscolas = Escola::query();
+        $queryVisitasEscolas->whereYear('created_at', '=', $ano);
+        $queryVisitasEscolas->whereMonth('created_at', '=', $mes);
         $queryVisitasEscolas->where('id_usuario', $id_usuario);
 
         $queryBatismoInfantil = BatismoInfantil::query();
+        $queryBatismoInfantil->whereYear('created_at', '=', $ano);
+        $queryBatismoInfantil->whereMonth('created_at', '=', $mes);
         $queryBatismoInfantil->where('id_usuario', $id_usuario);
 
         $queryBatismoProfissao = BatismoProfissao::query();
+        $queryBatismoProfissao->whereYear('created_at', '=', $ano);
+        $queryBatismoProfissao->whereMonth('created_at', '=', $mes);
         $queryBatismoProfissao->where('id_usuario', $id_usuario);
 
         $queryBencaoNupcial = BencaoNupcial::query();
+        $queryBencaoNupcial->whereYear('created_at', '=', $ano);
+        $queryBencaoNupcial->whereMonth('created_at', '=', $mes);
         $queryBencaoNupcial->where('id_usuario', $id_usuario);
 
         $querySantaCeia = SantaCeia::query();
+        $querySantaCeia->whereYear('created_at', '=', $ano);
+        $querySantaCeia->whereMonth('created_at', '=', $mes);
         $querySantaCeia->where('id_usuario', $id_usuario);
 
         $queryEstudo = Estudo::query();
+        $queryEstudo->whereYear('created_at', '=', $ano);
+        $queryEstudo->whereMonth('created_at', '=', $mes);
         $queryEstudo->where('id_usuario', $id_usuario);
 
         $querySermao = Sermao::query();
+        $querySermao->whereYear('created_at', '=', $ano);
+        $querySermao->whereMonth('created_at', '=', $mes);
         $querySermao->where('id_usuario', $id_usuario);
 
         $queryEstudoBiblico = EstudoBiblico::query();
+        $queryEstudoBiblico->whereYear('created_at', '=', $ano);
+        $queryEstudoBiblico->whereMonth('created_at', '=', $mes);
         $queryEstudoBiblico->where('id_usuario', $id_usuario);
 
         $queryDiscipulado = Discipulado::query();
+        $queryDiscipulado->whereYear('created_at', '=', $ano);
+        $queryDiscipulado->whereMonth('created_at', '=', $mes);
         $queryDiscipulado->where('id_usuario', $id_usuario);
 
-        //filtrando por ano
-        $queryMembresias->whereYear('created_at', '=', $requestAno ? $requestAno : $ano);
-        $queryVisitasCrentes->whereYear('created_at', '=', $requestAno ? $requestAno : $ano);
-        $queryVisitasNaoCrentes->whereYear('created_at', '=', $requestAno ? $requestAno : $ano);
-        $queryVisitasPresidios->whereYear('created_at', '=', $requestAno ? $requestAno : $ano);
-        $queryVisitasEnfermos->whereYear('created_at', '=', $requestAno ? $requestAno : $ano);
-        $queryVisitasHospitais->whereYear('created_at', '=', $requestAno ? $requestAno : $ano);
-        $queryVisitasEscolas->whereYear('created_at', '=', $requestAno ? $requestAno : $ano);
-        $queryBatismoInfantil->whereYear('created_at', '=', $requestAno ? $requestAno : $ano);
-        $queryBatismoProfissao->whereYear('created_at', '=', $requestAno ? $requestAno : $ano);
-        $queryBencaoNupcial->whereYear('created_at', '=', $requestAno ? $requestAno : $ano);
-        $querySantaCeia->whereYear('created_at', '=', $requestAno ? $requestAno : $ano);
-        $queryEstudo->whereYear('created_at', '=', $requestAno ? $requestAno : $ano);
-        $querySermao->whereYear('created_at', '=', $requestAno ? $requestAno : $ano);
-        $queryEstudoBiblico->whereYear('created_at', '=', $requestAno ? $requestAno : $ano);
-        $queryDiscipulado->whereYear('created_at', '=', $requestAno ? $requestAno : $ano);
-
-        //filtrando por mês
-        $queryMembresias->whereMonth('created_at', '=', $requestMes ? $requestMes : $mes);
-        $queryVisitasCrentes->whereMonth('created_at', '=', $requestMes ? $requestMes : $mes);
-        $queryVisitasNaoCrentes->whereMonth('created_at', '=', $requestMes ? $requestMes : $mes);
-        $queryVisitasPresidios->whereMonth('created_at', '=', $requestMes ? $requestMes : $mes);
-        $queryVisitasEnfermos->whereMonth('created_at', '=', $requestMes ? $requestMes : $mes);
-        $queryVisitasHospitais->whereMonth('created_at', '=', $requestMes ? $requestMes : $mes);
-        $queryVisitasEscolas->whereMonth('created_at', '=', $requestMes ? $requestMes : $mes);
-        $queryBatismoInfantil->whereMonth('created_at', '=', $requestMes ? $requestMes : $mes);
-        $queryBatismoProfissao->whereMonth('created_at', '=', $requestMes ? $requestMes : $mes);
-        $queryBencaoNupcial->whereMonth('created_at', '=', $requestMes ? $requestMes : $mes);
-        $querySantaCeia->whereMonth('created_at', '=', $requestMes ? $requestMes : $mes);
-        $queryEstudo->whereMonth('created_at', '=', $requestMes ? $requestMes : $mes);
-        $querySermao->whereMonth('created_at', '=', $requestMes ? $requestMes : $mes);
-        $queryEstudoBiblico->whereMonth('created_at', '=', $requestMes ? $requestMes : $mes);
-        $queryDiscipulado->whereMonth('created_at', '=', $requestMes ? $requestMes : $mes);
-        
         //encerrando as querys
         $membresias = $queryMembresias->get();
         $membresiasG['membresias'] = $membresias;
@@ -163,80 +162,78 @@ class DashboardController extends Controller
         $id_usuario = request('id_usuario');
 
         $ano = date('Y');
-
-        $requestAno = request('ano');
+        if($request->has('ano')){
+            $ano = request('ano');
+        }
 
         $queryVisitasCrentes = Crente::query();
+        $queryVisitasCrentes->whereYear('created_at', '=', $ano);
         $queryVisitasCrentes->where('id_usuario', $id_usuario);
 
         $queryVisitasNaoCrentes = Incredulo::query();
+        $queryVisitasNaoCrentes->whereYear('created_at', '=', $ano);
         $queryVisitasNaoCrentes->where('id_usuario', $id_usuario);
 
         $queryVisitasPresidios = Presidio::query();
+        $queryVisitasPresidios->whereYear('created_at', '=', $ano);
         $queryVisitasPresidios->where('id_usuario', $id_usuario);
 
         $queryVisitasEnfermos = Enfermo::query();
+        $queryVisitasEnfermos->whereYear('created_at', '=', $ano);
         $queryVisitasEnfermos->where('id_usuario', $id_usuario);
 
         $queryVisitasHospitais = Hospital::query();
+        $queryVisitasHospitais->whereYear('created_at', '=', $ano);
         $queryVisitasHospitais->where('id_usuario', $id_usuario);
 
         $queryVisitasEscolas = Escola::query();
+        $queryVisitasEscolas->whereYear('created_at', '=', $ano);
         $queryVisitasEscolas->where('id_usuario', $id_usuario);
 
         $queryBatismoInfantil = BatismoInfantil::query();
+        $queryBatismoInfantil->whereYear('created_at', '=', $ano);
         $queryBatismoInfantil->where('id_usuario', $id_usuario);
 
         $queryBatismoProfissao = BatismoProfissao::query();
+        $queryBatismoProfissao->whereYear('created_at', '=', $ano);
         $queryBatismoProfissao->where('id_usuario', $id_usuario);
 
         $queryBencaoNupcial = BencaoNupcial::query();
+        $queryBencaoNupcial->whereYear('created_at', '=', $ano);
         $queryBencaoNupcial->where('id_usuario', $id_usuario);
 
         $querySantaCeia = SantaCeia::query();
+        $querySantaCeia->whereYear('created_at', '=', $ano);
         $querySantaCeia->where('id_usuario', $id_usuario);
 
         $queryEstudo = Estudo::query();
+        $queryEstudo->whereYear('created_at', '=', $ano);
         $queryEstudo->where('id_usuario', $id_usuario);
 
         $querySermao = Sermao::query();
+        $querySermao->whereYear('created_at', '=', $ano);
         $querySermao->where('id_usuario', $id_usuario);
 
         $queryEstudoBiblico = EstudoBiblico::query();
+        $queryEstudoBiblico->whereYear('created_at', '=', $ano);
         $queryEstudoBiblico->where('id_usuario', $id_usuario);
 
         $queryDiscipulado = Discipulado::query();
+        $queryDiscipulado->whereYear('created_at', '=', $ano);
         $queryDiscipulado->where('id_usuario', $id_usuario);
         
-
-        //filtrando por ano
         $membresias = DB::table('membresias')
         ->where('id_usuario', $id_usuario)
-        ->whereYear('created_at', '=', $requestAno ? $requestAno : $ano)
+        ->whereYear('created_at', '=', $ano)
         ->select( \DB::raw("SUM(quantidade) as total"))
         ->get();
-        $membresiasTotal = Membresia::where('id_usuario', $id_usuario)->whereYear('created_at', '=', $requestAno ? $requestAno : $ano)->count();
+        $membresiasTotal = Membresia::where('id_usuario', $id_usuario)->whereYear('created_at', '=', $ano)->count();
 
         $mediaMembresias = 0;
         if($membresias[0]->total){
             $mediaMembresias = $membresias[0]->total / $membresiasTotal;
         }
 
-        $queryVisitasCrentes->whereYear('created_at', '=', $requestAno ? $requestAno : $ano);
-        $queryVisitasNaoCrentes->whereYear('created_at', '=', $requestAno ? $requestAno : $ano);
-        $queryVisitasPresidios->whereYear('created_at', '=', $requestAno ? $requestAno : $ano);
-        $queryVisitasEnfermos->whereYear('created_at', '=', $requestAno ? $requestAno : $ano);
-        $queryVisitasHospitais->whereYear('created_at', '=', $requestAno ? $requestAno : $ano);
-        $queryVisitasEscolas->whereYear('created_at', '=', $requestAno ? $requestAno : $ano);
-        $queryBatismoInfantil->whereYear('created_at', '=', $requestAno ? $requestAno : $ano);
-        $queryBatismoProfissao->whereYear('created_at', '=', $requestAno ? $requestAno : $ano);
-        $queryBencaoNupcial->whereYear('created_at', '=', $requestAno ? $requestAno : $ano);
-        $querySantaCeia->whereYear('created_at', '=', $requestAno ? $requestAno : $ano);
-        $queryEstudo->whereYear('created_at', '=', $requestAno ? $requestAno : $ano);
-        $querySermao->whereYear('created_at', '=', $requestAno ? $requestAno : $ano);
-        $queryEstudoBiblico->whereYear('created_at', '=', $requestAno ? $requestAno : $ano);
-        $queryDiscipulado->whereYear('created_at', '=', $requestAno ? $requestAno : $ano);
-        
         //encerrando as querys
         $membresiasG['membresias'] = intval($mediaMembresias);
         $crentes = $queryVisitasCrentes->count();

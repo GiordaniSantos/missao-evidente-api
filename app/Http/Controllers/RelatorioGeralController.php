@@ -26,7 +26,6 @@ class RelatorioGeralController extends Controller
      */
     public function index()
     {
-
         return view('admin.relatorios-gerais.index', $this->getDados());
     }
 
@@ -36,12 +35,11 @@ class RelatorioGeralController extends Controller
         ->select( \DB::raw("SUM(quantidade) as total"))
         ->get();
         $membresiasTotal = Membresia::where('id_usuario', \Auth::user()->id)->count();
+
+        $mediaMembresias = 0;
         if($membresias[0]->total){
             $mediaMembresias = $membresias[0]->total / $membresiasTotal;
-        }else{
-            $mediaMembresias = 0;
         }
-
 
         $crentes = Crente::where('id_usuario', \Auth::user()->id)->count();
         $incredulos = Incredulo::where('id_usuario', \Auth::user()->id)->count();
@@ -196,10 +194,10 @@ class RelatorioGeralController extends Controller
         ->select( \DB::raw("SUM(quantidade) as total"))
         ->get();
         $janTotal = Membresia::where('id_usuario', \Auth::user()->id)->whereMonth('created_at', '=', 1)->count();
+
+        $mediaJan = 0;
         if($jan[0]->total){
             $mediaJan = $jan[0]->total / $janTotal;
-        }else{
-            $mediaJan = 0;
         }
 
         $fev = DB::table('membresias')
@@ -208,10 +206,9 @@ class RelatorioGeralController extends Controller
         ->select( \DB::raw("SUM(quantidade) as total"))
         ->get();
         $fevTotal = Membresia::where('id_usuario', \Auth::user()->id)->whereMonth('created_at', '=', 2)->count();
+        $mediaFev = 0;
         if($fev[0]->total){
             $mediaFev = $fev[0]->total / $fevTotal;
-        }else{
-            $mediaFev = 0;
         }
 
         $mar = DB::table('membresias')
@@ -220,10 +217,9 @@ class RelatorioGeralController extends Controller
         ->select( \DB::raw("SUM(quantidade) as total"))
         ->get();
         $marTotal = Membresia::where('id_usuario', \Auth::user()->id)->whereMonth('created_at', '=', 3)->count();
+        $mediaMar = 0;
         if($mar[0]->total){
             $mediaMar = $mar[0]->total / $marTotal;
-        }else{
-            $mediaMar = 0;
         }
 
         $abr = DB::table('membresias')
@@ -232,10 +228,9 @@ class RelatorioGeralController extends Controller
         ->select( \DB::raw("SUM(quantidade) as total"))
         ->get();
         $abrTotal = Membresia::where('id_usuario', \Auth::user()->id)->whereMonth('created_at', '=', 4)->count();
+        $mediaAbr = 0;
         if($abr[0]->total){
             $mediaAbr = $abr[0]->total / $abrTotal;
-        }else{
-            $mediaAbr = 0;
         }
 
         $mai = DB::table('membresias')
@@ -244,10 +239,9 @@ class RelatorioGeralController extends Controller
         ->select( \DB::raw("SUM(quantidade) as total"))
         ->get();
         $maiTotal = Membresia::where('id_usuario', \Auth::user()->id)->whereMonth('created_at', '=', 5)->count();
+        $mediaMai = 0;
         if($mai[0]->total){
             $mediaMai = $mai[0]->total / $maiTotal;
-        }else{
-            $mediaMai = 0;
         }
 
         $jun = DB::table('membresias')
@@ -256,10 +250,9 @@ class RelatorioGeralController extends Controller
         ->select( \DB::raw("SUM(quantidade) as total"))
         ->get();
         $junTotal = Membresia::where('id_usuario', \Auth::user()->id)->whereMonth('created_at', '=', 6)->count();
+        $mediaJun = 0;
         if($jun[0]->total){
             $mediaJun = $jun[0]->total / $junTotal;
-        }else{
-            $mediaJun = 0;
         }
 
         $jul = DB::table('membresias')
@@ -268,10 +261,9 @@ class RelatorioGeralController extends Controller
         ->select( \DB::raw("SUM(quantidade) as total"))
         ->get();
         $julTotal = Membresia::where('id_usuario', \Auth::user()->id)->whereMonth('created_at', '=', 7)->count();
+        $mediaJul = 0;
         if($jul[0]->total){
             $mediaJul = $jul[0]->total / $julTotal;
-        }else{
-            $mediaJul = 0;
         }
 
         $ago = DB::table('membresias')
@@ -280,10 +272,9 @@ class RelatorioGeralController extends Controller
         ->select( \DB::raw("SUM(quantidade) as total"))
         ->get();
         $agoTotal = Membresia::where('id_usuario', \Auth::user()->id)->whereMonth('created_at', '=', 8)->count();
+        $mediaAgo = 0;
         if($ago[0]->total){
             $mediaAgo = $ago[0]->total / $agoTotal;
-        }else{
-            $mediaAgo = 0;
         }
 
         $set = DB::table('membresias')
@@ -292,10 +283,9 @@ class RelatorioGeralController extends Controller
         ->select( \DB::raw("SUM(quantidade) as total"))
         ->get();
         $setTotal = Membresia::where('id_usuario', \Auth::user()->id)->whereMonth('created_at', '=', 9)->count();
+        $mediaSet = 0;
         if($set[0]->total){
             $mediaSet = $set[0]->total / $setTotal;
-        }else{
-            $mediaSet = 0;
         }
 
         $out = DB::table('membresias')
@@ -304,10 +294,9 @@ class RelatorioGeralController extends Controller
         ->select( \DB::raw("SUM(quantidade) as total"))
         ->get();
         $outTotal = Membresia::where('id_usuario', \Auth::user()->id)->whereMonth('created_at', '=', 10)->count();
+        $mediaOut = 0;
         if($out[0]->total){
             $mediaOut = $out[0]->total / $outTotal;
-        }else{
-            $mediaOut = 0;
         }
 
         $nov = DB::table('membresias')
@@ -316,10 +305,9 @@ class RelatorioGeralController extends Controller
         ->select( \DB::raw("SUM(quantidade) as total"))
         ->get();
         $novTotal = Membresia::where('id_usuario', \Auth::user()->id)->whereMonth('created_at', '=', 11)->count();
+        $mediaNov = 0;
         if($nov[0]->total){
             $mediaNov = $nov[0]->total / $novTotal;
-        }else{
-            $mediaNov = 0;
         }
 
         $dez = DB::table('membresias')
@@ -328,10 +316,9 @@ class RelatorioGeralController extends Controller
         ->select( \DB::raw("SUM(quantidade) as total"))
         ->get();
         $dezTotal = Membresia::where('id_usuario', \Auth::user()->id)->whereMonth('created_at', '=', 12)->count();
+        $mediaDez = 0;
         if($dez[0]->total){
             $mediaDez = $dez[0]->total / $dezTotal;
-        }else{
-            $mediaDez = 0;
         }
         
         $dados = [
