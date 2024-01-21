@@ -216,10 +216,10 @@ class DashboardController extends Controller
         ->select( \DB::raw("SUM(quantidade) as total"))
         ->get();
         $membresiasTotal = Membresia::where('id_usuario', $id_usuario)->whereYear('created_at', '=', $requestAno ? $requestAno : $ano)->count();
+
+        $mediaMembresias = 0;
         if($membresias[0]->total){
             $mediaMembresias = $membresias[0]->total / $membresiasTotal;
-        }else{
-            $mediaMembresias = 0;
         }
 
         $queryVisitasCrentes->whereYear('created_at', '=', $requestAno ? $requestAno : $ano);
