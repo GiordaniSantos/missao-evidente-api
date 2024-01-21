@@ -37,12 +37,12 @@ class DashboardController extends Controller
         $id_usuario = request('id_usuario');
 
         $mes = date('m');
-        if($request->has('mes')){
+        if(request('mes')){
             $mes = request('mes');
         }
 
         $ano = date('Y');
-        if($request->has('ano')){
+        if(request('ano')){
             $ano = request('ano');
         }
 
@@ -162,7 +162,7 @@ class DashboardController extends Controller
         $id_usuario = request('id_usuario');
 
         $ano = date('Y');
-        if($request->has('ano')){
+        if(request('ano')){
             $ano = request('ano');
         }
 
