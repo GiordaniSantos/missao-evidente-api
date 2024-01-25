@@ -28,11 +28,11 @@ class AuthController extends Controller
             ], 422);
         }
 
-        /** @var \App\Models\User $user */
+        /** @var User $user */
         $user = Auth::user();
 
         $token = $user->createToken('main')->plainTextToken;
-        
+
         return response([
             'user' => $user,
             'token' => $token
@@ -52,9 +52,9 @@ class AuthController extends Controller
             'email.unique' => 'O email fornecido já está sendo utilizado, informe outro email.',
             'password.min' => 'O campo senha deve ter no minimo 8 caracteres.'
         ]);
-        
+
         $data['password'] = Hash::make($data['password']);
-        
+
         $user = User::create($data);
 
         return response($user, 204);
@@ -62,15 +62,10 @@ class AuthController extends Controller
 
     public function logout()
     {
-        /** @var \App\Models\User $user */
+        /** @var User $user */
         $user = Auth::user();
         $user->currentAccessToken()->delete();
 
         return response('', 204);
-    }
-
-    public function getUser(Request $request)
-    {
-        return new UserResource($request->user());
     }
 }

@@ -63,18 +63,18 @@ class User extends Authenticatable
         ]);
     }
 
-    public static function rules(){
-        $regras = [
+    public static function rules(): array
+    {
+        return [
             'name' => ['string', 'max:255'],
             'email' => ['string', 'email', 'max:255', Rule::unique('users')->ignore(auth()->id())],
             'password' => ['string', 'nullable', 'min:8', 'confirmed'],
         ];
-
-        return $regras;
     }
 
-    public static function feedback(){
-        $feedback = [
+    public static function feedback(): array
+    {
+        return [
             //'required' => 'O campo :attribute deve ser preenchido',
             'name.max' => 'O campo nome não pode ultrapassar 255 caracteres.',
             'email.max' => 'O campo email não pode ultrapassar 255 caracteres.',
@@ -82,7 +82,5 @@ class User extends Authenticatable
             'password.min' => 'O campo senha deve ter no minimo 8 caracteres.',
             'password.confirmed' => 'O campo senha não corresponde ao campo de confirmação de senha.',
         ];
-
-        return $feedback;
     }
 }

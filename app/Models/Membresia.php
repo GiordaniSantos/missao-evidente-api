@@ -23,24 +23,22 @@ class Membresia extends BaseModel
         ->useLogName('Membresia');
     }
 
-    public static function rules(){
-        $regras = [
+    public static function rules(): array
+    {
+        return [
             'nome' => 'required|max:20',
             'quantidade' => 'required',
             'id_usuario' => 'exists:users,id'
         ];
-
-        return $regras;
     }
 
-    public static function feedback(){
-        $feedback = [
+    public static function feedback(): array
+    {
+        return [
             'required' => 'O campo :attribute deve ser preenchido',
             'nome.max' => 'O campo :attribute não pode ultrapassar 20 caracteres.',
             'id_usuario.exists' => 'O usuário informado não existe!'
         ];
-
-        return $feedback;
     }
 
     public function user(): BelongsTo

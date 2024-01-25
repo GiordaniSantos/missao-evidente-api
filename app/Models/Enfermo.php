@@ -22,20 +22,18 @@ class Enfermo extends BaseModel
     }
 
 
-    public static function rules(){
-        $regras = [
+    public static function rules(): array
+    {
+        return [
             'id_usuario' => 'exists:users,id'
         ];
-
-        return $regras;
     }
 
-    public static function feedback(){
-        $feedback = [
+    public static function feedback(): array
+    {
+        return [
             'id_usuario.exists' => 'O usuário informado não existe!'
         ];
-
-        return $feedback;
     }
 
     public function user(): BelongsTo
