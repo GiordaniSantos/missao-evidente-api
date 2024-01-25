@@ -1,5 +1,20 @@
 <?php
 
+use App\Http\Controllers\BatismoInfantilController;
+use App\Http\Controllers\BatismoProfissaoController;
+use App\Http\Controllers\BencaoNupcialController;
+use App\Http\Controllers\CrenteController;
+use App\Http\Controllers\DiscipuladoController;
+use App\Http\Controllers\EnfermoController;
+use App\Http\Controllers\EscolaController;
+use App\Http\Controllers\EstudoBiblicoController;
+use App\Http\Controllers\EstudoController;
+use App\Http\Controllers\HospitalController;
+use App\Http\Controllers\IncreduloController;
+use App\Http\Controllers\MembresiaController;
+use App\Http\Controllers\PresidioController;
+use App\Http\Controllers\SantaCeiaController;
+use App\Http\Controllers\SermaoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,94 +41,94 @@ Route::middleware(['auth'])->prefix('/admin')->group(function () {
     })->name('table');
 
     //membresia
-    Route::resource('membresia', \App\Http\Controllers\MembresiaController::class)->except(['edit', 'update']);
-    Route::get('/membresia/{id}/edit', [\App\Http\Controllers\MembresiaController::class, 'edit'])->name('membresia.edit');
-    Route::put('/membresia/{id}', [\App\Http\Controllers\MembresiaController::class, 'update'])->name('membresia.update');
-    Route::delete('/membresia/{id}', [\App\Http\Controllers\MembresiaController::class, 'destroy'])->name('membresia.destroy');
+    Route::resource('membresia', MembresiaController::class)->except(['edit', 'update']);
+    Route::get('/membresia/{id}/edit', [MembresiaController::class, 'edit'])->name('membresia.edit');
+    Route::put('/membresia/{id}', [MembresiaController::class, 'update'])->name('membresia.update');
+    Route::delete('/membresia/{id}', [MembresiaController::class, 'destroy'])->name('membresia.destroy');
 
     //visita crente
-    Route::resource('crente', \App\Http\Controllers\CrenteController::class)->except(['edit', 'update']);
-    Route::get('/crente/{id}/edit', [\App\Http\Controllers\CrenteController::class, 'edit'])->name('crente.edit');
-    Route::put('/crente/{id}', [\App\Http\Controllers\CrenteController::class, 'update'])->name('crente.update');
-    Route::delete('/crente/{id}', [\App\Http\Controllers\CrenteController::class, 'destroy'])->name('crente.destroy');
+    Route::resource('crente', CrenteController::class)->except(['edit', 'update']);
+    Route::get('/crente/{id}/edit', [CrenteController::class, 'edit'])->name('crente.edit');
+    Route::put('/crente/{id}', [CrenteController::class, 'update'])->name('crente.update');
+    Route::delete('/crente/{id}', [CrenteController::class, 'destroy'])->name('crente.destroy');
 
     //visita não crente
-    Route::resource('nao-crente', \App\Http\Controllers\IncreduloController::class)->except(['edit', 'update']);
-    Route::get('/nao-crente/{id}/edit', [\App\Http\Controllers\IncreduloController::class, 'edit'])->name('nao-crente.edit');
-    Route::put('/nao-crente/{id}', [\App\Http\Controllers\IncreduloController::class, 'update'])->name('nao-crente.update');
-    Route::delete('/nao-crente/{id}', [\App\Http\Controllers\IncreduloController::class, 'destroy'])->name('nao-crente.destroy');
+    Route::resource('nao-crente', IncreduloController::class)->except(['edit', 'update']);
+    Route::get('/nao-crente/{id}/edit', [IncreduloController::class, 'edit'])->name('nao-crente.edit');
+    Route::put('/nao-crente/{id}', [IncreduloController::class, 'update'])->name('nao-crente.update');
+    Route::delete('/nao-crente/{id}', [IncreduloController::class, 'destroy'])->name('nao-crente.destroy');
 
     //visita presidios
-    Route::resource('presidio', \App\Http\Controllers\PresidioController::class)->except(['edit', 'update']);
-    Route::get('/presidio/{id}/edit', [\App\Http\Controllers\PresidioController::class, 'edit'])->name('presidio.edit');
-    Route::put('/presidio/{id}', [\App\Http\Controllers\PresidioController::class, 'update'])->name('presidio.update');
-    Route::delete('/presidio/{id}', [\App\Http\Controllers\PresidioController::class, 'destroy'])->name('presidio.destroy');
+    Route::resource('presidio', PresidioController::class)->except(['edit', 'update']);
+    Route::get('/presidio/{id}/edit', [PresidioController::class, 'edit'])->name('presidio.edit');
+    Route::put('/presidio/{id}', [PresidioController::class, 'update'])->name('presidio.update');
+    Route::delete('/presidio/{id}', [PresidioController::class, 'destroy'])->name('presidio.destroy');
 
     //visita enfermos
-    Route::resource('enfermo', \App\Http\Controllers\EnfermoController::class)->except(['edit', 'update']);
-    Route::get('/enfermo/{id}/edit', [\App\Http\Controllers\EnfermoController::class, 'edit'])->name('enfermo.edit');
-    Route::put('/enfermo/{id}', [\App\Http\Controllers\EnfermoController::class, 'update'])->name('enfermo.update');
-    Route::delete('/enfermo/{id}', [\App\Http\Controllers\EnfermoController::class, 'destroy'])->name('enfermo.destroy');
+    Route::resource('enfermo', EnfermoController::class)->except(['edit', 'update']);
+    Route::get('/enfermo/{id}/edit', [EnfermoController::class, 'edit'])->name('enfermo.edit');
+    Route::put('/enfermo/{id}', [EnfermoController::class, 'update'])->name('enfermo.update');
+    Route::delete('/enfermo/{id}', [EnfermoController::class, 'destroy'])->name('enfermo.destroy');
 
     //visita hospitais
-    Route::resource('hospital', \App\Http\Controllers\HospitalController::class)->except(['edit', 'update']);
-    Route::get('/hospital/{id}/edit', [\App\Http\Controllers\HospitalController::class, 'edit'])->name('hospital.edit');
-    Route::put('/hospital/{id}', [\App\Http\Controllers\HospitalController::class, 'update'])->name('hospital.update');
-    Route::delete('/hospital/{id}', [\App\Http\Controllers\HospitalController::class, 'destroy'])->name('hospital.destroy');
+    Route::resource('hospital', HospitalController::class)->except(['edit', 'update']);
+    Route::get('/hospital/{id}/edit', [HospitalController::class, 'edit'])->name('hospital.edit');
+    Route::put('/hospital/{id}', [HospitalController::class, 'update'])->name('hospital.update');
+    Route::delete('/hospital/{id}', [HospitalController::class, 'destroy'])->name('hospital.destroy');
 
     //visita escolas
-    Route::resource('escola', \App\Http\Controllers\EscolaController::class)->except(['edit', 'update']);
-    Route::get('/escola/{id}/edit', [\App\Http\Controllers\EscolaController::class, 'edit'])->name('escola.edit');
-    Route::put('/escola/{id}', [\App\Http\Controllers\EscolaController::class, 'update'])->name('escola.update');
-    Route::delete('/escola/{id}', [\App\Http\Controllers\EscolaController::class, 'destroy'])->name('escola.destroy');
+    Route::resource('escola', EscolaController::class)->except(['edit', 'update']);
+    Route::get('/escola/{id}/edit', [EscolaController::class, 'edit'])->name('escola.edit');
+    Route::put('/escola/{id}', [EscolaController::class, 'update'])->name('escola.update');
+    Route::delete('/escola/{id}', [EscolaController::class, 'destroy'])->name('escola.destroy');
 
     //batismos infantis
-    Route::resource('batismo-infantil', \App\Http\Controllers\BatismoInfantilController::class)->except(['edit', 'update']);
-    Route::get('/batismo-infantil/{id}/edit', [\App\Http\Controllers\BatismoInfantilController::class, 'edit'])->name('batismo-infantil.edit');
-    Route::put('/batismo-infantil/{id}', [\App\Http\Controllers\BatismoInfantilController::class, 'update'])->name('batismo-infantil.update');
-    Route::delete('/batismo-infantil/{id}', [\App\Http\Controllers\BatismoInfantilController::class, 'destroy'])->name('batismo-infantil.destroy');
+    Route::resource('batismo-infantil', BatismoInfantilController::class)->except(['edit', 'update']);
+    Route::get('/batismo-infantil/{id}/edit', [BatismoInfantilController::class, 'edit'])->name('batismo-infantil.edit');
+    Route::put('/batismo-infantil/{id}', [BatismoInfantilController::class, 'update'])->name('batismo-infantil.update');
+    Route::delete('/batismo-infantil/{id}', [BatismoInfantilController::class, 'destroy'])->name('batismo-infantil.destroy');
 
     //batismos e profissões de fé
-    Route::resource('batismo-profissao', \App\Http\Controllers\BatismoProfissaoController::class)->except(['edit', 'update']);
-    Route::get('/batismo-profissao/{id}/edit', [\App\Http\Controllers\BatismoProfissaoController::class, 'edit'])->name('batismo-profissao.edit');
-    Route::put('/batismo-profissao/{id}', [\App\Http\Controllers\BatismoProfissaoController::class, 'update'])->name('batismo-profissao.update');
-    Route::delete('/batismo-profissao/{id}', [\App\Http\Controllers\BatismoProfissaoController::class, 'destroy'])->name('batismo-profissao.destroy');
+    Route::resource('batismo-profissao', BatismoProfissaoController::class)->except(['edit', 'update']);
+    Route::get('/batismo-profissao/{id}/edit', [BatismoProfissaoController::class, 'edit'])->name('batismo-profissao.edit');
+    Route::put('/batismo-profissao/{id}', [BatismoProfissaoController::class, 'update'])->name('batismo-profissao.update');
+    Route::delete('/batismo-profissao/{id}', [BatismoProfissaoController::class, 'destroy'])->name('batismo-profissao.destroy');
 
     //benções nupciais
-    Route::resource('bencao-nupcial', \App\Http\Controllers\BencaoNupcialController::class)->except(['edit', 'update']);
-    Route::get('/bencao-nupcial/{id}/edit', [\App\Http\Controllers\BencaoNupcialController::class, 'edit'])->name('bencao-nupcial.edit');
-    Route::put('/bencao-nupcial/{id}', [\App\Http\Controllers\BencaoNupcialController::class, 'update'])->name('bencao-nupcial.update');
-    Route::delete('/bencao-nupcial/{id}', [\App\Http\Controllers\BencaoNupcialController::class, 'destroy'])->name('bencao-nupcial.destroy');
+    Route::resource('bencao-nupcial', BencaoNupcialController::class)->except(['edit', 'update']);
+    Route::get('/bencao-nupcial/{id}/edit', [BencaoNupcialController::class, 'edit'])->name('bencao-nupcial.edit');
+    Route::put('/bencao-nupcial/{id}', [BencaoNupcialController::class, 'update'])->name('bencao-nupcial.update');
+    Route::delete('/bencao-nupcial/{id}', [BencaoNupcialController::class, 'destroy'])->name('bencao-nupcial.destroy');
 
     //santas ceias
-    Route::resource('santa-ceia', \App\Http\Controllers\SantaCeiaController::class)->except(['edit', 'update']);
-    Route::get('/santa-ceia/{id}/edit', [\App\Http\Controllers\SantaCeiaController::class, 'edit'])->name('santa-ceia.edit');
-    Route::put('/santa-ceia/{id}', [\App\Http\Controllers\SantaCeiaController::class, 'update'])->name('santa-ceia.update');
-    Route::delete('/santa-ceia/{id}', [\App\Http\Controllers\SantaCeiaController::class, 'destroy'])->name('santa-ceia.destroy');
+    Route::resource('santa-ceia', SantaCeiaController::class)->except(['edit', 'update']);
+    Route::get('/santa-ceia/{id}/edit', [SantaCeiaController::class, 'edit'])->name('santa-ceia.edit');
+    Route::put('/santa-ceia/{id}', [SantaCeiaController::class, 'update'])->name('santa-ceia.update');
+    Route::delete('/santa-ceia/{id}', [SantaCeiaController::class, 'destroy'])->name('santa-ceia.destroy');
 
     //estudos
-    Route::resource('estudo', \App\Http\Controllers\EstudoController::class)->except(['edit', 'update']);
-    Route::get('/estudo/{id}/edit', [\App\Http\Controllers\EstudoController::class, 'edit'])->name('estudo.edit');
-    Route::put('/estudo/{id}', [\App\Http\Controllers\EstudoController::class, 'update'])->name('estudo.update');
-    Route::delete('/estudo/{id}', [\App\Http\Controllers\EstudoController::class, 'destroy'])->name('estudo.destroy');
+    Route::resource('estudo', EstudoController::class)->except(['edit', 'update']);
+    Route::get('/estudo/{id}/edit', [EstudoController::class, 'edit'])->name('estudo.edit');
+    Route::put('/estudo/{id}', [EstudoController::class, 'update'])->name('estudo.update');
+    Route::delete('/estudo/{id}', [EstudoController::class, 'destroy'])->name('estudo.destroy');
 
     //sermões
-    Route::resource('sermao', \App\Http\Controllers\SermaoController::class)->except(['edit', 'update']);
-    Route::get('/sermao/{id}/edit', [\App\Http\Controllers\SermaoController::class, 'edit'])->name('sermao.edit');
-    Route::put('/sermao/{id}', [\App\Http\Controllers\SermaoController::class, 'update'])->name('sermao.update');
-    Route::delete('/sermao/{id}', [\App\Http\Controllers\SermaoController::class, 'destroy'])->name('sermao.destroy');
-    
+    Route::resource('sermao', SermaoController::class)->except(['edit', 'update']);
+    Route::get('/sermao/{id}/edit', [SermaoController::class, 'edit'])->name('sermao.edit');
+    Route::put('/sermao/{id}', [SermaoController::class, 'update'])->name('sermao.update');
+    Route::delete('/sermao/{id}', [SermaoController::class, 'destroy'])->name('sermao.destroy');
+
     //estudos biblicos
-    Route::resource('estudo-biblico', \App\Http\Controllers\EstudoBiblicoController::class)->except(['edit', 'update']);
-    Route::get('/estudo-biblico/{id}/edit', [\App\Http\Controllers\EstudoBiblicoController::class, 'edit'])->name('estudo-biblico.edit');
-    Route::put('/estudo-biblico/{id}', [\App\Http\Controllers\EstudoBiblicoController::class, 'update'])->name('estudo-biblico.update');
-    Route::delete('/estudo-biblico/{id}', [\App\Http\Controllers\EstudoBiblicoController::class, 'destroy'])->name('estudo-biblico.destroy');
+    Route::resource('estudo-biblico', EstudoBiblicoController::class)->except(['edit', 'update']);
+    Route::get('/estudo-biblico/{id}/edit', [EstudoBiblicoController::class, 'edit'])->name('estudo-biblico.edit');
+    Route::put('/estudo-biblico/{id}', [EstudoBiblicoController::class, 'update'])->name('estudo-biblico.update');
+    Route::delete('/estudo-biblico/{id}', [EstudoBiblicoController::class, 'destroy'])->name('estudo-biblico.destroy');
 
     //discipulados
-    Route::resource('discipulado', \App\Http\Controllers\DiscipuladoController::class)->except(['edit', 'update']);
-    Route::get('/discipulado/{id}/edit', [\App\Http\Controllers\DiscipuladoController::class, 'edit'])->name('discipulado.edit');
-    Route::put('/discipulado/{id}', [\App\Http\Controllers\DiscipuladoController::class, 'update'])->name('discipulado.update');
-    Route::delete('/discipulado/{id}', [\App\Http\Controllers\DiscipuladoController::class, 'destroy'])->name('discipulado.destroy');
+    Route::resource('discipulado', DiscipuladoController::class)->except(['edit', 'update']);
+    Route::get('/discipulado/{id}/edit', [DiscipuladoController::class, 'edit'])->name('discipulado.edit');
+    Route::put('/discipulado/{id}', [DiscipuladoController::class, 'update'])->name('discipulado.update');
+    Route::delete('/discipulado/{id}', [DiscipuladoController::class, 'destroy'])->name('discipulado.destroy');
 
     //relatórios gerais
     Route::get('/relatorio-geral', [App\Http\Controllers\RelatorioGeralController::class, 'index'])->name('relatorio.index');
