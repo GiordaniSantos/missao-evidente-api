@@ -76,6 +76,7 @@ class IncreduloController extends Controller
         $incredulo = Incredulo::where('id', $id)->where('id_usuario', $id_usuario)->first();
         $request->validate(Incredulo::rules(), Incredulo::feedback());
         $incredulo->id_usuario = $id_usuario;
+        $incredulo->nome = $request->nome;
         $incredulo->created_at = Carbon::parse($request->created_at)->setTimezone('America/Sao_Paulo');
         $incredulo->save();
 
