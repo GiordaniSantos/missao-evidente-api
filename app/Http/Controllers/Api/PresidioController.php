@@ -76,6 +76,7 @@ class PresidioController extends Controller
         $presidio = Presidio::where('id', $id)->where('id_usuario', $id_usuario)->first();
         $request->validate(Presidio::rules(), Presidio::feedback());
         $presidio->id_usuario = $id_usuario;
+        $presidio->nome = $request->nome;
         $presidio->created_at = Carbon::parse($request->created_at)->setTimezone('America/Sao_Paulo');
         $presidio->save();
 
