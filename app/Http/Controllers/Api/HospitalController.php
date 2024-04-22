@@ -78,6 +78,7 @@ class HospitalController extends Controller
         //dd(Carbon::parse($request->created_at)->setTimezone('America/Sao_Paulo'));
         $request->validate(Hospital::rules(), Hospital::feedback());
         $hospital->id_usuario = $id_usuario;
+        $hospital->nome = $request->nome;
         $hospital->created_at = Carbon::parse($request->created_at)->setTimezone('America/Sao_Paulo');
         $hospital->save();
         //dd($hospital->created_at);
