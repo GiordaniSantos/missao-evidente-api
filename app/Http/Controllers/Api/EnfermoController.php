@@ -76,6 +76,7 @@ class EnfermoController extends Controller
         $enfermo = Enfermo::where('id', $id)->where('id_usuario', $id_usuario)->first();
         $request->validate(Enfermo::rules(), Enfermo::feedback());
         $enfermo->id_usuario = $id_usuario;
+        $enfermo->nome = $request->nome;
         $enfermo->created_at = Carbon::parse($request->created_at)->setTimezone('America/Sao_Paulo');
         $enfermo->save();
 
