@@ -76,6 +76,7 @@ class CrenteController extends Controller
         $crente = Crente::where('id', $id)->where('id_usuario', $id_usuario)->first();
         $request->validate(Crente::rules(), Crente::feedback());
         $crente->id_usuario = $id_usuario;
+        $crente->nome = $request->nome;
         $crente->created_at = Carbon::parse($request->created_at)->setTimezone('America/Sao_Paulo');
         $crente->save();
 

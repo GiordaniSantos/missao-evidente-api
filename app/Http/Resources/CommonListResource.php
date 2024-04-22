@@ -18,6 +18,7 @@ class CommonListResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'nome' => $this->nome,
             'created_at' => (new \DateTime($this->created_at))->format('d/m/Y H:i'),
         ];
     }
