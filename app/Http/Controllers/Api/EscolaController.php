@@ -78,6 +78,7 @@ class EscolaController extends Controller
         //dd(Carbon::parse($request->created_at)->setTimezone('America/Sao_Paulo'));
         $request->validate(Escola::rules(), Escola::feedback());
         $escola->id_usuario = $id_usuario;
+        $escola->nome = $request->nome;
         $escola->created_at = Carbon::parse($request->created_at)->setTimezone('America/Sao_Paulo');
         $escola->save();
         //dd($escola->created_at);
