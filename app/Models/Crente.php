@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Spatie\Activitylog\LogOptions;
 
-class Crente extends BaseModel
+class Crente extends Visita
 {
     public function getActivitylogOptions(): LogOptions
     {

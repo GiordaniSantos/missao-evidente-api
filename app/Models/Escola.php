@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Spatie\Activitylog\LogOptions;
 
-class Escola extends BaseModel
+class Escola extends Visita
 {
     public function getActivitylogOptions(): LogOptions
     {

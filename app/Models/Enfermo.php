@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\LogOptions;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Enfermo extends BaseModel
+class Enfermo extends Visita
 {
     public function getActivitylogOptions(): LogOptions
     {
