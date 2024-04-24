@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\BatismoInfantilController;
 use App\Http\Controllers\Api\BatismoProfissaoController;
 use App\Http\Controllers\Api\BencaoNupcialController;
+use App\Http\Controllers\Api\ComunganteController;
 use App\Http\Controllers\Api\CrenteController;
 use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\DiscipuladoController;
@@ -17,6 +18,7 @@ use App\Http\Controllers\Api\MembresiaController;
 use App\Http\Controllers\Api\PresidioController;
 use App\Http\Controllers\Api\SantaCeiaController;
 use App\Http\Controllers\Api\SermaoController;
+use App\Models\Comungante;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -37,6 +39,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::apiResource('membresia', MembresiaController::class);
+
+    Route::apiResource('comungante', ComunganteController::class);
 
     Route::apiResource('crente', CrenteController::class);
 
