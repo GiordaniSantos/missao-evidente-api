@@ -15,6 +15,7 @@ use App\Http\Controllers\Api\EstudoController;
 use App\Http\Controllers\Api\HospitalController;
 use App\Http\Controllers\Api\IncreduloController;
 use App\Http\Controllers\Api\MembresiaController;
+use App\Http\Controllers\Api\NaoComunganteController;
 use App\Http\Controllers\Api\PresidioController;
 use App\Http\Controllers\Api\SantaCeiaController;
 use App\Http\Controllers\Api\SermaoController;
@@ -41,6 +42,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::apiResource('membresia', MembresiaController::class);
 
     Route::apiResource('comungante', ComunganteController::class);
+
+    Route::apiResource('nao-comungante', NaoComunganteController::class);
 
     Route::apiResource('crente', CrenteController::class);
 
