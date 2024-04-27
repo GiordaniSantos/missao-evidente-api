@@ -14,11 +14,13 @@ use App\Models\Escola;
 use App\Models\BatismoInfantil;
 use App\Models\BatismoProfissao;
 use App\Models\BencaoNupcial;
+use App\Models\Comungante;
 use App\Models\SantaCeia;
 use App\Models\Estudo;
 use App\Models\Sermao;
 use App\Models\EstudoBiblico;
 use App\Models\Discipulado;
+use App\Models\NaoComungante;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
@@ -154,7 +156,13 @@ class DashboardController extends Controller
         $discipulados = $queryDiscipulado->count();
         $discipuladosG['discipulado'] = $discipulados;
 
-        return response()->json([$membresiasG, $crentesG, $incredulosG, $presidiosG, $enfermosG, $hospitaisG, $escolasG, $batismoG, $batismoProfissaoG, $bencaoNupcialG, $santaCeiaG, $estudosG, $sermoesG, $estudosBiblicosG, $discipuladosG], 200);
+        $comungante = Comungante::query()->select('quantidade')->where('id_usuario', $id_usuario)->first();
+        $comunganteG['comungante'] = $comungante && $comungante->quantidade ? $comungante->quantidade : 0;
+
+        $naoComungante = NaoComungante::query()->select('quantidade')->where('id_usuario', $id_usuario)->first();
+        $naoComunganteG['naoComungante'] = $naoComungante && $naoComungante->quantidade ? $naoComungante->quantidade : 0;
+
+        return response()->json([$membresiasG, $crentesG, $incredulosG, $presidiosG, $enfermosG, $hospitaisG, $escolasG, $batismoG, $batismoProfissaoG, $bencaoNupcialG, $santaCeiaG, $estudosG, $sermoesG, $estudosBiblicosG, $discipuladosG, $comunganteG, $naoComunganteG], 200);
     }
 
     public function relatorioAnual()
