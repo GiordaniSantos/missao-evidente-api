@@ -76,6 +76,7 @@ class BatismoProfissaoController extends Controller
         $batismoprofissao = BatismoProfissao::where('id', $id)->where('id_usuario', $id_usuario)->first();
         $request->validate(BatismoProfissao::rules(), BatismoProfissao::feedback());
         $batismoprofissao->id_usuario = $id_usuario;
+        $batismoprofissao->nome = $request->nome;
         $batismoprofissao->created_at = Carbon::parse($request->created_at)->setTimezone('America/Sao_Paulo');
         $batismoprofissao->save();
 

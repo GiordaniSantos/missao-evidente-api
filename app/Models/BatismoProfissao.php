@@ -11,7 +11,7 @@ class BatismoProfissao extends BaseModel
 {
     use HasFactory;
 
-    protected $fillable = ['id_usuario', 'created_at'];
+    protected $fillable = ['id_usuario', 'nome', 'created_at'];
 
     public function getActivitylogOptions(): LogOptions
     {
@@ -24,14 +24,16 @@ class BatismoProfissao extends BaseModel
     public static function rules(): array
     {
         return [
-            'id_usuario' => 'exists:users,id'
+            'id_usuario' => 'exists:users,id',
+            'nome' => 'max:150',
         ];
     }
 
     public static function feedback(): array
     {
         return [
-            'id_usuario.exists' => 'O usuário informado não existe!'
+            'id_usuario.exists' => 'O usuário informado não existe!',
+            'nome.max' => 'O campo :attribute não pode ultrapassar 150 caracteres.',
         ];
     }
 
