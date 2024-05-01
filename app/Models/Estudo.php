@@ -25,7 +25,7 @@ class Estudo extends BaseModel
     {
         return [
             'id_usuario' => 'exists:users,id',
-            'nome' => 'max:250',
+            'nome' => 'max:150',
         ];
     }
 
@@ -33,7 +33,7 @@ class Estudo extends BaseModel
     {
         return [
             'id_usuario.exists' => 'O usuário informado não existe!',
-            'nome.max' => 'O campo :attribute não pode ultrapassar 250 caracteres.',
+            'nome.max' => 'O campo :attribute não pode ultrapassar 150 caracteres.',
         ];
     }
 
