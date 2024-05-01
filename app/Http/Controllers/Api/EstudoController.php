@@ -78,6 +78,7 @@ class EstudoController extends Controller
         //dd(Carbon::parse($request->created_at)->setTimezone('America/Sao_Paulo'));
         $request->validate(Estudo::rules(), Estudo::feedback());
         $estudo->id_usuario = $id_usuario;
+        $estudo->nome = $request->nome;
         $estudo->created_at = Carbon::parse($request->created_at)->setTimezone('America/Sao_Paulo');
         $estudo->save();
         //dd($estudo->created_at);
