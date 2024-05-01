@@ -76,6 +76,7 @@ class EstudoBiblicoController extends Controller
         $estudoBiblico = EstudoBiblico::where('id', $id)->where('id_usuario', $id_usuario)->first();
         $request->validate(EstudoBiblico::rules(), EstudoBiblico::feedback());
         $estudoBiblico->id_usuario = $id_usuario;
+        $estudoBiblico->nome = $request->nome;
         $estudoBiblico->created_at = Carbon::parse($request->created_at)->setTimezone('America/Sao_Paulo');
         $estudoBiblico->save();
 
