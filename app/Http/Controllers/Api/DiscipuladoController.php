@@ -76,6 +76,7 @@ class DiscipuladoController extends Controller
         $discipulado = Discipulado::where('id', $id)->where('id_usuario', $id_usuario)->first();
         $request->validate(Discipulado::rules(), Discipulado::feedback());
         $discipulado->id_usuario = $id_usuario;
+        $discipulado->nome = $request->nome;
         $discipulado->created_at = Carbon::parse($request->created_at)->setTimezone('America/Sao_Paulo');
         $discipulado->save();
 
