@@ -76,6 +76,7 @@ class SermaoController extends Controller
         $sermao = Sermao::where('id', $id)->where('id_usuario', $id_usuario)->first();
         $request->validate(Sermao::rules(), Sermao::feedback());
         $sermao->id_usuario = $id_usuario;
+        $sermao->nome = $request->nome;
         $sermao->created_at = Carbon::parse($request->created_at)->setTimezone('America/Sao_Paulo');
         $sermao->save();
 
