@@ -78,6 +78,7 @@ class BencaoNupcialController extends Controller
         //dd(Carbon::parse($request->created_at)->setTimezone('America/Sao_Paulo'));
         $request->validate(BencaoNupcial::rules(), BencaoNupcial::feedback());
         $bencaonupcial->id_usuario = $id_usuario;
+        $bencaonupcial->nome = $request->nome;
         $bencaonupcial->created_at = Carbon::parse($request->created_at)->setTimezone('America/Sao_Paulo');
         $bencaonupcial->save();
         //dd($bencaonupcial->created_at);
