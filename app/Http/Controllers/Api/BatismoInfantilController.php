@@ -76,6 +76,7 @@ class BatismoInfantilController extends Controller
         $batismoinfantil = BatismoInfantil::where('id', $id)->where('id_usuario', $id_usuario)->first();
         $request->validate(BatismoInfantil::rules(), BatismoInfantil::feedback());
         $batismoinfantil->id_usuario = $id_usuario;
+        $batismoinfantil->nome = $request->nome;
         $batismoinfantil->created_at = Carbon::parse($request->created_at)->setTimezone('America/Sao_Paulo');
         $batismoinfantil->save();
 
