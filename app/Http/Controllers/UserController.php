@@ -24,15 +24,17 @@ class UserController extends Controller
             abort(404, 'Usuário não encotrado!');
         }
         if($request->input('_token') != '' && $request->input('id') == ''){
-            if(isset($request->email) && $request->email == $user->email){
-                $request->email = null;
-            }
+           
             //validacao
             $request->validate(User::rules(), User::feedback());
             if(isset($request->password)){
                 $user->password = Hash::make($request->password);
             }
-            if($user->update($request->all())){
+            if(isset($request->email) && $request->email != $user->email){
+                $user->email = $request->email;
+            }
+            $user->name = $request->name;
+            if($user->save()){
                 alert()->success('Concluído','Perfil atualizado com sucesso.');
             }else{
                 alert()->error('ErrorAlert','Erro na atualização do Perfil.');
