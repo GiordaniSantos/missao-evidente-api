@@ -20,11 +20,9 @@ class ComunganteController extends Controller
         $id_usuario = request('id_usuario');
         $query = Comungante::query()
             ->where('id_usuario', $id_usuario)
-            ->orderBy('created_at', 'desc')
-            ->take(15)
-            ->get();
+            ->orderBy('created_at', 'desc');
 
-        return FrequenciaListResource::collection($query);
+        return $query->first();
     }
 
     /**
@@ -37,6 +35,7 @@ class ComunganteController extends Controller
     {
         $request->validate(Comungante::rules(), Comungante::feedback());
         $comungante = new Comungante();
+        $comungante->quantidade = $request->input('quantidade');
         $comungante->id_usuario = $request->input('id_usuario');
         $comungante->save();
 
