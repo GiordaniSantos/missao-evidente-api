@@ -16,6 +16,8 @@ use App\Http\Controllers\PresidioController;
 use App\Http\Controllers\SantaCeiaController;
 use App\Http\Controllers\SermaoController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 /*
 |--------------------------------------------------------------------------
@@ -148,4 +150,8 @@ Route::middleware(['auth'])->prefix('/admin')->group(function () {
     Route::put('/meu-perfil/{id}', [App\Http\Controllers\UserController::class, 'update'])->name('user.update');
 });
 
-
+Route::get('/modify-password', function (Request $request) {
+    $token = $request->input('token');
+    $url = "missaoevidente://missaoevidenteapp.com.br/modify-password?token=$token";
+    return Redirect::to($url);
+});

@@ -81,6 +81,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('relatorio-anual', [DashboardController::class, 'relatorioAnual']);
 });
 
+Route::post('password/reset', [AuthController::class, 'reset']);
+
+Route::post('password/reset/{token}', [AuthController::class, 'resetPassword']);
+
 Route::post('logout', [AuthController::class, 'logout']);
 
 Route::post('signup', [AuthController::class, 'signup']);
