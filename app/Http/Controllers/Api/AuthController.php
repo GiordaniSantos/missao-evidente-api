@@ -85,7 +85,7 @@ class AuthController extends Controller
         $user = User::whereEmail($validatedData['email'])->first();
 
         if (!$user) {
-            return response()->json(['error' => 'Usuário não encontrado'], 404);
+            return response()->json(['message' => 'Usuário não encontrado'], 404);
         }
 
         $token = Str::random(60);
@@ -121,17 +121,17 @@ class AuthController extends Controller
         $passwordReset = \DB::table('password_reset_tokens')->whereToken($token)->first();
         
         if (!$passwordReset) {
-            return response()->json(['error' => 'Token de redefinição de senha inválido'], 401);
+            return response()->json(['message' => 'Token de redefinição de senha inválido'], 401);
         }
 
         if (Carbon::parse($passwordReset->created_at)->addMinutes(config('auth.passwords.users.expire'))->isPast()) {
-            return response()->json(['error' => 'Token de redefinição de senha expirou'], 401);
+            return response()->json(['message' => 'Token de redefinição de senha expirou'], 401);
         }
         
         $user = User::whereEmail($passwordReset->email)->first();
 
         if (!$user) {
-            return response()->json(['error' => 'Usuário não encontrado'], 404);
+            return response()->json(['message' => 'Usuário não encontrado'], 404);
         }
 
         $user->password = bcrypt($validatedData['password']);
