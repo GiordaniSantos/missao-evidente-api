@@ -120,7 +120,7 @@ class DashboardController extends Controller
         ->select(\DB::raw("SUM(quantidade) as total"))
         ->get();
         $membresiasTotal = Membresia::where('id_usuario', $id_usuario)->whereYear('created_at', '=', $ano)->count();
-        $results['membresias'] = intval($membresias[0]->total / $membresiasTotal);
+        $results['membresias'] = $membresiasTotal != 0 ? intval($membresias[0]->total / $membresiasTotal) : 0;
     
         return response()->json($results, 200);  
     }
