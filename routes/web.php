@@ -152,6 +152,6 @@ Route::middleware(['auth'])->prefix('/admin')->group(function () {
 
 Route::get('/modify-password', function (Request $request) {
     $token = $request->input('token');
-    $url = "missaoevidente://missaoevidenteapp.com.br/modify-password?token=$token";
+    $url = "exp://192.168.3.146:8081/--/missaoemacao/modify-password/token=$token";
     return Redirect::to($url);
 });
