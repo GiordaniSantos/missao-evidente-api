@@ -38,6 +38,10 @@ Route::get('/excluir-conta', function () {
     return view('excluir-conta');
 });
 
+Route::get('/politica-de-privacidade', function () {
+    return view('politica-privacidade');
+});
+
 Auth::routes();
 
 Route::middleware(['auth'])->prefix('/admin')->group(function () {
