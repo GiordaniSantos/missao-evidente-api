@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('titulo', 'Missão Evidente - Visitas aos Enfermos')
+@section('titulo', 'Missão em Ação - Visitas aos Enfermos')
 
 @section('content')
     <div class="container-fluid">

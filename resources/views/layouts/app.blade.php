@@ -48,7 +48,7 @@
                 <div class="sidebar-brand-icon">
                     <i class="fa-solid fa-cross"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">Missão Evidente</div>
+                <div class="sidebar-brand-text mx-3">Missão em Ação</div>
             </a>
 
             <!-- Divider -->

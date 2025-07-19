@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('titulo', 'Missão Evidente - Batismos e Profissões de Fé')
+@section('titulo', 'Missão em Ação - Batismos e Profissões de Fé')
 
 @section('content')
     <div class="container-fluid">

@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Missão Evidente</title>
+        <title>Missão em Ação</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -36,7 +36,7 @@
                     <img src="/img/ipb2.jpg" alt="IPB" width="250px" style="margin-bottom: 70px;">
                 </div>
                 <div class="flex justify-center">
-                    <span style="color: white;font: italic bold 30px arial, sans-serif;" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:text-green-600 focus:rounded-sm focus:text-green-600">Missão Evidente</span>
+                    <span style="color: white;font: italic bold 30px arial, sans-serif;" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:text-green-600 focus:rounded-sm focus:text-green-600">Missão em Ação</span>
                 </div>
                 <!--
                 <div class="mt-16">
