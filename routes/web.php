@@ -34,6 +34,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/excluir-conta', function () {
+    return view('excluir-conta');
+});
+
 Auth::routes();
 
 Route::middleware(['auth'])->prefix('/admin')->group(function () {
